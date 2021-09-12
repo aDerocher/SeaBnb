@@ -1,0 +1,9 @@
+.loginForm{
+  background-color:aquamarine
+}
+.fErrorMsgs{
+  background-color: rgb(241, 241, 241);
+}
+.fErrorMsg{
+  color: red;
+}

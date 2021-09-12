@@ -1,0 +1,9 @@
+.signinForm{
+  background-color:rgb(153, 104, 153)
+}
+.sErrorMsgs{
+  background-color: rgb(241, 241, 241);
+}
+.sErrorMsg{
+  color: red;
+}

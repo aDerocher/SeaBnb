@@ -2,6 +2,7 @@
 const { Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     firstName: {

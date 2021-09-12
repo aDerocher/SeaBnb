@@ -31,7 +31,7 @@ function LoginForm() {
   return (
     <>
     <form className='loginForm' onSubmit={handleSubmit}>
-      <div class='form-topper'>
+      <div className='form-topper'>
         <button>X</button>
         <p>Log in or sign up</p>
       </div>

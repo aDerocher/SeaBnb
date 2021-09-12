@@ -1,5 +1,8 @@
 .loginForm{
-  background-color:aquamarine
+  background-color:aquamarine;
+  height: 750px;
+  width: 400px;
+  border-radius: 14px;
 }
 .fErrorMsgs{
   background-color: rgb(241, 241, 241);

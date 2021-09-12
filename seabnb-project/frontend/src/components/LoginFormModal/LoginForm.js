@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch} from 'react-redux';
 // import { Redirect } from 'react-router-dom';
-// import './LoginForm.css';
+import './LoginForm.css';
 
 
 function LoginForm() {
@@ -16,18 +16,20 @@ function LoginForm() {
   //   <Redirect to="/" />
   // );
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+    .catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
       });
   }
 
   return (
     <form className='loginForm' onSubmit={handleSubmit}>
+      <h2>Log In</h2>
       <ul className='fErrorMsgs'>
         {errors.map((error, idx) => (
           <li className='fErrorMsg' key={idx}>{error}</li>

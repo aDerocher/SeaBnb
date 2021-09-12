@@ -1,12 +1,50 @@
 .loginForm{
   background-color:aquamarine;
-  height: 750px;
-  width: 400px;
+  height: 625px;
+  width: 525px;
   border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 24px;
 }
+
+ /* ====== Topper ===================== */
+.form-topper{
+  color:rgb(26, 26, 26);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.form-topper > button{
+  justify-self: flex-start;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color:rgb(26, 26, 26);
+  font-weight: 600;
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+  transition: 0.1s;
+}
+.form-topper > button:hover{
+  background-color: rgba(26, 26, 26, .2);
+}
+.form-topper > p{
+  width: 100%;
+  justify-self: center;
+  margin:auto;
+  text-align: center
+}
+
+/* ================================ */
 .fErrorMsgs{
-  background-color: rgb(241, 241, 241);
+  background-color: transparent;
 }
 .fErrorMsg{
+  background-color: transparent;
   color: red;
 }

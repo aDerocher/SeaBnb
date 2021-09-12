@@ -1,1 +1,10 @@
 /* TODO Add site wide styles */
+html, body, div, p, h1, h2, h3, h4, h5, h6, span, a,
+input, link, form, ul, ol, li, tb, td, table, th, tr,
+button, textarea, select, option {
+  padding: 0;
+  margin: 0;
+}
+html{
+  font-family:Arial, Helvetica, sans-serif;
+}

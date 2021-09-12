@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom'
 import * as sessionActions from '../../store/session';
 import { useDispatch} from 'react-redux';
 // import { Redirect } from 'react-router-dom';
@@ -28,8 +29,12 @@ function LoginForm() {
   }
 
   return (
+    <>
     <form className='loginForm' onSubmit={handleSubmit}>
-      <h2>Log In</h2>
+      <div class='form-topper'>
+        <button>X</button>
+        <p>Log in or sign up</p>
+      </div>
       <ul className='fErrorMsgs'>
         {errors.map((error, idx) => (
           <li className='fErrorMsg' key={idx}>{error}</li>
@@ -55,6 +60,8 @@ function LoginForm() {
       </label>
       <button type="submit">Log In</button>
     </form>
+    <NavLink to="/signup">Sign Up</NavLink>
+    </>
   );
 }
 

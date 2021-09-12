@@ -1,0 +1,219 @@
+/* +++ Splash Picture (Container) +++++++++++++++++++++ */
+.splash-picture {
+  width: 100%;
+  /* height: 600px; */
+  background-image: url(../../images/boats/boat-background-7.jpg);
+  background-position: center left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* +++ Nav Bar +++++++++++++++++++++ */
+.nav-container {
+  /* background-color: blue; */
+  padding: .75rem 0;
+  width: 85%;
+  margin: auto;
+  height: 3.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+.nav-logo{
+  /* background-color: rgb(51, 255, 0); */
+  padding: 3px;
+  height: 40px;
+  width: 120px;
+  background-image: url(../../images/logos/SeaBnb-Logo-full-White.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.nav-quick-links {
+  /* background-color: rgb(255, 0, 221); */
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: center;
+  margin-left: 8rem;
+
+}
+.nav-quick-links > p {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  padding: 3px 20px;
+  display:flex;
+  justify-self: center;
+}
+
+/* .nav-profile-container{
+  background-color: rgb(191, 194, 27);
+} */
+
+/* ++++++++++++++ Host Profile Area (Top Right) ++++++++++++++++++++++++++++ */
+
+.nav-profile-container{
+  display: flex;
+  flex-direction: row;
+  
+}
+.nav-l{
+  display: flex;
+  flex-direction: row;
+  padding: 0 1rem;
+  height: 40px;
+  border-radius: 20px;
+  transition: 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  
+}
+.nav-bold{ font-weight: 600; }
+.nav-l-h{
+  background-color:none;
+  transition: 0.2s;
+}
+.nav-l-h:hover{
+  background-color:rgba(255, 255, 255, 0.1);
+}
+
+.nav-r{
+  background-color: white;
+  color: black;
+  box-shadow: rgb(0 0 0 / 40%) 0px 0px 2px;
+}
+.nav-user-img{
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  margin-left: 4px;
+  background-color: grey;
+}
+
+.signup-link:hover{ cursor: pointer}
+.login-link:hover{ cursor: pointer}
+
+
+/* +++ Search Bar +++++++++++++++++++++ */
+
+.search-bar {
+  background-color: rgb(255, 255, 255);
+  margin: auto;
+  width: fit-content;
+  height: 64px;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-i-container {
+  background-color: rgb(255, 255, 255);
+  margin: 0;
+  padding: 0 30px;
+  height: 64px;
+  /* width: 100%; */
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 32px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
+}
+.search-i-container:hover { background-color: rgb(228, 228, 228);}
+
+.searchbar-label {
+  font-size: 8pt;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.searchbar-input-box {
+  background-color: none;
+  background: none;
+  border: none;
+}
+.searchbar-input-box:focus{
+  border: none;
+  outline: none;
+  background-color: none;
+}
+.s-location{ width: 180px; }
+.s-checkin{ width: 100px; }
+.s-checkout{ width: 100px; }
+.s-guests{ width: 100px; }
+
+/* .search-i-btn{
+  height: 44px;
+  width: 44px;
+  border-radius:22px;
+  border: none;
+  outline: none;
+  
+} */
+.search-i-btn-icon {
+  width: 48px;
+  height: 48px;
+  border-radius:24px;
+  margin-right: 8px;
+  background-color: rgb(117, 72, 134);
+  background-image: url(../../images/logos/mag-glass-white.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: none;
+}
+.search-i-btn-icon-container {
+  background-color: rgb(163, 30, 30);
+}
+/* .search-i-container! > input[type=text]:focus { background: #000; } */
+
+
+
+
+/* ++++++++++++++ Flex Button ++++++++++++++++++++++++++++ */
+
+.im-flex-container{
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-right: 500px;
+}
+.im-flex-container > h3{
+  color: rgb(241, 241, 241);
+  font-size: 14pt;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  padding: 1rem 0;
+  
+}
+.im-flex-btn {
+  height: 64px;
+  border-radius: 32px;
+  padding: 0 3rem;
+  font-size: 14pt;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  background-color:rgb(255, 255, 255);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  transition: 0.2s;
+  
+}
+.im-flex-btn > span{
+  background: -webkit-linear-gradient(45deg, rgb(41, 52, 219), rgb(187, 105, 219));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.im-flex-btn:hover{
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.2);
+}

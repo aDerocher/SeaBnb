@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -8,6 +9,15 @@ import './Navigation.css';
 
 const Navigation =({ isLoaded })=> {
   const sessionUser = useSelector(state => state.session.user);
+
+  const history = useHistory();
+  
+  const goHome = () => {
+    history.push('/');
+  }
+  const goSignup = () => {
+    history.push('/signup');
+  }
 
   let sessionLinks;
   // if a user is signed in
@@ -31,14 +41,34 @@ const Navigation =({ isLoaded })=> {
   }
 
   return (
-    <nav>
+    <nav class='nav-container'>
+
       <ul>
         <li>
           <NavLink exact to="/">SeaBnb Home</NavLink>
         </li>
           {isLoaded && sessionLinks}
       </ul>
-    </nav>
+
+        <div class="nav-logo" onClick={goHome}>
+        </div>
+
+        <div class="nav-quick-links">
+          <p>Places to stay</p>
+          <p>Experiences</p>
+          <p>Online Experiences</p>
+        </div>
+
+        <div class='nav-profile-container'>
+          <div class='nav-l nav-l-h'><p class='nav-bold'>Become a host</p></div>
+          <div class='nav-l nav-l-h'><p class='nav-bold'>⛒</p></div>
+          <div class='nav-l nav-r'>
+            <div><p class='signup-link' onClick={goSignup} >☰</p></div>
+            <div class='login-link nav-user-img'></div>
+          </div>
+        </div>
+      </nav>
+
   );
 }
 

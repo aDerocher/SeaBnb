@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from 'react-router-dom';
 import * as sessionActions from "./store/session";
 import SignupFormPage from './components/SignupFormPage';
-// import WelcomeScreen from './components/WelcomeScreen';
+import WelcomeScreen from './components/WelcomeScreen';
 import Navigation from './components/Navigation';
 
 function App() {
@@ -16,18 +16,18 @@ function App() {
 
   return isLoaded && (
     <>
-      <h1>SeaBnb</h1>
-      <Navigation isLoaded={isLoaded} />
-      { isLoaded && (
+      {/* <Navigation isLoaded={isLoaded} /> */}
+      <WelcomeScreen isLoaded={isLoaded} />
+      {/* { isLoaded && (
         <Switch>
           <Route exact path="/">
-            {/* <WelcomeScreen /> */}
+            <WelcomeScreen />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
         </Switch>
-      )}
+      )} */}
     </>
   );
 }

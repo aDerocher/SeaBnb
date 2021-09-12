@@ -28,27 +28,28 @@ const Navigation =({ isLoaded })=> {
     );
   } else {
     // otherwise render the login/signup links
-    sessionLinks = (
-      <>
-        <li>
-          <LoginFormModal />
-        </li>
-        <li>
-          <NavLink to="/signup">Sign Up</NavLink>
-        </li>
-      </>
-    );
+    sessionLinks = ( <LoginFormModal /> );
+    // sessionLinks = (
+    //   <>
+    //     <li>
+    //       <LoginFormModal />
+    //     </li>
+    //     <li>
+    //       <NavLink to="/signup">Sign Up</NavLink>
+    //     </li>
+    //   </>
+    // );
   }
 
   return (
     <nav class='nav-container'>
 
-      <ul>
-        <li>
+      {/* <ul> */}
+        {/* <li>
           <NavLink exact to="/">SeaBnb Home</NavLink>
-        </li>
-          {isLoaded && sessionLinks}
-      </ul>
+        </li> */}
+          {/* {isLoaded && sessionLinks} */}
+      {/* </ul> */}
 
         <div class="nav-logo" onClick={goHome}>
         </div>
@@ -64,7 +65,7 @@ const Navigation =({ isLoaded })=> {
           <div class='nav-l nav-l-h'><p class='nav-bold'>⛒</p></div>
           <div class='nav-l nav-r'>
             <div><p class='signup-link' onClick={goSignup} >☰</p></div>
-            <div class='login-link nav-user-img'></div>
+            {isLoaded && sessionLinks}
           </div>
         </div>
       </nav>

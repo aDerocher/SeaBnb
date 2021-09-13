@@ -8,9 +8,13 @@ npx dotenv sequelize db:seed:undo:all
 
 --- Spots Table ---
 npx sequelize-cli model:generate --name Spot --attributes name:string,location:string,price:integer,host:integer,description:string,reviews:integer,rules:integer,amenities:integer
+npx sequelize seed:generate --name spot-seeder
 
 --- Bookings --- 
 npx sequelize-cli model:generate --name Booking --attributes guest:integer,spot:integer,checkIn:date,checkOut:date 
+npx sequelize seed:generate --name booking-seeder
 
 --- Reviews --- 
 npx sequelize-cli model:generate --name Review --attributes guest:integer,spot:integer,score:integer,content:text
+npx sequelize seed:generate --name review-seeder
+

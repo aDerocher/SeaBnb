@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     reviews:  DataTypes.INTEGER,
     rules: DataTypes.INTEGER,
-    amenities:  DataTypes.INTEGER
+    amenities:  DataTypes.INTEGER,
+    photo1:DataTypes.STRING,
+    photo2:DataTypes.STRING,
+    photo3:DataTypes.STRING,
+    photo4:DataTypes.STRING,
+    photo5:DataTypes.STRING
 
   }, {});
   Spot.associate = function(models) {

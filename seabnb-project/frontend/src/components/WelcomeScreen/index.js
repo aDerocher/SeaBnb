@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, NavLink, Route, Switch } from 'react-router-dom';
+import React from 'react';
+// import * as sessionActions from '../../store/session';
+// import { useDispatch, useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation';
 import SignupFormPage from '../SignupFormPage';
 import './WelcomeScreen.css';
@@ -13,7 +13,7 @@ function WelcomeScreen({ isLoaded }) {
 
   return (
     // +++ Splash Picture (Container) +++++++++++++++++++++++++++
-    <div class='splash-picture'>
+    <div className='splash-picture'>
       <Navigation isLoaded={isLoaded}/>
       { isLoaded && (
         <Switch>
@@ -24,32 +24,33 @@ function WelcomeScreen({ isLoaded }) {
       )}
       
       {/* +++ Search Bar +++++++++++++++++++++ */}
-      <div class="search-bar">
-        <div class='search-i-container'>
-          <label for="location" class="searchbar-label">Location</label>
-          <input name="location" type="text" class="s-location searchbar-input-box" placeholder="Where are you going?"></input>
+      <div className="search-bar">
+        <div className='search-i-container'>
+          {/* 'for' attribute not working for the labels? Look up later for bug fixing */}
+          <label id="location" className="searchbar-label">Location</label>
+          <input name="location" type="text" className="s-location searchbar-input-box" placeholder="Where are you going?" />
         </div>
-        <div class='search-i-container'>
-          <label for="check-in" class="searchbar-label">Check in</label>
-          <input name="check-in" type="text" class="s-checkin searchbar-input-box" placeholder="Add dates"></input>
+        <div className='search-i-container'>
+          <label id="check-in" className="searchbar-label">Check in</label>
+          <input name="check-in" type="text" className="s-checkin searchbar-input-box" placeholder="Add dates" />
         </div>
-        <div class='search-i-container'>
-          <label for="check-out" class="searchbar-label">Check out</label>
-          <input name="check-out" type="text" class="s-checkout searchbar-input-box" placeholder="Add dates"></input>
+        <div className='search-i-container'>
+          <label id="check-out" className="searchbar-label">Check out</label>
+          <input name="check-out" type="text" className="s-checkout searchbar-input-box" placeholder="Add dates" />
         </div>
-        <div class='search-i-container'>
-          <label for="guests" class="searchbar-label">Guests</label>
-          <input type="number" name="guests" min="1" max="16" class="s-guests searchbar-input-box" placeholder="Add guests"></input>
+        <div className='search-i-container'>
+          <label id="guests" className="searchbar-label">Guests</label>
+          <input type="number" name="guests" min="1" max="16" className="s-guests searchbar-input-box" placeholder="Add guests" />
         </div>
-        <div class="search-i-btn-icon"></div>  
-         {/* <div class="search-i-btn-container">
-          <button class="search-i-btn"> </button>
+        <div className="search-i-btn-icon"></div>  
+         {/* <div className="search-i-btn-container">
+          <button className="search-i-btn"> </button>
         </div>  */}
       </div>
        {/* +++ Not Sure Where to Go +++++++++++++++++++++  */}
-      <div class='im-flex-container'>
+      <div className='im-flex-container'>
         <h3>Not sure where to set sail? Perfect.</h3>
-        <button class='im-flex-btn'><span>I'm flexible</span></button>
+        <button className='im-flex-btn'><span>I'm flexible</span></button>
       </div>
     </div>
 

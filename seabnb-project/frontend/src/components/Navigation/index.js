@@ -1,11 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-// import sessionReducer from "../../store/session";
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
+// import { NavLink } from "react-router-dom";
+// import sessionReducer from "../../store/session";
 
 const Navigation =({ isLoaded })=> {
   const sessionUser = useSelector(state => state.session.user);
@@ -42,7 +42,7 @@ const Navigation =({ isLoaded })=> {
   }
 
   return (
-    <nav class='nav-container'>
+    <nav className='nav-container'>
 
       {/* <ul> */}
         {/* <li>
@@ -51,20 +51,20 @@ const Navigation =({ isLoaded })=> {
           {/* {isLoaded && sessionLinks} */}
       {/* </ul> */}
 
-        <div class="nav-logo" onClick={goHome}>
+        <div className="nav-logo" onClick={goHome}>
         </div>
 
-        <div class="nav-quick-links">
+        <div className="nav-quick-links">
           <p>Places to stay</p>
           <p>Experiences</p>
           <p>Online Experiences</p>
         </div>
 
-        <div class='nav-profile-container'>
-          <div class='nav-l nav-l-h'><p class='nav-bold'>Become a host</p></div>
-          <div class='nav-l nav-l-h'><p class='nav-bold'>⛒</p></div>
-          <div class='nav-l nav-r'>
-            <div><p class='signup-link' onClick={goSignup} >☰</p></div>
+        <div className='nav-profile-container'>
+          <div className='nav-l nav-l-h'><p className='nav-bold'>Become a host</p></div>
+          <div className='nav-l nav-l-h'><p className='nav-bold'>⛒</p></div>
+          <div className='nav-l nav-r'>
+            <div><p className='signup-link' onClick={goSignup} >☰</p></div>
             {isLoaded && sessionLinks}
           </div>
         </div>

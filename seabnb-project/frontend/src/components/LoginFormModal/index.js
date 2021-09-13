@@ -8,7 +8,7 @@ function LoginFormModal() {
 
   return (
     <>
-      <div class='login-link nav-user-img' onClick={() => setShowModal(true)}></div>
+      <div className='login-link nav-user-img' onClick={() => setShowModal(true)}></div>
       {showModal && (
         <div>
           <Modal onClose={() => setShowModal(false)}>

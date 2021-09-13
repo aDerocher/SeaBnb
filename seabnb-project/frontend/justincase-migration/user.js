@@ -2,6 +2,7 @@
 const { Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     firstName: {
@@ -66,6 +67,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function(models) {
     // associations can be defined here
   };
+
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
     const { id, firstName, lastName, email, profilePhoto } = this; // context will be the User instance
     return { id, firstName, lastName, email, profilePhoto };

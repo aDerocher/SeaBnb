@@ -2,7 +2,8 @@
 .splash-picture {
   width: 100%;
   /* height: 600px; */
-  background-image: url(../../images/boats/boat-background-7.jpg);
+  background-color:rgb(104, 131, 141);
+  /* background-image: url(../../images/boats/boat-background-7.jpg); */
   background-position: center left;
   background-repeat: no-repeat;
   background-size: cover;

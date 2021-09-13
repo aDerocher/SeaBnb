@@ -31,7 +31,7 @@ const validateSignup = [
     .withMessage('Last name cannot be an email.'),
   check('password')
     .exists({ checkFalsy: true })
-    .isLength({ min: 8 })
+    .isLength({ min: 6 })
     .withMessage('Password must be 6 characters or more.'),
   check('confirmPassword')
     .exists({ checkFalsy: true })

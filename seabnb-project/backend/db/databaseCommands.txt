@@ -1,0 +1,16 @@
+npx dotenv sequelize db:create
+npx dotenv sequelize db:migrate
+npx dotenv sequelize db:seed:all
+
+npx dotenv sequelize db:drop
+npx dotenv sequelize db:migrate:undo
+npx dotenv sequelize db:seed:undo:all
+
+--- Spots Table ---
+npx sequelize-cli model:generate --name Spot --attributes name:string,location:string,price:integer,host:integer,description:string,reviews:integer,rules:integer,amenities:integer
+
+--- Bookings --- 
+npx sequelize-cli model:generate --name Booking --attributes guest:integer,spot:integer,checkIn:date,checkOut:date 
+
+--- Reviews --- 
+npx sequelize-cli model:generate --name Review --attributes guest:integer,spot:integer,score:integer,content:text

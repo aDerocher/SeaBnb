@@ -7,7 +7,7 @@ const load = list => ({
 });
 // ===== FUNCTIONS =================================
 export const getSpots = () => async dispatch => {
-  const response = await fetch(`/api/spots`);
+  const response = await fetch(`/spots`);
   
   if (response.ok) {
     const spots = await response.json();

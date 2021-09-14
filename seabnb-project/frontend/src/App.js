@@ -5,6 +5,7 @@ import WelcomeScreen from './components/WelcomeScreen';
 import { Route, Switch } from 'react-router-dom';
 import SignupFormPage from './components/SignupFormPage';
 import SpotBrowser from './components/SpotBrowser';
+import SpotPage from './components/SpotPage';
 import NotFound from './components/NotFound';
 // import Navigation from './components/Navigation';
 
@@ -30,7 +31,7 @@ function App() {
           <SpotBrowser />
         </Route>
         <Route path="/spots/:spotId">
-          <SpotBrowser />
+          <SpotPage />
         </Route>
         <Route >
           <NotFound />

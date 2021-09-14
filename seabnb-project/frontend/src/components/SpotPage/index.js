@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 // import { Route } from 'react-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { getSpots } from "../../store/spots";
-import './SpotBrowser.css';
+import { useSelector } from 'react-redux';
+// import { getSpots } from "../../store/spots";
+import './SpotPage.css';
 import { useHistory } from 'react-router';
 
 function SpotPage(){
@@ -22,4 +22,4 @@ function SpotPage(){
   )
 }
 
-export default SpotBrowser;
+export default SpotPage;

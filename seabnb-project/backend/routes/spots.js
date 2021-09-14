@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Spot } = require('../../db/models');
+const { Spot } = require('../db/models');
 
 
 const router = express.Router();
@@ -12,7 +12,7 @@ const router = express.Router();
     //         description, reviews, rules, amenities, photo1,
     //         photo2, photo3, photo4, photo5, } 
     //        = await Spot.findAll();
-    
+    console.log(allSpots, "<=============ALL SPOTS==============");
     return res.json(allSpots);
   }));
 
@@ -24,7 +24,7 @@ const router = express.Router();
     //         description, reviews, rules, amenities, photo1,
     //         photo2, photo3, photo4, photo5, } 
     //        = await Spot.findAll();
-    console.log(oneSpot)
+    console.log(oneSpot, "<============ONE SPOT==============");
     return res.json(oneSpot);
   }));
 

@@ -25,9 +25,8 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
-
+.nav-logo2:hover{ cursor: pointer; }
 /* +++ Search Bar +++++++++++++++++++++ */
 
 .search-bar2 {

@@ -1,7 +1,7 @@
 .loginForm{
   background-color:aquamarine;
-  height: 625px;
-  width: 525px;
+  height: 60%;
+  width: 50%;
   border-radius: 14px;
   display: flex;
   flex-direction: column;

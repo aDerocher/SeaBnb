@@ -1,10 +1,17 @@
-
+import {useHistory} from 'react-router'
 import './NavigationTwo.css'
 
 const NavigationTwo = () => {
+
+  const history = useHistory();
+  
+  const goHome = () => {
+    history.push('/');
+  }
+  
   return (
     <nav className='nav-container2'>
-      <div className="nav-logo2">
+      <div className="nav-logo2" onClick={goHome}>
       </div>
 
       <div className="search-bar2">

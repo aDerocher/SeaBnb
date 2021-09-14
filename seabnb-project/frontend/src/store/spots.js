@@ -52,8 +52,7 @@ const spotsReducer = (state = initialState, action) => {
     }
 
     case ONE_SPOT: {
-      const oneSpot = {};
-      console.log(action.spot, "<=====action.spot======");
+      // console.log(action.spot, "<=====action.spot======");
       return {
         ...state,
         spot: action.spot

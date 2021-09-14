@@ -27,7 +27,7 @@ export const getOneSpot = (spotId) => async dispatch => {
   
   if (response.ok) {
     const spot = await response.json();
-    // console.log(spot, "<<+++ spot +++")
+    console.log(spot, "<<+++ spot +++")
     dispatch(oneSpot(spot));
   }
 };
@@ -46,9 +46,8 @@ const spotsReducer = (state = initialState, action) => {
         allSpots[spot.id] = spot;
       });
       return {
-        ...allSpots,
         ...state,
-        list: action.list
+        list: action.list,
       };
     }
 
@@ -56,7 +55,6 @@ const spotsReducer = (state = initialState, action) => {
       const oneSpot = {};
       console.log(action.spot, "<=====action.spot======");
       return {
-        ...oneSpot,
         ...state,
         spot: action.spot
       };

@@ -17,7 +17,8 @@ const router = express.Router();
   }));
 
   router.get('/:id', asyncHandler(async (req, res) => {
-    const { spotId } = res.body.parse()
+    const spotId = parseInt(req.params.id, 10);
+    console.log(spotId, '------------------');
     const oneSpot = await Spot.findByPk(spotId);
 
     // const { name, location, price, host, 

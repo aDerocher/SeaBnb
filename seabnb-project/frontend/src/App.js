@@ -27,11 +27,11 @@ function App() {
         <Route path="/signup">
           <SignupFormPage />
         </Route>
-        <Route path="/spots">
-          <SpotBrowser />
-        </Route>
         <Route path="/spots/:spotId">
           <SpotPage />
+        </Route>
+        <Route path="/spots">
+          <SpotBrowser />
         </Route>
         <Route >
           <NotFound />

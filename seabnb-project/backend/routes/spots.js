@@ -12,7 +12,7 @@ const router = express.Router();
     //         description, reviews, rules, amenities, photo1,
     //         photo2, photo3, photo4, photo5, } 
     //        = await Spot.findAll();
-    console.log(allSpots, "<=============ALL SPOTS==============");
+    // console.log(allSpots, "<=============ALL SPOTS==============");
     return res.json(allSpots);
   }));
 
@@ -24,7 +24,7 @@ const router = express.Router();
     //         description, reviews, rules, amenities, photo1,
     //         photo2, photo3, photo4, photo5, } 
     //        = await Spot.findAll();
-    console.log(oneSpot, "<============ONE SPOT==============");
+    // console.log(oneSpot, "<============ONE SPOT==============");
     return res.json(oneSpot);
   }));
 

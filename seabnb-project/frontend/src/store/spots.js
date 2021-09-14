@@ -11,7 +11,7 @@ export const getSpots = () => async dispatch => {
   
   if (response.ok) {
     const spots = await response.json();
-    console.log(spots, "++++++++++++++++++++++++++++++++++")
+    // console.log(spots, "++++++++++++++++++++++++++++++++++")
     dispatch(load(spots));
   }
 };

@@ -12,13 +12,16 @@ function SpotBrowser(){
   }, [ dispatch ]);
 
   const spots = useSelector(state => {
-    return state;
+    return state.spots.list;
   });
-  console.log(spots,'<==============================')
+  // console.log(spots,'<==============================')
 
   return(
     <div>
       <h2>I'm Spot Browser</h2>
+      {spots.map((spot) => (
+        <p key={spot.id}>{spot.name}</p>
+      ))}
     </div>
   )
 }

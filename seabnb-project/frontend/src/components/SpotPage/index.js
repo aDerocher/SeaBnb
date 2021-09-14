@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 // import { Route } from 'react-dom';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSpots, getOneSpot } from "../../store/spots";
+import { getOneSpot } from "../../store/spots";
 import './SpotPage.css';
 // import { useHistory } from 'react-router';
 
@@ -23,12 +23,9 @@ function SpotPage(){
     const dispatch = useDispatch();
     useEffect(()=>{
       dispatch(getOneSpot(spotId));
-    }, [ dispatch ]);
+    }, [ dispatch, spotId ]);
     
   const spot = useSelector(state => {
-    const allSpots = state.spots.list;
-    const aSpot = allSpots.filter(s => s.id===spotId)
-    // console.log(aSpot,'<===========aSpot============')
     return state.spots.spot;
   });
   // console.log(spotId,'<============spotId=============')

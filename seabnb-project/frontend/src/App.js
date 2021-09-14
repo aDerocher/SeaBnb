@@ -7,6 +7,7 @@ import SignupFormPage from './components/SignupFormPage';
 import SpotBrowser from './components/SpotBrowser';
 import SpotPage from './components/SpotPage';
 import NavigationTwo from './components/NavigationTwo';
+import ProfilePage from './components/ProfilePage';
 import NotFound from './components/NotFound';
 // import Navigation from './components/Navigation';
 
@@ -33,9 +34,15 @@ function App() {
           <SpotPage />
         </Route>
         <Route path="/spots">
+          <NavigationTwo />
           <SpotBrowser />
         </Route>
+        <Route path="/users/:id">
+          <NavigationTwo />
+          <ProfilePage />
+        </Route>
         <Route >
+          <NavigationTwo />
           <NotFound />
         </Route>
       </Switch>

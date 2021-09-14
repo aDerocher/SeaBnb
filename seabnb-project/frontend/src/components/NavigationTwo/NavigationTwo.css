@@ -1,0 +1,96 @@
+
+/* +++ Nav Bar 2 +++++++++++++++++++++ */
+.nav-container2 {
+  background-color: rgb(255, 255, 255);
+  /* padding: 12px 0; */
+  
+  height: 3.5rem;
+  width:60%;
+  margin: auto;
+  padding: .75rem 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgb(0 0 0 / 8%) 0px 1px 8px;
+
+}
+
+.nav-logo2{
+  /* background-color: rgb(51, 255, 0); */
+  padding: 3px;
+  height: 40px;
+  width: 120px;
+  background-image: url("../../images/logos/SeaBnb-Logo-full.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+/* +++ Search Bar +++++++++++++++++++++ */
+
+.search-bar2 {
+  background-color: rgb(255, 255, 255);
+  margin: auto;
+  width: fit-content;
+  height: 44px;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: center;
+  font-size: 14px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 0px 3px;
+  transition: 0.2s
+}
+
+.search-bar2:hover {
+  box-shadow: rgb(0 0 0 / 25%) 0px 1px 5px;
+}
+.search-bar2 > p { margin-left: 1.5rem; font-family: Arial, Helvetica, sans-serif;}
+.search-container2 {
+  background-color: rgb(255, 255, 255);
+  margin: 0;
+  padding: 0 30px;
+  height: 64px;
+  /* width: 100%; */
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 32px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
+}
+.search-container2:hover { background-color: rgb(228, 228, 228);}
+
+.searchbar-input-box2 {
+  background-color: none;
+  background: none;
+  border: none;
+}
+.searchbar-input-box2:focus{
+  border: none;
+  outline: none;
+  background-color: none;
+}
+.s-2{ width: 200px; }
+
+.search-i-btn-icon2 {
+  width: 32px;
+  height: 32px;
+  border-radius:24px;
+  margin-right: 8px;
+  background-color: rgb(117, 72, 134);
+  background-image: url("../../images/logos/mag-glass-white.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: none;
+}
+.search-i-btn-icon-container2 {
+  background-color: rgb(163, 30, 30);
+}
+
+.wText{
+  color: black;
+}

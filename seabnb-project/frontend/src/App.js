@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import SignupFormPage from './components/SignupFormPage';
 import SpotBrowser from './components/SpotBrowser';
 import SpotPage from './components/SpotPage';
+import NavigationTwo from './components/NavigationTwo';
 import NotFound from './components/NotFound';
 // import Navigation from './components/Navigation';
 
@@ -28,6 +29,7 @@ function App() {
           <SignupFormPage />
         </Route>
         <Route path="/spots/:spotId">
+          <NavigationTwo />
           <SpotPage />
         </Route>
         <Route path="/spots">

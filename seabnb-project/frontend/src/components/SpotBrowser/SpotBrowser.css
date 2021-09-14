@@ -1,2 +1,85 @@
 /* ==== Spot Browsing Styles ==== */
 
+.spots-container {
+  /* background-color: aquamarine; */
+  width: 55%;
+  height: 200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spots{
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid lightgrey;
+  width: 100%
+}
+
+.spot{
+  /* background-color: orange; */
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid rgba(134, 134, 134, 0.5)
+}
+.spot-img-section{
+  /* background-color: rgb(109, 80, 26); */
+  width: 39%;
+  margin-left: 12px;
+  border-radius:12px;
+  overflow: hidden;
+}
+.spot-img-section > img {
+  object-fit: cover;
+  width: 100%;
+  min-height: 100%;
+}
+.spot-mid-section{
+  /* background-color: rgb(188, 190, 60); */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 44%;
+  margin-left: 12px;
+}
+.spot-right-section{
+  /* background-color: rgb(230, 238, 116); */
+  width: 14%;
+  margin: 0 12px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.spot-sec{
+  height: 80%;
+}
+
+.spot-section-title{
+  margin-top: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18pt;
+}
+
+.tiny-line{
+  color: lightgrey;
+  margin-bottom: 8px;
+}
+.spot-section-flist{
+  color: grey;
+  font-size: 12pt;
+}
+.spot-section-rating{
+  /* background-color: lightpink; */
+  justify-self: end;
+  bottom: auto;
+}
+
+.spot-hearts{
+  /* background-color: purple; */
+}

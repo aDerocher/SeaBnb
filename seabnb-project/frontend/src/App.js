@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import * as sessionActions from "./store/session";
 import WelcomeScreen from './components/WelcomeScreen';
-// import { Route, Switch } from 'react-router-dom';
-// import SignupFormPage from './components/SignupFormPage';
+import { Route, Switch } from 'react-router-dom';
+import SignupFormPage from './components/SignupFormPage';
+import SpotBrowser from './components/SpotBrowser';
+import NotFound from './components/NotFound';
 // import Navigation from './components/Navigation';
 
 function App() {
@@ -17,13 +19,29 @@ function App() {
   return isLoaded && (
     <>
       {/* <Navigation isLoaded={isLoaded} /> */}
-      <WelcomeScreen isLoaded={isLoaded} />
+      <Switch>
+        <Route exact path="/">
+          <WelcomeScreen isLoaded={isLoaded} />
+        </Route>
+        <Route path="/signup">
+          <SignupFormPage />
+        </Route>
+        <Route path="/spots">
+          <SpotBrowser />
+        </Route>
+        <Route path="/spots/:spotId">
+          <SpotBrowser />
+        </Route>
+        <Route >
+          <NotFound />
+        </Route>
+      </Switch>
       {/* { isLoaded && (
         <Switch>
           <Route exact path="/">
             <WelcomeScreen />
-          </Route>
-          <Route path="/signup">
+            </Route>
+            <Route path="/signup">
             <SignupFormPage />
           </Route>
         </Switch>

@@ -14,7 +14,18 @@ const router = express.Router();
     //        = await Spot.findAll();
     
     return res.json(allSpots);
-  }),
-);
+  }));
+
+  router.get('/:id', asyncHandler(async (req, res) => {
+    const { spotId } = res.body.parse()
+    const oneSpot = await Spot.findByPk(spotId);
+
+    // const { name, location, price, host, 
+    //         description, reviews, rules, amenities, photo1,
+    //         photo2, photo3, photo4, photo5, } 
+    //        = await Spot.findAll();
+    console.log(oneSpot)
+    return res.json(oneSpot);
+  }));
 
 module.exports = router;

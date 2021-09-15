@@ -1,20 +1,23 @@
+import { csrfFetch } from './csrf'
+
 // ===== IMPORTS =================================
 const LOAD = 'spots/LOAD';
-const ONE_SPOT = 'spots/ONE_SPOT';
+export const ONE_SPOT = 'spots/ONE_SPOT';
 
 // ===== ACTIONS =================================
 const load = list => ({
   type: LOAD,
   list,
 });
+
 const oneSpot = spot => ({
   type: ONE_SPOT,
   spot
-})
+});
 
 // ===== FUNCTIONS =================================
 export const getSpots = () => async dispatch => {
-  const response = await fetch(`/spots`);
+  const response = await csrfFetch(`/api/spots`);
   
   if (response.ok) {
     const spots = await response.json();
@@ -22,12 +25,12 @@ export const getSpots = () => async dispatch => {
     dispatch(load(spots));
   }
 };
+
 export const getOneSpot = (spotId) => async dispatch => {
-  const response = await fetch(`/spots/${spotId}`);
-  
+  const response = await csrfFetch(`/api/spots/${spotId}`);
   if (response.ok) {
     const spot = await response.json();
-    console.log(spot, "<<+++ spot +++")
+    // console.log(spot, "<<+++ spot +++")
     dispatch(oneSpot(spot));
   }
 };

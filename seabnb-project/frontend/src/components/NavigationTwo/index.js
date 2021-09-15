@@ -1,12 +1,37 @@
+import React from 'react';
 import {useHistory} from 'react-router'
+import { useSelector } from 'react-redux';
+import ProfileButton from './ProfileButton';
+import LoginFormModal from '../LoginFormModal';
 import './NavigationTwo.css'
 
-const NavigationTwo = () => {
-
-  const history = useHistory();
+const NavigationTwo = ({isLoaded}) => {
+  const sessionUser = useSelector(state => state.session.user);
   
-  const goHome = () => {
-    history.push('/');
+  const history = useHistory();
+  const goHome = () => { history.push('/'); }
+  const goSignup = () => { history.push('/signup'); }
+
+  let sessionLinks;
+  // if a user is signed in
+  if (sessionUser) {
+    sessionLinks = (
+      // render the profile button as a link
+      <ProfileButton user={sessionUser} />
+    );
+  } else {
+    // otherwise render the login/signup links
+    sessionLinks = ( <LoginFormModal /> );
+    // sessionLinks = (
+    //   <>
+    //     <li>
+    //       <LoginFormModal />
+    //     </li>
+    //     <li>
+    //       <NavLink to="/signup">Sign Up</NavLink>
+    //     </li>
+    //   </>
+    // );
   }
   
   return (
@@ -23,8 +48,8 @@ const NavigationTwo = () => {
         <div className='nav-l nav-l-h wText'><p>Become a host</p></div>
         <div className='nav-l nav-l-h wText'><p className='nav-bold'>⛒</p></div>
         <div className='nav-l nav-r wText'>
-          <div><p className='nav-bold'>☰</p></div>
-          <div className='nav-user-img'></div>
+          <div><p className='signup-link nav-bold' onClick={goSignup} >☰</p></div>
+            {isLoaded && sessionLinks}
         </div>
       </div>
     </nav>

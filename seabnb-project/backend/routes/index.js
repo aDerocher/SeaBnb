@@ -2,13 +2,13 @@
 const express = require('express');
 const router = express.Router();
 const apiRouter = require('./api');
-const spotsRouter = require('./spots');
+
 const csrf = require('csurf');
 const csrfProtection = csrf({cookie: true});
 
 
 router.use('/api', apiRouter);
-router.use('/spots', spotsRouter);
+
 // ===========================================
 
 

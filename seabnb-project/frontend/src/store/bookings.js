@@ -49,7 +49,7 @@ export const newBooking = (bookingData) => async dispatch => {
       checkIn,
       checkOut
   } = bookingData
-  const response = await fetch(`/bookings/new`, {
+  const response = await csrfFetch(`/bookings/new`, {
     method: 'POST',
     body: JSON.stringify({
       guest,

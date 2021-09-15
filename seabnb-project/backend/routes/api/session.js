@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { User } = require('../../db/models');
+const { Booking } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
@@ -19,14 +20,17 @@ const validateLogin = [
 ];
 
 // === Home =========
-router.get(
-  '/',
-  restoreUser,
-  (req, res) => {
+router.get( '/', restoreUser, async (req, res) => {
     const { user } = req;
     if (user) {
+      const userBookings = await Booking.findAll({
+        where: {
+          guest: user.id
+        }
+      })
       return res.json({
-        user: user.toSafeObject()
+        user: user.toSafeObject(),
+        userBookings
       });
     } else return res.json({});
   }

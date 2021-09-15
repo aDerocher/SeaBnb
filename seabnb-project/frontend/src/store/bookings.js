@@ -43,13 +43,8 @@ export const getAllBookings = () => async dispatch => {
 };
 
 export const newBooking = (bookingData) => async dispatch => {
-  const { 
-      guest,
-      spot,
-      checkIn,
-      checkOut
-  } = bookingData
-  const response = await csrfFetch(`/bookings/new`, {
+  const { guest, spot, checkIn, checkOut} = bookingData
+  const response = await csrfFetch(`/api/bookings/new`, {
     method: 'POST',
     body: JSON.stringify({
       guest,
@@ -60,15 +55,7 @@ export const newBooking = (bookingData) => async dispatch => {
   });
   return response;
 };
-// export const getOneSpot = (spotId) => async dispatch => {
-//   const response = await fetch(`/spots/${spotId}`);
-  
-//   if (response.ok) {
-//     const spot = await response.json();
-//     console.log(spot, "<<+++ spot +++")
-//     dispatch(oneSpot(spot));
-//   }
-// };
+
 
 // ===== SET STATE =================================
 const initialState = {

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { restoreUser } from '../../store/session';
 import { useSelector, useDispatch } from 'react-redux';
+import NavigationTwo from '../NavigationTwo'
 import './ProfilePage.css';
 // import { useHistory } from 'react-router';
 
@@ -21,9 +22,12 @@ function ProfilePage(){
   // console.log(spots[0].photo1,'<==============================')
 
   return(
-    <div>
-      <h2>{user.firstName}</h2>
-    </div>
+    <>
+      <NavigationTwo />
+      <div>
+        <h2>{user.firstName}</h2>
+      </div>
+    </>
   )
 }
 

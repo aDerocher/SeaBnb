@@ -69,7 +69,7 @@ const ReserveSpotForm = ({spotId}) => {
 
   return(
     <div>
-      <form action="/bookings/new" method="POST" className="new-booking-form" onSubmit={e=>submitReservation(e)}>
+      <form action="/api/bookings/new" method="POST" className="new-booking-form" onSubmit={e=>submitReservation(e)}>
         <input type="date" name="checkIn" min={day} value={startDate} onChange={e=> setStartDate(e.target.value)}></input>
         <input type="date" name="checkOut" min={startDate} value={endDate} onChange={e=> setEndDate(e.target.value)}></input>          
         <button disabled={errors.length > 0}>Reserve</button>

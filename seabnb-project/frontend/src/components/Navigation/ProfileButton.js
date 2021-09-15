@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { useHistory } from 'react-router';
 
 function ProfileButton({ user }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  
+  // const user = useSelector(state => state.session.user );
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
+  const goToUserPage = () => {
+    history.push(`/users/${user.id}`);
+  }
   
   useEffect(() => {
     if (!showMenu) return;
@@ -35,7 +41,7 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.firstName}</li>
+          <li onClick={goToUserPage}>{user.firstName}</li>
           <li>{user.email}</li>
           <li>
             <button onClick={logout}>Log Out</button>

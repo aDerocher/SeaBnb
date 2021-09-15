@@ -2,13 +2,14 @@ import { csrfFetch } from './csrf'
 
 // ===== IMPORTS =================================
 const LOAD = 'spots/LOAD';
-const ONE_SPOT = 'spots/ONE_SPOT';
+export const ONE_SPOT = 'spots/ONE_SPOT';
 
 // ===== ACTIONS =================================
 const load = list => ({
   type: LOAD,
   list,
 });
+
 const oneSpot = spot => ({
   type: ONE_SPOT,
   spot
@@ -27,7 +28,6 @@ export const getSpots = () => async dispatch => {
 
 export const getOneSpot = (spotId) => async dispatch => {
   const response = await csrfFetch(`/api/spots/${spotId}`);
-  
   if (response.ok) {
     const spot = await response.json();
     // console.log(spot, "<<+++ spot +++")

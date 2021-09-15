@@ -1,5 +1,6 @@
 import { csrfFetch } from './csrf'
-
+import { getOneSpot } from './spots';
+import {ONE_SPOT} from './spots'
 // ===== IMPORTS =================================
 const GET_BOOKS = 'bookings/GET_BOOKS';
 const GET_ALL_BOOKS = 'bookings/GET_ALL_BOOKS';
@@ -22,7 +23,7 @@ const bookNew = newBooking => ({
 // ===== FUNCTIONS =================================
 export const getSpotBookings = (spotId) => async dispatch => {
   // const spot = await fetch(`/bookings/${}`);
-  const response = await csrfFetch(`api/bookings`);
+  const response = await csrfFetch(`/api/spots/${spotId}`);
   
   if (response.ok) {
     const spotBookings = await response.json();
@@ -32,7 +33,7 @@ export const getSpotBookings = (spotId) => async dispatch => {
 };
 
 export const getAllBookings = () => async dispatch => {
-  const response = await csrfFetch(`api/bookings`);
+  const response = await csrfFetch(`/api/bookings`);
   
   if (response.ok) {
     const allBookings = await response.json();
@@ -78,16 +79,17 @@ const initialState = {
 // ===== REDUCER =================================
 const bookingsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_BOOKS: {
-      const spotBookings = {};
-      action.spotBookings.forEach(booking => {
-        spotBookings[booking.id] = booking;
-      });
+    case ONE_SPOT: {
+      // const spotBookings = {};
+      // action.spotBookings.forEach(booking => {
+      //   spotBookings[booking.id] = booking;
+      // });
       return {
         ...state,
-        spotBookings: action.spotBookings,
+        spotBookings: action.spot.spotBookings,
       };
     }
+
     case GET_ALL_BOOKS: {
       const allBookings = {};
       action.allBookings.forEach(booking => {

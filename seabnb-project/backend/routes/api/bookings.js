@@ -12,8 +12,6 @@ router.get('/', asyncHandler(async (req, res) => {
   return res.json(allBookings);
 }));
 
-
-
 // // ====== get all the bookings for current spot =======
 // router.get('/:id', asyncHandler(async (req, res) => {
 //   const spotId = parseInt(req.params, 10);
@@ -24,7 +22,6 @@ router.get('/', asyncHandler(async (req, res) => {
 //   });
 //   return res.json(allSpotBookings);
 // }));
-
   
 // ====== post a new booking to the database =======
 router.post('/new', asyncHandler(async (req, res) => {

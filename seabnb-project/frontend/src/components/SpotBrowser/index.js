@@ -9,7 +9,7 @@ function SpotBrowser(){
 
   const history = useHistory();
   const goToSpot= (spotId)=> {
-    history.push(`/api/spots/${spotId}`);
+    history.push(`/spots/${spotId}`);
   }
 
   const dispatch = useDispatch();

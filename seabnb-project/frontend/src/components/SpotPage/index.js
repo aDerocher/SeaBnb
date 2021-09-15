@@ -21,7 +21,7 @@ function SpotPage(){
     //   return state;
     // });
   const { spotId } = useParams();
-  console.log(spotId, '<=======spotId=====');
+  // console.log(spotId, '<=======spotId=====');
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getOneSpot(spotId));
@@ -31,9 +31,7 @@ function SpotPage(){
   const spot = useSelector(state => {
     return state.spots.spot;
   });
-  // console.log(spotId,'<============spotId=============')
-  // console.log(spot,'<============spot==============')
-  // console.log(spots[0].photo1,'<==============================')
+
 
   return(
     <div>

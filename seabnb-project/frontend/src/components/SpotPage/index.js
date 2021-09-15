@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneSpot } from "../../store/spots";
+import ReserveSpotForm from '../ReserveSpotForm';
 import './SpotPage.css';
 // import { useHistory } from 'react-router';
 
@@ -18,12 +19,12 @@ function SpotPage(){
   // const spot = useSelector(state => {
     //   return state;
     // });
-    const { spotId } = useParams();
-    
-    const dispatch = useDispatch();
-    useEffect(()=>{
-      dispatch(getOneSpot(spotId));
-    }, [ dispatch, spotId ]);
+  const { spotId } = useParams();
+  
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getOneSpot(spotId));
+  }, [ dispatch, spotId ]);
     
   const spot = useSelector(state => {
     return state.spots.spot;
@@ -39,11 +40,7 @@ function SpotPage(){
       <div className="spot-images"></div>
       <div className="spot-main">
         <div className="spot-details"></div>
-        <form className="">
-          <input type="date" name="checkIn"></input>
-          <input type="date" name="checkOut"></input>          
-          <button>Reserve</button>
-        </form>
+        <ReserveSpotForm />
       </div>
       <div className="spot-reviews"></div>
     </div>

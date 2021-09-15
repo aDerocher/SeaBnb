@@ -3,7 +3,9 @@ import { useHistory } from "react-router";
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { today, tomorrow, datesOverlap } from './dateUtils';
+import { today, tomorrow } from './dateUtils';
+import { isBefore } from 'date-fns'
+
 
 const ReserveSpotForm = () => {
   const history = useHistory();
@@ -23,15 +25,16 @@ const ReserveSpotForm = () => {
   const spot = useSelector(state => state.spots.spot );
   const user = useSelector(state => state.session.user );
 
-  useEffect((today)=>{
-    setStartDate(today);
-  },[ startDate ])
+  useEffect(()=>{
+    setStartDate(day);
+  },[])
 
   useEffect(()=> {
     let newErrors = [];
     if (startDate < today ) newErrors.push('Reservations can not be made in the past!');
     if (!startDate) newErrors.push('Reservations can not be made in the past!');
     if (!endDate) newErrors.push('Reservations can not be made in the past!');
+    if (!isBefore(startDate, endDate)) newErrors.push('Start date can not be after end date')
     console.log('Reservations can not be made in the past!');
 
     setErrors(newErrors);
@@ -52,18 +55,22 @@ const ReserveSpotForm = () => {
 
   const logDates = (e) =>{
     e.preventDefault();
-    console.log("start: ", startDate)
-    console.log("end: ", endDate)
+    // let result = isBefore(new Date(1928, 6, 10), new Date(1987, 1, 11));
+    // console.log(new Date(startDate));
+    // console.log('result: ', result);
+    console.log('trooth: ', isBefore(new Date(startDate), new Date(endDate)));
+    // console.log("start: ", startDate.toLocaleString());
+    // console.log("end: ", endDate.toLocaleDateString());
     // console.log("fullDate: ", fullDate)
     // console.log("currDate: ", currDate)
-    console.log("day: ", day)
-    console.log("morrow: ", morrow)
+    // console.log("day: ", day)
+    // console.log("morrow: ", morrow)
   }
 
   return(
     <div>
       <form className="" onSubmit={submitReservation}>
-        <input type="date" name="checkIn" min={today} value={startDate} onChange={e=> setStartDate(e.target.value)}></input>
+        <input type="date" name="checkIn" min={day} value={startDate} onChange={e=> setStartDate(e.target.value)}></input>
         <input type="date" name="checkOut" min={startDate} value={endDate} onChange={e=> setEndDate(e.target.value)}></input>          
         <button disabled={errors.length > 0}>Reserve</button>
         <button onClick={e => logDates(e)}>Console Log Dates</button>

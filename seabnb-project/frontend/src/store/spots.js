@@ -37,7 +37,8 @@ export const getOneSpot = (spotId) => async dispatch => {
 // ===== SET STATE =================================
 const initialState = {
   list: [],
-  spot: {}
+  spot: {},
+  spotsObj: {}
 };
 
 // ===== REDUCER =================================
@@ -51,6 +52,7 @@ const spotsReducer = (state = initialState, action) => {
       return {
         ...state,
         list: action.list,
+        spotsObj: allSpots
       };
     }
 

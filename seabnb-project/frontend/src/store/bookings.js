@@ -67,13 +67,13 @@ const initialState = {
 const bookingsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ONE_SPOT: {
-      // const spotBookings = {};
-      // action.spotBookings.forEach(booking => {
-      //   spotBookings[booking.id] = booking;
-      // });
+      const spotBookings = {};
+      action.spot.spotBookings.forEach(booking => {
+         spotBookings[booking.id] = booking;
+       });
       return {
         ...state,
-        spotBookings: action.spot.spotBookings,
+        spotBookings: spotBookings,
       };
     }
 
@@ -84,7 +84,7 @@ const bookingsReducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        allBookings: action.allBookings,
+        allBookings: allBookings,
       };
     }
     

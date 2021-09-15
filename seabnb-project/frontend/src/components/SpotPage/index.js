@@ -21,7 +21,7 @@ function SpotPage(){
     //   return state;
     // });
   const { spotId } = useParams();
-  // console.log(spotId, '<=======spotId=====');
+  console.log(spotId, '<=======spotId=====');
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getOneSpot(spotId));

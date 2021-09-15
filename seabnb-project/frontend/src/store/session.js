@@ -73,7 +73,8 @@ export const logout = () => async (dispatch) => {
 
 const initialState = { 
   user: null,
-  userBookings: []
+  userBookings: [],
+  userSpots: []
 };
 
 const sessionReducer = (state = initialState, action) => {
@@ -84,9 +85,13 @@ const sessionReducer = (state = initialState, action) => {
       newState.user = action.payload;
       return newState;
     case SET_USER_BOOKINGS:
-      console.log(action.userBookings)
+      const userSpots = [];
+      action.userBookings.forEach(booking => {
+        userSpots.push(booking.spot)
+      });
       return {
         ...state,
+        userSpots: userSpots,
         userBookings: action.userBookings,
       };
     case REMOVE_USER:

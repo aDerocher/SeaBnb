@@ -1,6 +1,4 @@
 import React from 'react';
-// import * as sessionActions from '../../store/session';
-// import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation';
 import SignupFormPage from '../SignupFormPage';

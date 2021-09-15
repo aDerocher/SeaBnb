@@ -8,9 +8,7 @@ import SpotBrowser from '../SpotBrowser';
 import './WelcomeScreen.css';
 
 
-
 function WelcomeScreen({ isLoaded }) {
-
 
   return (
     // +++ Splash Picture (Container) +++++++++++++++++++++++++++

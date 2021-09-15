@@ -30,7 +30,7 @@ function App() {
           <SignupFormPage />
         </Route>
         <Route path="/spots/:spotId">
-          <NavigationTwo />
+          <NavigationTwo isLoaded={isLoaded}/>
           <SpotPage />
         </Route>
         <Route path="/spots">

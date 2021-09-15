@@ -9,15 +9,10 @@ import './Navigation.css';
 
 const Navigation =({ isLoaded })=> {
   const sessionUser = useSelector(state => state.session.user);
-
-  const history = useHistory();
   
-  const goHome = () => {
-    history.push('/');
-  }
-  const goSignup = () => {
-    history.push('/signup');
-  }
+  const history = useHistory();
+  const goHome = () => { history.push('/'); }
+  const goSignup = () => { history.push('/signup'); }
 
   let sessionLinks;
   // if a user is signed in
@@ -64,7 +59,7 @@ const Navigation =({ isLoaded })=> {
           <div className='nav-l nav-l-h'><p className='nav-bold'>Become a host</p></div>
           <div className='nav-l nav-l-h'><p className='nav-bold'>⛒</p></div>
           <div className='nav-l nav-r'>
-            <div><p className='signup-link' onClick={goSignup} >☰</p></div>
+            <div><p className='signup-link nav-bold' onClick={goSignup} >☰</p></div>
             {isLoaded && sessionLinks}
           </div>
         </div>

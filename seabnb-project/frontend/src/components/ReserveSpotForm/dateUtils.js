@@ -1,7 +1,7 @@
 import { areIntervalsOverlapping } from 'date-fns'
 import { format } from 'date-fns'
 import { addDays } from 'date-fns'
-import { isBefore } from 'date-fns'
+// import { isBefore } from 'date-fns'
 
 
 
@@ -30,10 +30,9 @@ export const datesOverlap = (booking, newBooking) => {
   return overlap;
 }
 
-
-const bookingValidator = (spotId) => {
-  // all bookings = all of the bookings with this spotId
-  // for each booking in bookings: datesOverlap === false? book
-                                            // : return error
-}
+// const bookingValidator = (spotId) => {
+//   // all bookings = all of the bookings with this spotId
+//   // for each booking in bookings: datesOverlap === false? book
+//                                             // : return error
+// }
 

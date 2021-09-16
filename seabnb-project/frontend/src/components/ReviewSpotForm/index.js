@@ -34,7 +34,7 @@ const ReviewSpotForm = ({spotId, userId}) => {
         {/* <p>{spotAndUser}</p> */}
         <h2>Review Spot Form</h2>
         <input type="number" min='1' max="5" name="score" value={score} onChange={e => setScore(e.target.value)}/>
-        <textarea type="text" name="content" maxlength="225" value={content} onChange={e => setContent(e.target.value)}/>
+        <textarea type="text" name="content" maxLength="225" value={content} onChange={e => setContent(e.target.value)}/>
         <button>Submit Review</button>
       </form>
     </>

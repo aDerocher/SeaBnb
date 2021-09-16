@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 // import { Route } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSpots } from "../../store/spots";
+import { getSpots, getOneSpot } from "../../store/spots";
+import { getSpotBookings } from "../../store/bookings";
+import { getSpotReviews } from "../../store/reviews";
 import './SpotBrowser.css';
 import { useHistory } from 'react-router';
 
@@ -10,11 +12,15 @@ function SpotBrowser(){
   const history = useHistory();
   const goToSpot=(spotId,e)=> {
     e.preventDefault();
+    getOneSpot(spotId);
+    getSpotBookings(spotId);
+    getSpotReviews(spotId);
     history.push(`/spots/${spotId}`);
   }
 
   const dispatch = useDispatch();
   useEffect(()=>{
+
     dispatch(getSpots());
   }, [ dispatch ]);
 

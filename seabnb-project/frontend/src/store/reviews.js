@@ -4,11 +4,15 @@ import { csrfFetch } from './csrf'
 import {ONE_SPOT} from './spots'
 
 //===== I CANT REMEMBER WHAT THESE ARE CALLED ========
-
 const REVIEW = 'reviews/REVIEW';
 const DEL_REVIEW = 'reviews/DEL_REVIEW';
+const GET_REVIEWS = 'reviews/GET_REVIEWS';
 
 // ===== ACTIONS =================================
+const getReviews = (spotReviews) => ({
+  type: GET_REVIEWS,
+  spotReviews
+});
 
 const reviewNew = reviewData => ({
   type: REVIEW,
@@ -21,6 +25,16 @@ const reviewDelete = revId => ({
 });
 
 // ===== FUNCTIONS =================================
+
+export const getSpotReviews = (spotId) => async dispatch => {
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
+  
+  if (response.ok) {
+    const spotReviews = await response.json();
+    // console.log(spotReviews, "<<+++ reviews +++")
+    dispatch(getReviews(spotReviews));
+  }
+};
 
 export const newReview = (reviewData) => async dispatch => {
   const { guest, spot, score, content} = reviewData;
@@ -55,12 +69,18 @@ const initialState = {
 // ===== REDUCER =================================
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REVIEW: {
+    case REVIEW: 
       return state
-    }
-    case DEL_REVIEW: {
+    
+    case DEL_REVIEW: 
       return state
-    }
+
+    case GET_REVIEWS: {
+      return {
+        state,
+        spotReviews: action.spotReviews
+      }
+    } 
     default:
       return state;
   }

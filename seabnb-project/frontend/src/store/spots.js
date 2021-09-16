@@ -64,7 +64,6 @@ const spotsReducer = (state = initialState, action) => {
       };
     }
     
-
     default:
       return state;
   }

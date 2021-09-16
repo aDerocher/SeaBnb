@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import newReview from '../../store/reviews'
+import { newReview } from '../../store/reviews'
+
 import './ReviewSpotForm.css';
 
 const ReviewSpotForm = ({spotId, userId}) => {
@@ -12,12 +13,12 @@ const ReviewSpotForm = ({spotId, userId}) => {
   const [ content, setContent ] = useState('');
 
   useEffect(() => {
-    setScore();
-    setContent();
-  }, [score, content])
+ 
+  }, [score, content]);
 
   const submitReview = (e) => {
     e.preventDefault();
+    console.log(score, content)
     const body = {
       guest: userId,
       spot: spotId,

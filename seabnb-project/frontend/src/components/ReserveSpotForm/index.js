@@ -44,7 +44,7 @@ const ReserveSpotForm = ({spotId}) => {
       checkIn:new Date(startDate),
       checkOut:new Date(endDate)
     }
-    console.log('form: ', body);
+    // console.log('form: ', body);
     dispatch(sessionActions.newBooking(body))
     setErrors([]);
   

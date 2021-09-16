@@ -1,3 +1,7 @@
+:root {
+  --seabnb-blue1: rgb(104, 131, 141);
+}
+
 /* +++ Splash Picture (Container) +++++++++++++++++++++ */
 .splash-picture {
   width: 100%;

@@ -19,13 +19,13 @@ function ProfilePage(){
   const [ delBookingId, setDelBookingId ] = useState();
 
   // the logged in user object
-  const user = useSelector(state => state.session.user );
+    // const user = useSelector(state => state.session.user );
   // array of all the users bookings objects
-  const allUserBookings = useSelector(state => state.session.userBookings );
+    const allUserBookings = useSelector(state => state.session.userBookings );
   // array of ID's of the spots that the user has bookings for
-  const allUserSpotIds = useSelector(state => state.session.userSpots );
+    // const allUserSpotIds = useSelector(state => state.session.userSpots );
   // object of all spots. keys are the spotId
-  const spotsObj = useSelector(state => state.spots.spotsObj );
+    const spotsObj = useSelector(state => state.spots.spotsObj );
 
   const formatDate = (date) => {
     const day = new Date(date);
@@ -47,14 +47,14 @@ function ProfilePage(){
         <h2>Trips</h2>
       </div>
       <form method='/api/bookings' 
-        method="DELETE" 
+        action="DELETE" 
         onSubmit={e => cancelReservation(e)}
         className='trips-section' 
       >
         {allUserBookings.map((booking)=> (
           <div className="tripCard" key={booking.id}>
             <div className="tripCard-img-section">
-              <img src={spotsObj[booking.spot].photo1} />
+              <img src={spotsObj[booking.spot].photo1} alt="boat" />
             </div>
             <div>
               <p>Check-in: {formatDate(booking.checkIn)}</p>

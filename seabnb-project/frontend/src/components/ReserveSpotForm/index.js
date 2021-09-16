@@ -1,13 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { today, tomorrow } from './dateUtils';
 import { isBefore } from 'date-fns'
 import * as sessionActions from '../../store/bookings';
 import * as spotSessionActions from '../../store/spots';
-import { format } from 'date-fns'
+// import { format } from 'date-fns'
 const ReserveSpotForm = ({spotId}) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const ReserveSpotForm = ({spotId}) => {
     dispatch(sessionActions.getAllBookings());
     dispatch(sessionActions.getSpotBookings());
     dispatch(spotSessionActions.getSpots());
-  }, []);
+  }, [spotId]);
 
   useEffect(()=> {
     let newErrors = [];

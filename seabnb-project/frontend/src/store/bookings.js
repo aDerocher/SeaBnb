@@ -1,13 +1,13 @@
 // ===== IMPORTS =================================
 import { csrfFetch } from './csrf'
-import { getOneSpot } from './spots';
+// import { getOneSpot } from './spots';
 import {ONE_SPOT} from './spots'
 
 //===== I CANT REMEMBER WHAT THESE ARE CALLED ========
 const GET_BOOKS = 'bookings/GET_BOOKS';
 const GET_ALL_BOOKS = 'bookings/GET_ALL_BOOKS';
 const BOOK = 'bookings/BOOK';
-const DELETE_BOOK = 'bookings/DELETE_BOOK'
+// const DELETE_BOOK = 'bookings/DELETE_BOOK'
 
 // ===== ACTIONS =================================
 const getBooks = (spotBookings) => ({

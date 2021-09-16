@@ -31,7 +31,7 @@ function SpotPage(){
   const spot = useSelector(state => {
     return state.spots.spotsObj[spotId];
   });
-  console.log(spot)
+  // console.log(spot)
 
   return(
     <div className="spot-container">
@@ -41,13 +41,13 @@ function SpotPage(){
       </div>
       <div className="spot-images-container">
         <div className="spot-images-left">
-          <div className="spot-image"><img src={spot.photo1}/></div>
+          <div className="spot-image"><img src={spot.photo1} alt="boat-1"/></div>
         </div>
         <div className="spot-images-right">
-          <div className="spot-image"><img src={spot.photo2}/></div>
-          <div className="spot-image"><img src={spot.photo3}/></div>
-          <div className="spot-image"><img src={spot.photo4}/></div>
-          <div className="spot-image"><img src={spot.photo5}/></div>
+          <div className="spot-image"><img src={spot.photo2} alt="boat-2"/></div>
+          <div className="spot-image"><img src={spot.photo3} alt="boat-3"/></div>
+          <div className="spot-image"><img src={spot.photo4} alt="boat-4"/></div>
+          <div className="spot-image"><img src={spot.photo5} alt="boat-5"/></div>
         </div>
       </div>
       <div className="spot-main">

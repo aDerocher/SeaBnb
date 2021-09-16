@@ -43,7 +43,6 @@ function SpotPage(){
       setRevAbility(false)
     }
 
-
   return(
     <div className="spot-container">
       <div className="spot-top">
@@ -70,7 +69,7 @@ function SpotPage(){
       <div className="spot-reviews">
         <p> These are where the reviews will be rendered</p>
         {/* <button onClick={e => userCanReview(e)}>bbb</button>  */}
-        <ReviewSpotForm spotId={spotId}/>
+        <ReviewSpotForm spotId={spot.id} userId={user.id} />
         <ul>
           <li>Review 1</li>
           <li>Review 2</li>

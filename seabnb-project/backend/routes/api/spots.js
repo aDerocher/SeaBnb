@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Spot,Booking } = require('../../db/models');
+const { Spot,Booking,Review } = require('../../db/models');
 
 const router = express.Router();
 
@@ -15,18 +15,20 @@ router.get('/', asyncHandler(async (req, res) => {
   return res.json(allSpots);
 }));
 
-// ====== get all the spots from the database =======
+// ====== get one spot and all its bookings and reviews from the database =======
 router.get('/:id', asyncHandler(async (req, res) => {
   const spotId = parseInt(req.params.id, 10);
   // console.log(spotId, '------------------');
   const oneSpot = await Spot.findByPk(spotId);
   const spotBookings = await Booking.findAll({
-    where: {
-      spot: spotId
-    }
+    where: { spot: spotId }
   });
-  // console.log(oneSpot, spotBookings, "<======stuff=====");
-  return res.json({oneSpot, spotBookings});
+  const spotReviews = await Review.findAll({
+    where: { spot: spotId }
+  });
+  // console.log(oneSpot, spotBookings, spotReviews, "<======stuff=====");
+  return res.json({oneSpot, spotBookings, spotReviews});
 }));
+
 
 module.exports = router;

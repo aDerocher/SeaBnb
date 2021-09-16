@@ -19,8 +19,8 @@ function SpotBrowser(){
   }
 
   const dispatch = useDispatch();
-  useEffect(()=>{
 
+  useEffect(()=>{
     dispatch(getSpots());
   }, [ dispatch ]);
 

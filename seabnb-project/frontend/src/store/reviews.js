@@ -76,11 +76,16 @@ const reviewsReducer = (state = initialState, action) => {
       return state
 
     case GET_REVIEWS: {
+      // const spotReviews = {};
+      // action.spotReviews.forEach(review => {
+      //   spotReviews[review.id] = review;
+      // });
       return {
-        state,
-        spotReviews: action.spotReviews
-      }
+        ...state,
+        spotReviews: action.spotReviews,
+      };
     } 
+    
     default:
       return state;
   }

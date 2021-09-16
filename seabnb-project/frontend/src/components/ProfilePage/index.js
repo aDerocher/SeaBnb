@@ -11,12 +11,15 @@ import { format } from 'date-fns'
 function ProfilePage(){
  
   const dispatch = useDispatch();
+  const [ delBookingId, setDelBookingId ] = useState();
+  const [ tripCount, setTripCount ] = useState(0);
+
   useEffect(()=>{
     dispatch(restoreUser());
     dispatch(getSpots());
-  }, [ dispatch ]);
+    setTripCount(allUserBookings.length);
+  }, [ dispatch, tripCount ]);
   
-  const [ delBookingId, setDelBookingId ] = useState();
 
   // the logged in user object
     // const user = useSelector(state => state.session.user );
@@ -36,7 +39,7 @@ function ProfilePage(){
   const cancelReservation = (e) => {
     e.preventDefault();
     dispatch(deleteBooking(delBookingId));
-
+    setTripCount(tripCount-1);
   }
   // console.log(spot,'<============spot==============')
   // console.log(spots[0].photo1,'<==============================')
@@ -51,18 +54,18 @@ function ProfilePage(){
         onSubmit={e => cancelReservation(e)}
         className='trips-section' 
       >
-        {allUserBookings.map((booking)=> (
-          <div className="tripCard" key={booking.id}>
+        {allUserBookings?.map((booking)=> (
+          <div className="tripCard" key={booking?.id}>
             <div className="tripCard-img-section">
-              <img src={spotsObj[booking.spot].photo1} alt="boat" />
+              <img src={spotsObj[booking.spot]?.photo1} alt="boat" />
             </div>
             <div>
-              <p>Check-in: {formatDate(booking.checkIn)}</p>
-              <p>Check-out: {formatDate(booking.checkOut)}</p>
-              <p>{spotsObj[booking.spot].name}</p>
+              <p>Check-in: {formatDate(booking?.checkIn)}</p>
+              <p>Check-out: {formatDate(booking?.checkOut)}</p>
+              <p>{spotsObj[booking.spot]?.name}</p>
             </div>
             <div className="cancel-container">
-              <input type="radio" name="trippy" value={booking.id} onChange={e => setDelBookingId(e.target.value)}/>
+              <input type="radio" name="trippy" value={booking?.id} onChange={e => setDelBookingId(e.target.value)}/>
               <button className="cancel-trip-btn" >Cancel Trip</button>
             </div>
           </div>

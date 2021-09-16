@@ -69,7 +69,7 @@ function SpotPage(){
       <div className="spot-reviews">
         <p> These are where the reviews will be rendered</p>
         {/* <button onClick={e => userCanReview(e)}>bbb</button>  */}
-        {/* <ReviewSpotForm spotAndUser={spotId, user.Id} /> */}
+        <ReviewSpotForm spotId={spot.id} userId={user.id} />
         <ul>
           <li>Review 1</li>
           <li>Review 2</li>

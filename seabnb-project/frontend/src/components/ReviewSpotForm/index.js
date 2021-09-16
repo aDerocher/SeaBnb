@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import newReview from '../../store/reviews'
 import './ReviewSpotForm.css';
 
-const ReviewSpotForm = ({ spotAndUser }) => {
-  const [ spotId, userId ] = spotAndUser;
-  console.log(spotAndUser, '<=========================================');
+const ReviewSpotForm = ({spotId, userId}) => {
+  // console.log(userId, '<=========================================');
+  // console.log(spotId, '<=========================================');
   const dispatch = useDispatch();
   const [ score, setScore ] = useState(5);
   const [ content, setContent ] = useState('');
@@ -24,7 +24,7 @@ const ReviewSpotForm = ({ spotAndUser }) => {
       score,
       content
     }
-    dispatch(newReview());
+    dispatch(newReview(body));
   }
 
   return (

@@ -27,6 +27,7 @@ export const newReview = (reviewData) => async dispatch => {
       content
     }), 
   });
+  dispatch(reviewNew);
   return response;
 };
 

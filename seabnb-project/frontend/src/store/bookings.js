@@ -30,7 +30,7 @@ export const getSpotBookings = (spotId) => async dispatch => {
   
   if (response.ok) {
     const spotBookings = await response.json();
-    console.log(spotBookings, "<<+++ bookings +++")
+    // console.log(spotBookings, "<<+++ bookings +++")
     dispatch(getBooks(spotBookings));
   }
 };
@@ -40,7 +40,7 @@ export const getAllBookings = () => async dispatch => {
   
   if (response.ok) {
     const allBookings = await response.json();
-    console.log(allBookings, "<<+++ all bookings +++")
+    // console.log(allBookings, "<<+++ all bookings +++")
     dispatch(getAllBooks(allBookings));
   }
 };

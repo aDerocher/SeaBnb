@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import bookingsReducer from "./bookings";
 import sessionReducer from './session';
 import spotsReducer from './spots';
-import reviewsReducer from './spots';
+import reviewsReducer from './reviews';
 
 let enhancer;
 
@@ -17,9 +17,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const rootReducer = combineReducers({
+  bookings: bookingsReducer,
   session: sessionReducer,
   spots: spotsReducer,
-  bookings: bookingsReducer,
   reviews: reviewsReducer
 });
 

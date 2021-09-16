@@ -23,7 +23,7 @@ const ReserveSpotForm = ({spotId}) => {
 
   useEffect(()=>{
     dispatch(sessionActions.getAllBookings());
-    dispatch(sessionActions.getSpotBookings());
+    dispatch(sessionActions.getSpotBookings(spotId));
     dispatch(spotSessionActions.getSpots());
   }, [spotId]);
 

@@ -30,5 +30,14 @@ router.get('/:id', asyncHandler(async (req, res) => {
   return res.json({oneSpot, spotBookings, spotReviews});
 }));
 
+router.get('/:id/reviews', asyncHandler(async (req, res) => {
+  const spotId = parseInt(req.params.id, 10);
+  // console.log(spotId, '------------------');
+  const spotReviews = await Review.findAll({
+    where: { spot: spotId }
+  });
+  // console.log(oneSpot, spotBookings, spotReviews, "<======stuff=====");
+  return res.json({spotReviews});
+}));
 
 module.exports = router;

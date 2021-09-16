@@ -8,7 +8,8 @@ import { useHistory } from 'react-router';
 function SpotBrowser(){
 
   const history = useHistory();
-  const goToSpot= (spotId)=> {
+  const goToSpot=(spotId,e)=> {
+    e.preventDefault();
     history.push(`/spots/${spotId}`);
   }
 
@@ -44,7 +45,7 @@ function SpotBrowser(){
               <p className='tiny-line'> ______ </p>
               <p className='spot-section-flist'>***bedrooms***</p>
               <p className='spot-section-flist'>***3 amenities***</p>
-              <button onClick={e => goToSpot(spot.id)}>Check it out</button>
+              <button onClick={e => goToSpot(spot.id,e)}>Check it out</button>
               <p className='spot-section-rating'>⭐ **Rating** </p>
             </div>
             <div className='spot-right-section spot-sec'>

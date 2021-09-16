@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 // import { Route } from 'react-dom';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getOneSpot } from "../../store/spots";
-import { getSpotBookings } from "../../store/bookings";
+import { getOneSpot, getSpots } from "../../store/spots";
+import { deleteReview } from "../../store/reviews";
 import ReserveSpotForm from '../ReserveSpotForm';
 import ReviewSpotForm from '../ReviewSpotForm';
 import './SpotPage.css';
@@ -16,22 +16,34 @@ function SpotPage(){
   const { spotId } = useParams();
   // console.log(spotId, '<=======spotId=====');
   const dispatch = useDispatch();
+  // useEffect(()=>{
+  //   dispatch(getOneSpot(spotId));
+  //   dispatch(getSpotBookings(spotId))
+  //   setRevAbility(userCanReview());
+  // }, [ dispatch, spotId, revAbility ]);
   useEffect(()=>{
+    dispatch(getSpots());
     dispatch(getOneSpot(spotId));
-    dispatch(getSpotBookings(spotId))
-    setRevAbility(userCanReview());
-  }, [ dispatch, spotId, revAbility ]);
-
-  
+  }, [ dispatch ]);
   
   const spot = useSelector(state => state.spots.spotsObj[spotId] );
   const user = useSelector(state => state.session.user );
   const spotBookings = useSelector(state => state.bookings.spotBookings );
   // console.log(isBefore(new Date(booking.checkOut), new Date()), '<===== date thing')
+  const spotReviewsArr = useSelector(state => state.reviews.spot.spotReviews );
+  
+  useEffect(()=>{
+    userCanReview();
+  }, [ dispatch ]);
   
   const userCanReview = () => {
-    // e.preventDefault();
-    // console.log(spotBookings)
+    for (let i=0; i < spotReviewsArr.length; i++ ){
+      let spotRev = spotReviewsArr[0];
+      if (spotRev.guest === user.id){
+        setRevAbility(false);
+        return
+      }
+    }
     for(let booking in spotBookings){
       // console.log(new Date(spotBookings[booking].checkIn),new Date(spotBookings[booking].checkOut), new Date())
       // console.log(isBefore(new Date(spotBookings[booking].checkOut), new Date()))
@@ -40,13 +52,22 @@ function SpotPage(){
           setRevAbility(true);
         }
       }
-      setRevAbility(false)
-    }
+    setRevAbility(false)
+    return;
+  }
+
+  const delRev = (revId) => { 
+    deleteReview(revId)
+  }
+
+  if(!spot){
+    return <p>Cant load spot</p>
+  }
 
   return(
     <div className="spot-container">
       <div className="spot-top">
-        <h2>{spot.name}</h2>
+        <h2>{spot?.name}</h2>
         <p>=rating= =numOfReviews=<span> · </span>{spot.location}</p>
       </div>
       <div className="spot-images-container">
@@ -66,15 +87,19 @@ function SpotPage(){
         </div>
         <ReserveSpotForm spotId={spotId}/>
       </div>
+      <div value={revAbility}>
+        <ReviewSpotForm spotId={spot.id} userId={user.id} />
+      </div>
       <div className="spot-reviews">
         <p> These are where the reviews will be rendered</p>
         {/* <button onClick={e => userCanReview(e)}>bbb</button>  */}
-        <ReviewSpotForm spotId={spot.id} userId={user.id} />
-        <ul>
-          <li>Review 1</li>
-          <li>Review 2</li>
-          <li>Review 3</li>
-        </ul>
+        {spotReviewsArr.map((review)=> (
+          <div className="review-card">
+            <p>{review.score}</p>
+            <p>{review.content}</p>
+            <button onClick={delRev(review.id)}>delete</button>
+          </div>
+        ))}
       </div>
     </div>
   )

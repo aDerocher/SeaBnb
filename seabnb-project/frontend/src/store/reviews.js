@@ -6,12 +6,18 @@ import {ONE_SPOT} from './spots'
 //===== I CANT REMEMBER WHAT THESE ARE CALLED ========
 
 const REVIEW = 'reviews/REVIEW';
+const DEL_REVIEW = 'reviews/DEL_REVIEW';
 
 // ===== ACTIONS =================================
 
-const reviewNew = newReview => ({
+const reviewNew = reviewData => ({
   type: REVIEW,
-  newReview,
+  reviewData,
+});
+
+const reviewDelete = revId => ({
+  type: DEL_REVIEW,
+  revId,
 });
 
 // ===== FUNCTIONS =================================
@@ -27,7 +33,16 @@ export const newReview = (reviewData) => async dispatch => {
       content
     }), 
   });
-  dispatch(reviewNew);
+  dispatch(reviewNew(response));
+  return response;
+};
+
+export const deleteReview = (revId) => async dispatch => {
+  const response = await csrfFetch(`/api/reviews`, {
+    method: 'DELETE',
+    body: JSON.stringify({ revId }), 
+  });
+  dispatch(reviewDelete(response));
   return response;
 };
 
@@ -41,15 +56,10 @@ const initialState = {
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case REVIEW: {
-      // const spotReviews = {};
-      // action.spot.spotBookings.forEach(booking => {
-      //    spotBookings[booking.id] = booking;
-      //  });
-      return {
-        state
-        // ...state,
-        // spotBookings: spotBookings,
-      };
+      return state
+    }
+    case DEL_REVIEW: {
+      return state
     }
     default:
       return state;

@@ -55,8 +55,7 @@ router.post( '/', validateSignup, asyncHandler(async (req, res) => {
 
 router.get( '/:id', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params, 10);
-  console.log(userId, "<======= userId ======");
-  // const spotId = parseInt(req.params.id, 10);
+  // console.log(userId, "<======= userId ======");
   return res.json({ user });
 }),
 );

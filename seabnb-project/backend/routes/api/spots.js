@@ -25,7 +25,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
       spot: spotId
     }
   });
-  console.log(oneSpot, spotBookings, "<======stuff=====");
+  // console.log(oneSpot, spotBookings, "<======stuff=====");
   return res.json({oneSpot, spotBookings});
 }));
 

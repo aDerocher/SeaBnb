@@ -11,7 +11,7 @@ module.exports = {
         lastName: "Doe",
         email: "j@j.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/50.jpg",
-        hashedPassword: "chicken",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ProfileButton from '../ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -16,6 +17,10 @@ const Navigation =({ isLoaded })=> {
     e.preventDefault();
     history.push('/signup'); 
   }
+
+  useEffect(() => {
+
+  }, [sessionUser])
 
   let sessionLinks;
   // if a user is signed in

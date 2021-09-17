@@ -74,22 +74,22 @@ function SpotPage(){
     <div className="spot-container">
       <div className="spot-top">
         <h2>{spot?.name}</h2>
-        <p>=rating= =numOfReviews=<span> · </span>{spot.location}</p>
+        <p>=rating= =numOfReviews=<span> · </span>{spot?.location}</p>
       </div>
       <div className="spot-images-container">
         <div className="spot-image-l">
-          <img src={spot.photo1} alt="boat-1"/>
+          <img src={spot?.photo1} alt="boat-1"/>
         </div>
         <div className="spot-images-right">
-          <div className="spot-image-r"><img src={spot.photo2} alt="boat-2"/></div>
-          <div className="spot-image-r"><img src={spot.photo3} alt="boat-3"/></div>
-          <div className="spot-image-r"><img src={spot.photo4} alt="boat-4"/></div>
-          <div className="spot-image-r"><img src={spot.photo5} alt="boat-5"/></div>
+          <div className="spot-image-r"><img src={spot?.photo2} alt="boat-2"/></div>
+          <div className="spot-image-r"><img src={spot?.photo3} alt="boat-3"/></div>
+          <div className="spot-image-r"><img src={spot?.photo4} alt="boat-4"/></div>
+          <div className="spot-image-r"><img src={spot?.photo5} alt="boat-5"/></div>
         </div>
       </div>
       <div className="spot-main">
         <div className="spot-details">
-          <p>{spot.description}</p>
+          <p>{spot?.description}</p>
         </div>
         {user && 
           <div>
@@ -98,7 +98,7 @@ function SpotPage(){
         }
       </div>  
 {/* userId={user.id} */}
-      <ReviewSpotForm spotId={spot.id}  />
+      <ReviewSpotForm spotId={spot?.id}  />
     </div>
   )
 }

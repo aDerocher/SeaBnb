@@ -60,6 +60,7 @@ function ProfilePage(){
               <img src={spotsObj[booking.spot]?.photo1} alt="boat" />
             </div>
             <div>
+              <p>{booking?.checkOut}</p>
               <p>Check-in: {formatDate(booking?.checkIn)}</p>
               <p>Check-out: {formatDate(booking?.checkOut)}</p>
               <p>{spotsObj[booking.spot]?.name}</p>

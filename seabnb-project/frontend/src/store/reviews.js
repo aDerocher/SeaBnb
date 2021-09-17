@@ -60,6 +60,16 @@ export const deleteReview = (revId) => async dispatch => {
   return response;
 };
 
+export const editReview = (revId) => async dispatch => {
+  // const response = await csrfFetch(`/api/reviews`, {
+  //   method: 'DELETE',
+  //   body: JSON.stringify({ revId }), 
+  // });
+  // dispatch(reviewDelete(response));
+  // return response;
+  return
+};
+
 // ===== INITIAL STATE =================================
 const initialState = {
   allReviews:[],

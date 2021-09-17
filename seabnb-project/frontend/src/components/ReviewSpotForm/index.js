@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteReview, getSpotReviews, newReview } from '../../store/reviews'
-import { userCanReview, delRev } from '../SpotPage'
+import { editReview, deleteReview, getSpotReviews, newReview } from '../../store/reviews'
 import './ReviewSpotForm.css';
+import { isBefore } from 'date-fns';
 
 const ReviewSpotForm = ({spotId, userId}) => {
   // console.log(userId, '<=========================================');
@@ -12,18 +12,45 @@ const ReviewSpotForm = ({spotId, userId}) => {
   const [ score, setScore ] = useState(5);
   const [ content, setContent ] = useState('');
   const [ revCount, setRevCount ] = useState(0);
+  const [ revAbility, setRevAbility ] = useState(false);
+
+  let spotBookings = useSelector(state => state.bookings.spotBookings );
+  let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
+  
+  const userCanLeaveReview = (userId) => {
+    for(let i=0; i < spotReviewsArr?.length; i++){
+      if (spotReviewsArr[i].guest === userId){
+        setRevAbility(false);
+        return
+      }
+    }
+    for(let booking in spotBookings){
+      // console.log(new Date(spotBookings[booking].checkIn),new Date(spotBookings[booking].checkOut), new Date())
+      // console.log(isBefore(new Date(spotBookings[booking].checkOut), new Date()))
+      if (booking.guest === userId &&
+          isBefore(new Date(spotBookings[booking].checkOut), new Date())){
+          setRevAbility(true);
+      }
+    }
+    setRevAbility(false);
+    return
+  }
 
   useEffect(() => {
- 
+    userCanLeaveReview() ? console.log('hi') : console.log('no')
   }, [score, content]);
+  
 
-
-  let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
 
   const delRev = (e,revId) => { 
     e.preventDefault();
     setRevCount(revCount-1)
     dispatch(deleteReview(revId));
+    dispatch(getSpotReviews(spotId));
+  }
+  const editRev = (e,revId) => { 
+    e.preventDefault();
+    dispatch(editReview(revId));
     dispatch(getSpotReviews(spotId));
   }
 
@@ -41,7 +68,7 @@ const ReviewSpotForm = ({spotId, userId}) => {
 
   return (
     <>
-      { userId && 
+      { revAbility && 
         <form action="/api/reviews/new" method="POST" onSubmit={submitReview}>
           {/* <p>{spotAndUser}</p> */}
           <h2>Review Spot Form</h2>
@@ -55,9 +82,13 @@ const ReviewSpotForm = ({spotId, userId}) => {
         {/* <button onClick={e => userCanReview(e)}>bbb</button>  */}
         {spotReviewsArr?.map((review)=> (
           <div className="review-card">
-            <p>{review.score}</p>
+            <p>Guest: {review.guest}</p>
+            <p>Rated: {review.score} /5</p>
             <p>{review.content}</p>
-            <button onClick={e=>delRev(e,review.id)}>delete</button>
+            <div>
+              <button hidden={!(userId===review.guest)} onClick={e=>delRev(e,review.id)}>delete</button>
+              <button hidden={!(userId===review.guest)} onClick={e=>editRev(e,review.id)}>edit</button>
+            </div>
           </div>
         ))}
       </div>

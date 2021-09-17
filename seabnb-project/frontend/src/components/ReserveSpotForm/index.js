@@ -35,7 +35,6 @@ const ReserveSpotForm = ({spotId}) => {
     // console.log(isBefore(new Date(startDate), new Date(endDate)));
     setErrors(newErrors);
   }, [ startDate, endDate ])
-
   const submitReservation = (e) => {
     e.preventDefault();
     const body ={

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+import ProfileButton from '../ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 // import { NavLink } from "react-router-dom";
@@ -12,7 +12,10 @@ const Navigation =({ isLoaded })=> {
   
   const history = useHistory();
   const goHome = () => { history.push('/'); }
-  const goSignup = () => { history.push('/signup'); }
+  const goSignup = (e) => { 
+    e.preventDefault();
+    history.push('/signup'); 
+  }
 
   let sessionLinks;
   // if a user is signed in
@@ -56,10 +59,10 @@ const Navigation =({ isLoaded })=> {
         </div>
 
         <div className='nav-profile-container'>
-          <div className='nav-l nav-l-h'><p className='nav-bold'>Become a host</p></div>
+          <div className='nav-l nav-l-h becomeHost' onClick={e=>goSignup(e)}><p className='nav-bold'>Become a host</p></div>
           <div className='nav-l nav-l-h'><p className='nav-bold'>⛒</p></div>
           <div className='nav-l nav-r'>
-            <div><p className='signup-link nav-bold' onClick={goSignup} >☰</p></div>
+            <div><p className='signup-link nav-bold' onClick={e=>goSignup(e)} >☰</p></div>
             {isLoaded && sessionLinks}
           </div>
         </div>

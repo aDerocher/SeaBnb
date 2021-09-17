@@ -93,3 +93,7 @@
 .wText{
   color: black;
 }
+
+.becomeHost:hover{
+  cursor: pointer;
+}

@@ -1,21 +1,37 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from '../ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import { login } from '../../store/session';
 import './Navigation.css';
 // import { NavLink } from "react-router-dom";
 // import sessionReducer from "../../store/session";
 
 const Navigation =({ isLoaded })=> {
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   
   const history = useHistory();
   const goHome = () => { history.push('/'); }
+  
   const goSignup = (e) => { 
     e.preventDefault();
     history.push('/signup'); 
   }
+  const loginDemo = (e) => {
+    e.preventDefault();
+    const demoUser = {
+      credential:"demo@seabnb.com",
+      password:"demo!123" 
+    }
+    dispatch(login(demoUser))
+  }
+
+  useEffect(() => {
+
+  }, [sessionUser])
 
   let sessionLinks;
   // if a user is signed in
@@ -60,7 +76,7 @@ const Navigation =({ isLoaded })=> {
 
         <div className='nav-profile-container'>
           <div className='nav-l nav-l-h becomeHost' onClick={e=>goSignup(e)}><p className='nav-bold'>Become a host</p></div>
-          <div className='nav-l nav-l-h'><p className='nav-bold'>⛒</p></div>
+          <div className='nav-l nav-l-h' onClick={e=>loginDemo(e)}><p className='nav-bold'>⛒</p></div>
           <div className='nav-l nav-r'>
             <div><p className='signup-link nav-bold' onClick={e=>goSignup(e)} >☰</p></div>
             {isLoaded && sessionLinks}

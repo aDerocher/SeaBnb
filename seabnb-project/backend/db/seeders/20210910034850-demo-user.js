@@ -41,6 +41,51 @@ module.exports = {
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        firstname: "Teddy",
+        lastname: "Roosevelt",
+        email: "teddyr@bearhunter.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/10.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Julian",
+        lastname: "Assange",
+        email: "jassange@wikileaks.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/1.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Edward",
+        lastname: "Snowden",
+        email: "esnowden@notnsa.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/4.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Sam",
+        lastname: "Spaeth",
+        email: "ss@doctorstuff.com",
+        profilePhoto: "https://randomuser.me/api/portraits/women/47.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Ayn",
+        lastname: "Rand",
+        email: "randydandy@atlas.com",
+        profilePhoto: "https://randomuser.me/api/portraits/women/48.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },
@@ -48,7 +93,9 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      firstName: { [Op.in]: ['Heather', 'Jamie', 'Peter', 'John'] }
+      firstName: { [Op.in]: ['Heather', 'Jamie',
+      'Peter', 'John', 'Teddy', 'Ayn', 'Sam',
+      'Edward', 'Julian'] }
     }, {});
   }
 };

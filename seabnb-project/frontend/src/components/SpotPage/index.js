@@ -93,12 +93,12 @@ function SpotPage(){
         </div>
         {user && 
           <div>
-            <ReserveSpotForm spotId={spotId}/>
+            <ReserveSpotForm spotId={spotId} />
           </div>
         }
       </div>  
-{/* userId={user.id} */}
-      <ReviewSpotForm spotId={spot?.id}  />
+      {/* userId={user.id} */}
+      <ReviewSpotForm spotId={spot?.id}  userId={user?.id}/>
     </div>
   )
 }

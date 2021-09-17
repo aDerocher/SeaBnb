@@ -21,6 +21,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     setShowMenu(false);
+    history.push('/');
   };
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneSpot, getSpots } from "../../store/spots";
 import { getSpotBookings } from "../../store/bookings";
-import { deleteReview, getSpotReviews } from "../../store/reviews";
+import { getSpotReviews } from "../../store/reviews";
 import { useParams } from 'react-router-dom';
 import ReserveSpotForm from '../ReserveSpotForm';
 import ReviewSpotForm from '../ReviewSpotForm';
@@ -37,12 +37,12 @@ function SpotPage(){
   let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
   // console.log(isBefore(new Date(booking.checkOut), new Date()), '<===== date thing')
   
-  const delRev = (e,revId) => { 
-    e.preventDefault();
-    setRevCount(revCount-1)
-    dispatch(deleteReview(revId));
-    dispatch(getSpotReviews(spotId));
-  }
+  // const delRev = (e,revId) => { 
+  //   e.preventDefault();
+  //   setRevCount(revCount-1)
+  //   dispatch(deleteReview(revId));
+  //   dispatch(getSpotReviews(spotId));
+  // }
 
   const userCanReview = () => {
     for (let i=0; i < spotReviewsArr?.length || 0; i++ ){
@@ -91,30 +91,14 @@ function SpotPage(){
         <div className="spot-details">
           <p>{spot.description}</p>
         </div>
-        {user && <div>
-          <ReserveSpotForm spotId={spotId}/>
-        </div>}
-      </div>
-
-
-
-      {user &&<div value={revAbility}>
-        <ReviewSpotForm spotId={spot.id} userId={user.id} />
-      </div>}
-
-
-
-      <div className="spot-reviews">
-        <p> These are where the reviews will be rendered</p>
-        {/* <button onClick={e => userCanReview(e)}>bbb</button>  */}
-        {spotReviewsArr?.map((review)=> (
-          <div className="review-card">
-            <p>{review.score}</p>
-            <p>{review.content}</p>
-            <button onClick={e=>delRev(e,review.id)}>delete</button>
+        {user && 
+          <div>
+            <ReserveSpotForm spotId={spotId}/>
           </div>
-        ))}
-      </div>
+        }
+      </div>  
+{/* userId={user.id} */}
+      <ReviewSpotForm spotId={spot.id}  />
     </div>
   )
 }

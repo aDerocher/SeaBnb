@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Spots', [
       {
         name: "S.S. Anne",
-        location: "Kyoto",
+        location: "Kyoto, Japan",
         price: 15000,
         host: 1,
         description: "This is a super nice ship",
@@ -39,7 +39,7 @@ module.exports = {
       },
       {
         name: "The Moon",
-        location: "New York City, NY",
+        location: "New York City, New York, United States",
         price: 31000,
         host: 3,
         description:"This is my favorite boat.",
@@ -73,7 +73,7 @@ module.exports = {
       },
       {
         name: "Chocobo",
-        location: "Tokyo",
+        location: "Tokyo, Japan",
         price: 55000,
         host: 7,
         description: "A day on this cruise is as good as a day at the races. Only better!",
@@ -90,7 +90,7 @@ module.exports = {
       },
       {
         name: "Isoscelese",
-        location: "Tampa",
+        location: "Tampa, Florida, USA",
         price: 50000,
         host: 5,
         description: "Triangles are my favorite shape. Three points where two lines meet",
@@ -107,7 +107,7 @@ module.exports = {
       },
       {
         name: "Giardia",
-        location: "Tampa",
+        location: "Los Angeles, California, USA",
         price: 46000,
         host: 6,
         description: "I overheard this name being in a hospital and just thought it was so lovely!",
@@ -124,7 +124,7 @@ module.exports = {
       },
       {
         name: "Tigers Blood",
-        location: "New Jersey",
+        location: "Atlantic City, New Jersey, USA",
         price: 0,
         host: 9,
         description: "This ship is THE BEST! WINNINNNNNNGGGG!!!!",
@@ -158,7 +158,7 @@ module.exports = {
       },
       {
         name: "Envy",
-        location: "Metropolis",
+        location: "Orlando, Florida, USA",
         price: 75000,
         host: 9,
         description: "Finest ship in the burmuda triangle. Way better than that uggo the Isoscelese...",
@@ -192,7 +192,7 @@ module.exports = {
       },
       {
         name: "Titanic II",
-        location: "Athens",
+        location: "Athens, Greece",
         price: 150000,
         host: 10,
         description: "Can accomodate all the guests you could ever hope for. Not only that, but this ship is absolutely, definately unsinkable!! it Has THREE hulls!!",
@@ -209,7 +209,7 @@ module.exports = {
       },
       {
         name: "Lucy In the Sky",
-        location: "New Dheli",
+        location: "New Dheli, India",
         price: 88000,
         host: 11,
         description: "This ship was built for my friend. Shine on you crazy diamond!",
@@ -226,7 +226,7 @@ module.exports = {
       },
       {
         name: "Peanuts",
-        location: "Dubai",
+        location: "Dubai, UAE",
         price: 144000,
         host: 12,
         description: "This ship has absolutely every amenity that could be added to a ship. But I grew tired of it, and wanted one with two of everything.",
@@ -276,11 +276,11 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name: "The Lobster",
-        location: "",
-        price: 41000,
+        name: "Organica",
+        location: "Sydney, Australia",
+        price: 51000,
         host: 15,
-        description: "Amazing way to relax after all your hard work. A trip on this will guarantee a raise in your seratonin levels",
+        description: "Fresh air and open sea is all you need! Let this lovely ship take you there.",
         reviews: null,
         rules: null,
         amenities: null,
@@ -294,10 +294,10 @@ module.exports = {
       },
       {
         name: "Nimbus",
-        location: "",
+        location: "Auckland, New Zealand",
         price: 77000,
         host: 15,
-        description: "Seadate:... Kip I was asking you a question!",
+        description: "Captains Log: Seadate ... Kip I was asking you a question! Have you finished the description for the ship yet?",
         reviews: null,
         rules: null,
         amenities: null,
@@ -311,7 +311,7 @@ module.exports = {
       },
       {
         name: "Name it whatever you want",
-        location: "Johannesburg",
+        location: "Johannesburg, South Africa",
         price: 50000,
         host: 16,
         description: "Sorry about the name, my husband thought he was being funny. This is a fantastic ship with lots and lots of bonuses. Enjoy!",
@@ -325,7 +325,24 @@ module.exports = {
         photo5: "https://i.insider.com/5a72417059d432650d8b4c02?width=800&format=jpeg&auto=webp",
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        name: "Rapture",
+        location: "Atlantis",
+        price: 51000,
+        host: 15,
+        description: "This yacht is styled like a military battleship. They told me this yacht was impossible to build like this. I told them it was impossible to build it any other way!",
+        reviews: null,
+        rules: null,
+        amenities: null,
+        photo1: "https://cdn.boatinternational.com/convert/bi_prd/bi/library_images/NKFt4SH0SLxLXkAQeheo_bold-superyacht-portrait.jpg/r%5Bwidth%5D=1920/NKFt4SH0SLxLXkAQeheo_bold-superyacht-portrait.webp",
+        photo2: "https://cdn.boatinternational.com/convert/bi_prd/bi/library_images/8RBWmBcSRS2Z78pEg1IQ_BOLD-superyacht-Guillaume-Plisson-8.gif/r%5Bwidth%5D=1366/8RBWmBcSRS2Z78pEg1IQ_BOLD-superyacht-Guillaume-Plisson-8.webp",
+        photo3: "https://cdn.boatinternational.com/convert/bi_prd/bi/library_images/SqAt2ETEQ8eIAajqUnSt_bold-saloon-credit-Guillaume-Plisson.gif/r%5Bwidth%5D=1366/SqAt2ETEQ8eIAajqUnSt_bold-saloon-credit-Guillaume-Plisson.webp",
+        photo4: "https://cdn.boatinternational.com/convert/bi_prd/bi/library_images/4rbngP5SmmxNQh4t7pGB_BOLD-superyacht-Guillaume-Plisson-14.gif/r%5Bwidth%5D=1366/4rbngP5SmmxNQh4t7pGB_BOLD-superyacht-Guillaume-Plisson-14.webp",
+        photo5: "https://cdn.boatinternational.com/convert/bi_prd/bi/library_images/3wz3aiouSp9uyPK3Ze3k_bold-pool-credit-Guillaume-Plisson.gif/r%5Bwidth%5D=1366/3wz3aiouSp9uyPK3Ze3k_bold-pool-credit-Guillaume-Plisson.webp",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
   },
 

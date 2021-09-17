@@ -1,20 +1,29 @@
 import React from 'react';
 import {useHistory} from 'react-router'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from '../ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import { login } from '../../store/session';
 import './NavigationTwo.css'
 
 const NavigationTwo = ({isLoaded}) => {
   const sessionUser = useSelector(state => state.session.user);
-  
+  const dispatch = useDispatch();
   const history = useHistory();
   const goHome = () => { history.push('/'); }
+
   const goSignup = (e) => { 
     e.preventDefault();
     history.push('/signup');
   }
-
+  const loginDemo = (e) => {
+    e.preventDefault();
+    const demoUser = {
+      credential:"demo@seabnb.com",
+      password:"demo!123" 
+    }
+    dispatch(login(demoUser))
+  }
   let sessionLinks;
   // if a user is signed in
   if (sessionUser) {
@@ -49,7 +58,7 @@ const NavigationTwo = ({isLoaded}) => {
 
       <div className='nav-profile-container'>
         <div className='nav-l nav-l-h wText becomeHost' onClick={e=>goSignup(e)}><p>Become a host</p></div>
-        <div className='nav-l nav-l-h wText'><p className='nav-bold'>⛒</p></div>
+        <div className='nav-l nav-l-h wText' onClick={e=>loginDemo(e)}><p className='nav-bold'>⛒</p></div>
         <div className='nav-l nav-r wText'>
           <div><p className='signup-link nav-bold' onClick={e=>goSignup(e)} >☰</p></div>
             {isLoaded && sessionLinks}

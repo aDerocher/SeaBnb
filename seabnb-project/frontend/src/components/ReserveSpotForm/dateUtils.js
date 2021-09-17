@@ -9,6 +9,7 @@ export const today = () => {
   const day = format(new Date(),'yyyy-MM-dd');
   return day;
 }
+
 export const tomorrow = () => {
   let day = new Date();
   let morrow = addDays(day, 1);
@@ -26,7 +27,7 @@ export const datesOverlap = (booking, newBooking) => {
     { start:booking.checkIn , end: booking.checkOut },
     { start: newBooking.checkIn, end: newBooking.checkOut}
   )
-  console.log(overlap);
+  // console.log(overlap);
   return overlap;
 }
 

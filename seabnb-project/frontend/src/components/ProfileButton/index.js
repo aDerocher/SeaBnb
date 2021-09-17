@@ -16,24 +16,25 @@ function ProfileButton({ user }) {
   const goToUserPage = () => {
     history.push(`/users/${user.id}`);
   }
-  
-  useEffect(() => {
-    if (!showMenu) return;
-
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-
-    document.addEventListener('click', closeMenu);
-  
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    setShowMenu(false)
+    setShowMenu(false);
   };
+
+  useEffect(() => {
+    console.log('1')
+    if (!showMenu) return;
+    console.log('2')
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+    document.addEventListener('click', closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
+  }, [ showMenu ]);
+
+  
 
   return (
     <>
@@ -45,7 +46,7 @@ function ProfileButton({ user }) {
           <li onClick={goToUserPage}>{user.firstName}</li>
           <li>{user.email}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button onClick={e=>logout(e)}>Log Out</button>
           </li>
         </ul>
       )}

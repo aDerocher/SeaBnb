@@ -17,7 +17,7 @@ function ProfilePage(){
   useEffect(()=>{
     dispatch(restoreUser());
     dispatch(getSpots());
-    setTripCount(allUserBookings.length);
+    setTripCount(allUserBookings?.length);
   }, [ dispatch, tripCount ]);
   
 

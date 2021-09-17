@@ -86,7 +86,133 @@ module.exports = {
         hashedPassword: "chicken1!",
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        firstName: "George",
+        lastName: "Washington",
+        email: "george@delaware.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/1.jpg",
+        hashedPassword: "chicken",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: "Margaret",
+        lastName: "Thatcher",
+        email: "mrsm@thatcher.com",
+        profilePhoto: "https://randomuser.me/api/portraits/women/31.jpg",
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: "Elyssa",
+        lastName: "Steamer",
+        email: "elys@etnies.com",
+        profilePhoto: "https://randomuser.me/api/portraits/women/74.jpg",
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: "Aldous",
+        lastName: "HUxley",
+        email: "aldous@bnw.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/23.jpg",
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Thomas",
+        lastname: "Sowell",
+        email: "tom@hoover.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/14.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Bart",
+        lastname: "Garfunkle",
+        email: "bartyman@snl.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/2.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Tina",
+        lastname: "Fey",
+        email: "tina@30rock.com",
+        profilePhoto: "https://randomuser.me/api/portraits/women/4.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: "Beyonce",
+        lastName: "QueenB",
+        email: "queenb@ringonit.com",
+        profilePhoto: "https://randomuser.me/api/portraits/women/23.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Quentin",
+        lastname: "Terrantino",
+        email: "movie9@hollywood.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/25.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Daniel",
+        lastname: "Riccardo",
+        email: "dricco@formula1.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/3.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Lisa",
+        lastname: "Simpson",
+        email: "lisa@springville.com",
+        profilePhoto: "https://randomuser.me/api/portraits/women/5.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Guy",
+        lastname: "Richie",
+        email: "lockstock@smokingbarrels.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/25.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Marie",
+        lastname: "Curie",
+        email: "mc@sciencestuff.com",
+        profilePhoto: "https://randomuser.me/api/portraits/men/3.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstname: "Zach",
+        lastname: "Nelson",
+        email: "z@nelson.com",
+        profilePhoto: "https://randomuser.me/api/portraits/women/5.jpg",
+        hashedPassword: "chicken1!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
   },
 

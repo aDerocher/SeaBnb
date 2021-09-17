@@ -1,14 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from '../ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import { login } from '../../store/session';
 import './Navigation.css';
 // import { NavLink } from "react-router-dom";
 // import sessionReducer from "../../store/session";
 
 const Navigation =({ isLoaded })=> {
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   
   const history = useHistory();
@@ -18,13 +20,13 @@ const Navigation =({ isLoaded })=> {
     e.preventDefault();
     history.push('/signup'); 
   }
-  const loginDemo = (e) => { 
+  const loginDemo = (e) => {
     e.preventDefault();
     const demoUser = {
       credential:"demo@seabnb.com",
       password:"demo!123" 
     }
-    dispatchEvent(login(demoUser))
+    dispatch(login(demoUser))
   }
 
   useEffect(() => {

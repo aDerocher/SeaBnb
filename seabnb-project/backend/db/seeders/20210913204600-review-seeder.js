@@ -4,6 +4,14 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Reviews', [
     {
+      guest: ,
+      score: ,
+      spot: ,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      content: ""
+    },
+    {
       guest: 2,
       score: 5,
       spot: 3,

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation';
 import SignupFormPage from '../SignupFormPage';
 import SpotBrowser from '../SpotBrowser';
+import Footer from '../Footer';
 import './WelcomeScreen.css';
 
 
@@ -52,6 +53,7 @@ function WelcomeScreen({ isLoaded }) {
         </div>
       </div>
       <SpotBrowser />
+      <Footer />
     </>
   )
 }

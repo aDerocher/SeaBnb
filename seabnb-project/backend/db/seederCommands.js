@@ -10,7 +10,7 @@
 //       spot: ${i+2},
 //       createdAt: new Date(),
 //       updatedAt: new Date(),
-//       content: "This ship is fantastic! I'ts very luxurious. I will certainly be booking again"
+//       content: "This ship is fantastic! It's very luxurious. I will certainly be booking again"
 //     },{
 //       guest: ${i},
 //       score: 4,

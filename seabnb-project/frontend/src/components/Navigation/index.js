@@ -13,9 +13,18 @@ const Navigation =({ isLoaded })=> {
   
   const history = useHistory();
   const goHome = () => { history.push('/'); }
+  
   const goSignup = (e) => { 
     e.preventDefault();
     history.push('/signup'); 
+  }
+  const loginDemo = (e) => { 
+    e.preventDefault();
+    const demoUser = {
+      credential:"demo@seabnb.com",
+      password:"demo!123" 
+    }
+    dispatchEvent(login(demoUser))
   }
 
   useEffect(() => {
@@ -65,7 +74,7 @@ const Navigation =({ isLoaded })=> {
 
         <div className='nav-profile-container'>
           <div className='nav-l nav-l-h becomeHost' onClick={e=>goSignup(e)}><p className='nav-bold'>Become a host</p></div>
-          <div className='nav-l nav-l-h'><p className='nav-bold'>⛒</p></div>
+          <div className='nav-l nav-l-h' onClick={e=>loginDemo(e)}><p className='nav-bold'>⛒</p></div>
           <div className='nav-l nav-r'>
             <div><p className='signup-link nav-bold' onClick={e=>goSignup(e)} >☰</p></div>
             {isLoaded && sessionLinks}

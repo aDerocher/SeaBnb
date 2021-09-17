@@ -119,7 +119,7 @@ module.exports = {
         lastName: "Steamer",
         email: "elys@etnies.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/74.jpg",
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -128,7 +128,7 @@ module.exports = {
         lastName: "HUxley",
         email: "aldous@bnw.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/23.jpg",
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -137,7 +137,7 @@ module.exports = {
         lastName: "Sowell",
         email: "tom@hoover.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/14.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -146,7 +146,7 @@ module.exports = {
         lastName: "Garfunkle",
         email: "bartyman@snl.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/2.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -155,7 +155,7 @@ module.exports = {
         lastName: "Fey",
         email: "tina@30rock.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/4.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -164,7 +164,7 @@ module.exports = {
         lastName: "QueenB",
         email: "queenb@ringonit.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/23.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -173,7 +173,7 @@ module.exports = {
         lastName: "Terrantino",
         email: "movie9@hollywood.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/25.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -182,7 +182,7 @@ module.exports = {
         lastName: "Riccardo",
         email: "dricco@formula1.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/3.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -191,7 +191,7 @@ module.exports = {
         lastName: "Simpson",
         email: "lisa@springville.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/5.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -200,7 +200,7 @@ module.exports = {
         lastName: "Richie",
         email: "lockstock@smokingbarrels.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/25.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -209,7 +209,7 @@ module.exports = {
         lastName: "Curie",
         email: "mc@sciencestuff.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/3.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -218,7 +218,7 @@ module.exports = {
         lastName: "Nelson",
         email: "z@nelson.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/5.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },

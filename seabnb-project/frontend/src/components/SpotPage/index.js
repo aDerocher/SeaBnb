@@ -25,7 +25,7 @@ function SpotPage(){
     dispatch(getOneSpot(spotId));
     dispatch(getSpotBookings(spotId));
     dispatch(getSpotReviews(spotId));
-    setRevAbility(userCanReview());
+    if(user) setRevAbility(userCanReview());
     console.log(spotId, "......spotId.........")
     console.log(revAbility, '<=======spotId=====');
   }, [ dispatch, spotId, revAbility, revCount ]);
@@ -91,14 +91,16 @@ function SpotPage(){
         <div className="spot-details">
           <p>{spot.description}</p>
         </div>
-        <ReserveSpotForm spotId={spotId}/>
+        {user && <div>
+          <ReserveSpotForm spotId={spotId}/>
+        </div>}
       </div>
 
 
 
-      <div value={revAbility}>
+      {user &&<div value={revAbility}>
         <ReviewSpotForm spotId={spot.id} userId={user.id} />
-      </div>
+      </div>}
 
 
 

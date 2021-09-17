@@ -43,8 +43,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Teddy",
-        lastname: "Roosevelt",
+        firstName: "Teddy",
+        lastName: "Roosevelt",
         email: "teddyr@bearhunter.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/10.jpg",
         hashedPassword: "chicken1!",
@@ -52,8 +52,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Julian",
-        lastname: "Assange",
+        firstName: "Julian",
+        lastName: "Assange",
         email: "jassange@wikileaks.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/1.jpg",
         hashedPassword: "chicken1!",
@@ -61,8 +61,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Edward",
-        lastname: "Snowden",
+        firstName: "Edward",
+        lastName: "Snowden",
         email: "esnowden@notnsa.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/4.jpg",
         hashedPassword: "chicken1!",
@@ -70,8 +70,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Sam",
-        lastname: "Spaeth",
+        firstName: "Sam",
+        lastName: "Spaeth",
         email: "ss@doctorstuff.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/47.jpg",
         hashedPassword: "chicken1!",
@@ -79,8 +79,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Ayn",
-        lastname: "Rand",
+        firstName: "Ayn",
+        lastName: "Rand",
         email: "randydandy@atlas.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/48.jpg",
         hashedPassword: "chicken1!",
@@ -124,8 +124,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Thomas",
-        lastname: "Sowell",
+        firstName: "Thomas",
+        lastName: "Sowell",
         email: "tom@hoover.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/14.jpg",
         hashedPassword: "chicken1!",
@@ -133,8 +133,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Bart",
-        lastname: "Garfunkle",
+        firstName: "Bart",
+        lastName: "Garfunkle",
         email: "bartyman@snl.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/2.jpg",
         hashedPassword: "chicken1!",
@@ -142,8 +142,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Tina",
-        lastname: "Fey",
+        firstName: "Tina",
+        lastName: "Fey",
         email: "tina@30rock.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/4.jpg",
         hashedPassword: "chicken1!",
@@ -160,8 +160,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Quentin",
-        lastname: "Terrantino",
+        firstName: "Quentin",
+        lastName: "Terrantino",
         email: "movie9@hollywood.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/25.jpg",
         hashedPassword: "chicken1!",
@@ -169,8 +169,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Daniel",
-        lastname: "Riccardo",
+        firstName: "Daniel",
+        lastName: "Riccardo",
         email: "dricco@formula1.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/3.jpg",
         hashedPassword: "chicken1!",
@@ -178,8 +178,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Lisa",
-        lastname: "Simpson",
+        firstName: "Lisa",
+        lastName: "Simpson",
         email: "lisa@springville.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/5.jpg",
         hashedPassword: "chicken1!",
@@ -187,8 +187,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Guy",
-        lastname: "Richie",
+        firstName: "Guy",
+        lastName: "Richie",
         email: "lockstock@smokingbarrels.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/25.jpg",
         hashedPassword: "chicken1!",
@@ -196,8 +196,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Marie",
-        lastname: "Curie",
+        firstName: "Marie",
+        lastName: "Curie",
         email: "mc@sciencestuff.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/3.jpg",
         hashedPassword: "chicken1!",
@@ -205,8 +205,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        firstname: "Zach",
-        lastname: "Nelson",
+        firstName: "Zach",
+        lastName: "Nelson",
         email: "z@nelson.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/5.jpg",
         hashedPassword: "chicken1!",

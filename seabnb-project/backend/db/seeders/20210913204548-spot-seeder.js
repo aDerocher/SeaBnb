@@ -125,7 +125,7 @@ module.exports = {
       {
         name: "Tigers Blood",
         location: "Atlantic City, New Jersey, USA",
-        price: 0,
+        price: 64000,
         host: 9,
         description: "This ship is THE BEST! WINNINNNNNNGGGG!!!!",
         reviews: null,
@@ -330,7 +330,7 @@ module.exports = {
         name: "Rapture",
         location: "Atlantis",
         price: 51000,
-        host: 15,
+        host: 17,
         description: "This yacht is styled like a military battleship. They told me this yacht was impossible to build like this. I told them it was impossible to build it any other way!",
         reviews: null,
         rules: null,
@@ -347,12 +347,8 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
 
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+    return queryInterface.bulkDelete('Spots', null, {});
+
   }
 };

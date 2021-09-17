@@ -86,7 +86,7 @@ const sessionReducer = (state = initialState, action) => {
       return newState;
     case SET_USER_BOOKINGS:
       const userSpots = [];
-      action.userBookings.forEach(booking => {
+      action.userBookings?.forEach(booking => {
         userSpots.push(booking.spot)
       });
       return {

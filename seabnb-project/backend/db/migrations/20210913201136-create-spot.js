@@ -47,19 +47,19 @@ module.exports = {
         type: Sequelize.DATE
       },
       photo1: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       photo2: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       photo3: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       photo4: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       photo5: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       }
     });
   },

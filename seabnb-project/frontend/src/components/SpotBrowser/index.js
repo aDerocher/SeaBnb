@@ -38,16 +38,16 @@ function SpotBrowser(){
       </div>
 
       {/* ++++ List of all available spots +++++ */}
-      {spots.map((spot) => (
+      {spots?.map((spot) => (
       <main key={spot.id} className='spots-container'>
         <div className='spots'>
           <div className='spot'>
             <div className='spot-img-section spot-sec'>
             {/* // style={`background-image:url('${spot.photo1}')`}> */}
-              <img src={spot.photo1} alt='Yacht' />
+              <img src={spot?.photo1} alt='Yacht' />
             </div>
             <div className='spot-mid-section spot-sec'>
-              <h3 className='spot-section-title'>{spot.name}</h3>
+              <h3 className='spot-section-title'>{spot?.name}</h3>
               <p className='tiny-line'> ______ </p>
               <p className='spot-section-flist'>***bedrooms***</p>
               <p className='spot-section-flist'>***3 amenities***</p>

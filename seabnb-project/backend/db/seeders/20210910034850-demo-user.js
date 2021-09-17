@@ -29,7 +29,7 @@ module.exports = {
         lastName: "Heying",
         email: "hth@heathercodes.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/30.jpg",
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -38,7 +38,7 @@ module.exports = {
         lastName: "Thomas",
         email: "jthomas@zero.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/75.jpg",
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -47,7 +47,7 @@ module.exports = {
         lastName: "Boghossian",
         email: "peter@project.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/13.jpg",
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -56,7 +56,7 @@ module.exports = {
         lastName: "Roosevelt",
         email: "teddyr@bearhunter.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/10.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -65,7 +65,7 @@ module.exports = {
         lastName: "Assange",
         email: "jassange@wikileaks.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/1.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -74,7 +74,7 @@ module.exports = {
         lastName: "Snowden",
         email: "esnowden@notnsa.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/4.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -83,7 +83,7 @@ module.exports = {
         lastName: "Spaeth",
         email: "ss@doctorstuff.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/47.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -92,7 +92,7 @@ module.exports = {
         lastName: "Rand",
         email: "randydandy@atlas.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/48.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -101,7 +101,7 @@ module.exports = {
         lastName: "Washington",
         email: "george@delaware.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/1.jpg",
-        hashedPassword: "chicken",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -110,7 +110,7 @@ module.exports = {
         lastName: "Thatcher",
         email: "mrsm@thatcher.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/31.jpg",
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -119,7 +119,7 @@ module.exports = {
         lastName: "Steamer",
         email: "elys@etnies.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/74.jpg",
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -128,7 +128,7 @@ module.exports = {
         lastName: "HUxley",
         email: "aldous@bnw.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/23.jpg",
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -137,7 +137,7 @@ module.exports = {
         lastName: "Sowell",
         email: "tom@hoover.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/14.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -146,7 +146,7 @@ module.exports = {
         lastName: "Garfunkle",
         email: "bartyman@snl.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/2.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -155,7 +155,7 @@ module.exports = {
         lastName: "Fey",
         email: "tina@30rock.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/4.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -164,7 +164,7 @@ module.exports = {
         lastName: "QueenB",
         email: "queenb@ringonit.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/23.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -173,7 +173,7 @@ module.exports = {
         lastName: "Terrantino",
         email: "movie9@hollywood.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/25.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -182,7 +182,7 @@ module.exports = {
         lastName: "Riccardo",
         email: "dricco@formula1.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/3.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -191,7 +191,7 @@ module.exports = {
         lastName: "Simpson",
         email: "lisa@springville.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/5.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -200,7 +200,7 @@ module.exports = {
         lastName: "Richie",
         email: "lockstock@smokingbarrels.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/25.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -209,7 +209,7 @@ module.exports = {
         lastName: "Curie",
         email: "mc@sciencestuff.com",
         profilePhoto: "https://randomuser.me/api/portraits/men/3.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -218,7 +218,7 @@ module.exports = {
         lastName: "Nelson",
         email: "z@nelson.com",
         profilePhoto: "https://randomuser.me/api/portraits/women/5.jpg",
-        hashedPassword: "chicken1!",
+        hashedPassword: bcrypt.hashSync("chicken"),
         createdAt: new Date(),
         updatedAt: new Date()
       },

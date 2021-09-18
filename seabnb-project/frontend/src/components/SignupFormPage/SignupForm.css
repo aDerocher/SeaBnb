@@ -1,9 +1,96 @@
 .signinForm{
-  background-color:rgb(153, 104, 153)
+  /* background-color:rgb(153, 104, 153) */
 }
 .sErrorMsgs{
-  background-color: rgb(241, 241, 241);
+  background-color: none;
 }
 .sErrorMsg{
   color: red;
+}
+.signin-container{
+  height: 100vh;
+  width: 100%;
+  background-color: var(--seabnb-blue1);
+  display: flex;
+  justify-content: center;
+}
+.signupForm{
+  background-color: white;
+  width: 430px;
+  height: 400px;
+  margin-top: 60px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0,0,0,.25);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,.25);
+
+}
+.form-topper{
+  width: 90%;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgb(192, 192, 192);
+}
+.x{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color:transparent;
+  transition: 0.2s;
+}
+.x:hover{
+  background-color:rgba(56, 56, 56, 0.2);
+}
+
+.labels-and-inputs{
+  /* background-color: saddlebrown; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.all-labels{
+  /* background-color: seagreen; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.all-labels > label{
+  /* background-color:rgb(153, 104, 153); */
+  height: 26px;
+  padding: 2px;
+  margin: 0 10px;
+  margin-top:16px;
+  margin-bottom: 6px;
+}
+.all-inputs{
+  /* background-color: rgb(44, 83, 61); */
+  display: flex;
+  flex-direction: column;
+}
+.all-inputs > input{
+  height: 26px;
+  border: none;
+  outline: none;
+  padding: 2px;
+  margin: 10px;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+}
+
+.signup-btn{
+  width: 75%;
+  height: 32px;
+  outline: none;
+  border: none;
+  margin:auto;
+  margin-top: 24px;
+  color: white;
+  border-radius: 6px;
+  background-color: rgb(80, 92, 204);
 }

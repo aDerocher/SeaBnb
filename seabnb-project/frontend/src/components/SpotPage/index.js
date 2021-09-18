@@ -65,6 +65,7 @@ function SpotPage(){
     setRevAbility(false)
     return;
   }
+  
 
   if(!spot){
     return <p>Cant load spot</p>
@@ -74,7 +75,10 @@ function SpotPage(){
     <div className="spot-container">
       <div className="spot-top">
         <h2>{spot?.name}</h2>
-        <p>=rating= =numOfReviews=<span> · </span>{spot?.location}</p>
+        <div className='spot-top-links'>
+          <p>=rating= =numOfReviews=<span> · </span>{spot?.location}</p>
+          <p>⇯ <a href="#">share</a> <span> · </span>♡ <a href="#">save</a></p>
+        </div>
       </div>
       <div className="spot-images-container">
         <div className="spot-image-l">
@@ -87,18 +91,66 @@ function SpotPage(){
           <div className="spot-image-r"><img src={spot?.photo5} alt="boat-5"/></div>
         </div>
       </div>
+
       <div className="spot-main">
-        <div className="spot-details">
-          <p>{spot?.description}</p>
-        </div>
-        {user && 
-          <div>
-            <ReserveSpotForm spotId={spotId} />
+ 
+        <div className="spot-main-left">
+          <div className="spot-details">
+            <p className='spot-desc'>{spot?.description}</p>
+            <p className='light-grey'>10 guests <span> · </span> 3 bedrooms <span> · </span> 5 beds <span> · </span> 2 baths</p>
           </div>
-        }
+
+          <div className="fake-section-container">
+            <div className="fake-section">
+              <div className="fake-icon">
+                <p>⌂</p>
+              </div>
+              <div className="fake-sub-section">
+                <p className="fss-top">Entire Ship</p>
+                <p className="fss-bottom">You'll have the place to yourself (plus crew)</p>
+              </div>
+            </div>
+            <div className="fake-section">
+              <div className="fake-icon">
+                <p>✧</p>
+              </div>
+              <div className="fake-sub-section">
+                <p className="fss-top">Enhanced Clean</p>
+                <p className="fss-bottom">This host is committed to Seabnb's Enhanced Cleaning Process</p>
+              </div>
+            </div>
+            <div className="fake-section">
+              <div className="fake-icon">
+                <p>⟎</p>
+              </div>
+              <div className="fake-sub-section">
+                <p className="fss-top">Dockside checkin</p>
+                <p className="fss-bottom">Meet up with the captain to set sail</p>
+              </div>
+            </div>
+            <div className="fake-section" >
+              <div className="fake-icon">
+                <p>⊕</p>
+              </div>
+              <div className="fake-sub-section">
+                <p className="fss-top">Great locations</p>
+                <p className="fss-bottom">Can visit any number of fantastic destinations</p>
+              </div>
+            </div>
+          </div>
+
+          <ReviewSpotForm spotId={spot?.id}  userId={user?.id}/>
+        </div>
+
+        <div className="spot-main-right">
+          {user && 
+            <ReserveSpotForm spotId={spotId} />
+          }
+          {!user && 
+            <h2>THIS IS A LINK TO SIGN IN/CREATE</h2>
+          }
+        </div>
       </div>  
-      {/* userId={user.id} */}
-      <ReviewSpotForm spotId={spot?.id}  userId={user?.id}/>
     </div>
   )
 }

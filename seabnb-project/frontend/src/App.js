@@ -27,6 +27,7 @@ function App() {
           <WelcomeScreen isLoaded={isLoaded} />
         </Route>
         <Route path="/signup">
+          <NavigationTwo />
           <SignupFormPage />
         </Route>
         <Route path="/spots/:spotId">

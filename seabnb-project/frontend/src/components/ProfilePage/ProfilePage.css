@@ -1,5 +1,6 @@
 .trips-section{
-  width: 70%;
+  /* background-color: lightseagreen; */
+  width: 63%;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -8,7 +9,7 @@
   justify-content: flex-start;
 }
 .trips-title{
-  width: 70%;
+  width: 63%;
   margin: auto;
 }
 .trips-title > h2 {
@@ -18,7 +19,7 @@
 }
 .tripCard{
   /* background-color: rgb(109, 80, 26); */
-  width: 300px;
+  width: 270px;
   height: 290px;
   margin: 15px;
   border-radius:12px;

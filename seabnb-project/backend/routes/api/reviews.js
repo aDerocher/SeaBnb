@@ -33,6 +33,24 @@ router.delete('/', asyncHandler(async (req, res) => {
   res.status(204).send();
 }));
 
+// ====== edit a review in the database =======
+router.put('/:id', asyncHandler(async (req, res) => {
+  const { revId, guest, spot, score, content } = req.body;
+  // const oldReview = await Review.findByPk(revId);
+  await Review.update(
+    {
+      score,
+      content, 
+    }, 
+    {
+      where: { 
+        id: revId
+      }
+    }
+  );
+  res.status(204).send();
+}));
+
 
 // ===== export the router
 module.exports = router;

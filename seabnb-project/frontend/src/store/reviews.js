@@ -7,6 +7,7 @@ import {ONE_SPOT} from './spots'
 const REVIEW = 'reviews/REVIEW';
 const DEL_REVIEW = 'reviews/DEL_REVIEW';
 const GET_REVIEWS = 'reviews/GET_REVIEWS';
+const EDIT_REVIEW = 'reviews/EDIT_REVIEW'
 
 // ===== ACTIONS =================================
 const getReviews = (spotReviews) => ({
@@ -22,6 +23,11 @@ const reviewNew = reviewData => ({
 const reviewDelete = revId => ({
   type: DEL_REVIEW,
   revId,
+});
+
+const reviewEdited = revData => ({
+  type: EDIT_REVIEW,
+  revData,
 });
 
 // ===== FUNCTIONS =================================
@@ -60,14 +66,13 @@ export const deleteReview = (revId) => async dispatch => {
   return response;
 };
 
-export const editReview = (revId) => async dispatch => {
-  // const response = await csrfFetch(`/api/reviews`, {
-  //   method: 'DELETE',
-  //   body: JSON.stringify({ revId }), 
-  // });
-  // dispatch(reviewDelete(response));
-  // return response;
-  return
+export const editReview = (body) => async dispatch => {
+  const response = await csrfFetch(`/api/reviews/:id`, {
+    method: 'PUT',
+    body: JSON.stringify({ body }), 
+  });
+  dispatch(reviewEdited(response));
+  return response;
 };
 
 // ===== INITIAL STATE =================================
@@ -83,6 +88,9 @@ const reviewsReducer = (state = initialState, action) => {
       return state
     
     case DEL_REVIEW: 
+      return state
+
+    case EDIT_REVIEW: 
       return state
 
     case GET_REVIEWS: {

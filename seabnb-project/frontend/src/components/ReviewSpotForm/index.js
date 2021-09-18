@@ -11,8 +11,13 @@ const ReviewSpotForm = ({spotId, userId}) => {
   const dispatch = useDispatch();
   const [ score, setScore ] = useState(5);
   const [ content, setContent ] = useState('');
+  const [ editScore, setEditScore ] = useState(5);
+  const [ editContent, setEditContent ] = useState('');
   const [ revCount, setRevCount ] = useState(0);
   const [ revAbility, setRevAbility ] = useState(false);
+  const [ hideEditForm, setHideEditForm ] = useState(true);
+  const [ editRevId, setEditRevId ] = useState();
+
 
   let spotBookings = useSelector(state => state.bookings.spotBookings );
   let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
@@ -48,10 +53,21 @@ const ReviewSpotForm = ({spotId, userId}) => {
     dispatch(deleteReview(revId));
     dispatch(getSpotReviews(spotId));
   }
-  const editRev = (e,revId) => { 
+  const editRev = (e) => { 
     e.preventDefault();
-    dispatch(editReview(revId));
+    const body = {
+      revId: editRevId,
+      guest: userId,
+      spot: spotId,
+      score,
+      content
+    }
+    dispatch(editReview(body));
     dispatch(getSpotReviews(spotId));
+  }
+  const showEditForm = (e) => { 
+    e.preventDefault();
+    setHideEditForm(!hideEditForm);
   }
 
   const submitReview = (e) => {
@@ -77,6 +93,14 @@ const ReviewSpotForm = ({spotId, userId}) => {
           <button>Submit Review</button>
         </form>
       }
+
+      <form hidden={hideEditForm} onSubmit={e=>editRev(e)}>
+        <h4></h4>
+        <input type="number" min='1' max="5" name="edit-score" value={editScore} onChange={e => setEditScore(e.target.value)}/>
+        <textarea type="text" name="edit-content" maxLength="225" value={editContent} onChange={e => setEditContent(e.target.value)}/>
+        <button>Submit Changes</button>
+      </form>
+
       <div className="spot-reviews">
         <p>  REVIEWS TOOL REVIEWS RENDER </p>
         {/* <button onClick={e => userCanReview(e)}>bbb</button>  */}
@@ -87,7 +111,8 @@ const ReviewSpotForm = ({spotId, userId}) => {
             <p>{review.content}</p>
             <div>
               <button hidden={!(userId===review.guest)} onClick={e=>delRev(e,review.id)}>delete</button>
-              <button hidden={!(userId===review.guest)} onClick={e=>editRev(e,review.id)}>edit</button>
+              <button hidden={!(userId===review.guest)} onClick={e=>showEditForm(e,setEditRevId(review.id))}>edit</button>
+            
             </div>
           </div>
         ))}

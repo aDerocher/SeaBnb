@@ -1,3 +1,5 @@
+
+
 /* Explore Nearby */
 
 .expl-nearby{
@@ -22,15 +24,22 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.city-card{
+.spot-card{
   /* background-color: hotpink; */
   width: 21%;
-  margin: 1rem 0%;
+  padding: 0.5rem 1rem;
+  padding-left: 15px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-radius: 8px;
+  transition: 0.2s;
 }
-.city-card-img{
+.spot-card:hover{
+  box-shadow: 0 0 12px rgba(0,0,0,.2);
+  background-color: rgb(250, 250, 250);
+}
+.spot-card-img{
   height: 4rem;
   border-radius: 8px;
 }

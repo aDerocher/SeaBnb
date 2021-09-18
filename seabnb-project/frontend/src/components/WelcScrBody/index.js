@@ -4,6 +4,7 @@ import { getSpots, getOneSpot } from "../../store/spots";
 import { getSpotBookings } from "../../store/bookings";
 import { getSpotReviews } from "../../store/reviews";
 import { useHistory } from 'react-router';
+import './WelcScrBody.css';
 import './_ExploreNearby.css';
 import './_LiveNearby.css';
 import './_TryHosting.css';
@@ -20,6 +21,10 @@ const WelcScrBody =() => {
     history.push(`/spots/${spotId}`);
   }
 
+  const goSignUp=(e)=> {
+    e.preventDefault();
+    history.push(`/signup`);
+  }
 
   useEffect(()=>{
     dispatch(getSpots());
@@ -32,16 +37,16 @@ const WelcScrBody =() => {
 
   return (  
     <>
-      {/* Explore Nearby */}
-      <div className="main-container expl-nearby">
+      {/* ++++ Explore Nearby ++++++++++++++++++++++++++++++++++++++++++*/}
+      <div className="main-container w-sec expl-nearby">
         <div className='en-title-container'>
-          <h2 className="en-title">Explore Nearby</h2>
+          <h2 className="en-title">Explore The World</h2>
         </div>
 
-        <div className="en-cards-container"> 
+        <div className="en-cards-container hover-hand"> 
           {eightSpots?.map((spot)=> (
-            <div className='city-card'>
-              <img className='city-card-img' src={spot.photo1} alt="img" />
+            <div className='spot-card' key={spot.id} onClick={e=>goToSpot(spot.id,e)}>
+              <img className='spot-card-img' src={spot.photo1} alt="img" />
               <div className='en-card-body'>
                 <p className='en-card-title'>{spot.name}</p>
                 <p className='en-card-title'></p>
@@ -50,71 +55,10 @@ const WelcScrBody =() => {
             </div>
           ))}
         </div>
-
-        <div className="en-cards-container">
-          <div className='city-card'>
-            <img className='city-card-img' src="" alt="img" />
-            <div className='en-card-body'>
-              <p className='en-card-title'>Portland</p>
-              <p>x minute drive</p>
-            </div>
-          </div>
-
-          <div className='city-card'>
-            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
-            <div className='en-card-body'>
-              <p className='en-card-title'>Portland</p>
-              <p>x hour drive</p>
-            </div>
-          </div>
-          <div className='city-card'>
-            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
-            <div className='en-card-body'>
-              <p className='en-card-title'>Portland</p>
-              <p>x minute drive</p>
-            </div>
-          </div>
-          <div className='city-card'>
-            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
-            <div className='en-card-body'>
-              <p className='en-card-title'>Portland</p>
-              <p>x hour drive</p>
-            </div>
-          </div>
-          <div className='city-card'>
-            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
-            <div className='en-card-body'>
-              <p className='en-card-title'>Portland</p>
-              <p>x hour drive</p>
-            </div>
-          </div>
-          <div className='city-card'>
-            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
-            <div className='en-card-body'>
-              <p className='en-card-title'>Portland</p>
-              <p>x hour drive</p>
-            </div>
-          </div>
-          <div className='city-card'>
-            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
-            <div className='en-card-body'>
-              <p className='en-card-title'>Portland</p>
-              <p>x hour drive</p>
-            </div>
-          </div>
-          <div className='city-card'>
-            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
-            <div className='en-card-body'>
-              <p className='en-card-title'>Portland</p>
-              <p>x hour drive</p>
-            </div>
-          </div>
-        </div>
       </div>
-
       
       {/* +++ Sail Anywhere (Live Anywhere) +++++++++++++++++++++  */}
-      <div className="main-container live-anywhere">
+      <div className="main-container w-sec live-anywhere">
         <div className='la-title-container'>
           <h2 className="la-title">Sail Anywhere</h2>
         </div>
@@ -148,12 +92,12 @@ const WelcScrBody =() => {
 
 
       {/* +++ Try Hosting +++++++++++++++++++++  */}
-      <div className="main-container try-hosting">
+      <div className="main-container w-sec try-hosting">
         <div className='th-image-container'>
           <div className='th-card-body'>
             <h4 className='th-title'>Try hosting</h4>
             <p className='th-subtitle'>Unlock new synergetic revenue streams and expand your metaverse</p>
-            <button className='th-btn'>Learn More</button>
+            <button className='th-btn' onClick={e=>goSignUp(e)}>Learn More</button>
           </div>
         </div>
       </div>

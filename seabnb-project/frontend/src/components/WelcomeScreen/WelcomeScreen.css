@@ -130,6 +130,7 @@
   align-items: flex-start;
   border-radius: 32px;
   box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
+  transition: 0.2s;
 }
 .search-i-container:hover { background-color: rgb(228, 228, 228);}
 

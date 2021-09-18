@@ -4,6 +4,76 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Reviews', [
       {
+        guest: 17,
+        score: 5,
+        spot: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        content: "Top of the line experience. Lovely living areas!"
+      },
+      {
+        guest: 18,
+        score: 4,
+        spot: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        content: "Really enjoyed my stay here"
+      },
+      {
+        guest: 18,
+        score: 5,
+        spot: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        content: "Top of the line experience. Lovely living areas!"
+      },
+      {
+        guest: 19,
+        score: 5,
+        spot: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        content: "This ship is fantastic! I'ts very luxurious. I will certainly be booking again"
+      },{
+        guest: 19,
+        score: 4,
+        spot: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        content: "Really enjoyed my stay here"
+      },
+      {
+        guest: 19,
+        score: 5,
+        spot: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        content: "Top of the line experience. Lovely living areas!"
+      },
+      {
+        guest: 20,
+        score: 5,
+        spot: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        content: "This ship is fantastic! I'ts very luxurious. I will certainly be booking again"
+      },{
+        guest: 20,
+        score: 4,
+        spot: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        content: "Really enjoyed my stay here"
+      },
+      {
+        guest: 20,
+        score: 5,
+        spot: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        content: "Top of the line experience. Lovely living areas!"
+      },
+      {
         guest: 1,
         score: 5,
         spot: 3,

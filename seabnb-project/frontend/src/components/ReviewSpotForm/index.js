@@ -14,45 +14,53 @@ const ReviewSpotForm = ({spotId, userId}) => {
   const [ editScore, setEditScore ] = useState(5);
   const [ editContent, setEditContent ] = useState('');
   const [ revCount, setRevCount ] = useState(0);
-  const [ revAbility, setRevAbility ] = useState(false);
+  const [ revAbility, setRevAbility ] = useState(true);
   const [ hideEditForm, setHideEditForm ] = useState(true);
   const [ editRevId, setEditRevId ] = useState();
 
-
+  let userBookingsArr = useSelector(state => state.session.userBookings )
   let spotBookings = useSelector(state => state.bookings.spotBookings );
   let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
   
+
+
   const userCanLeaveReview = (userId) => {
+    // if a review already exists from this user ==> user cant review
     for(let i=0; i < spotReviewsArr?.length; i++){
       if (spotReviewsArr[i].guest === userId){
+        console.log(spotReviewsArr[i].guest, userId, "p1============")
         setRevAbility(false);
         return
       }
     }
-    for(let booking in spotBookings){
+    // if user has stayed here in the past ==> user cant review
+    for(let i=0; i < userBookingsArr?.length; i++){
       // console.log(new Date(spotBookings[booking].checkIn),new Date(spotBookings[booking].checkOut), new Date())
       // console.log(isBefore(new Date(spotBookings[booking].checkOut), new Date()))
-      if (booking.guest === userId &&
-          isBefore(new Date(spotBookings[booking].checkOut), new Date())){
+      if (userBookingsArr[i].guest === userId &&
+          isBefore(new Date(userBookingsArr[i].checkOut), new Date())){
+          console.log(isBefore(new Date(userBookingsArr[i].checkOut), new Date()), "p2============")
           setRevAbility(true);
+          return
       }
     }
     setRevAbility(false);
     return
   }
 
-  useEffect(() => {
-    userCanLeaveReview() ? console.log('hi') : console.log('no')
-  }, [score, content]);
-  
-
-
-  const delRev = (e,revId) => { 
+ const delRev = (e,revId) => { 
     e.preventDefault();
-    setRevCount(revCount-1)
     dispatch(deleteReview(revId));
     dispatch(getSpotReviews(spotId));
-  }
+    let x = revCount
+    setRevCount(x-1);
+}
+
+  useEffect(() => {
+    userCanLeaveReview(userId);
+  }, [revCount, revAbility, spotReviewsArr])
+
+
   const editRev = (e) => { 
     e.preventDefault();
     const body = {
@@ -62,6 +70,7 @@ const ReviewSpotForm = ({spotId, userId}) => {
       score,
       content
     }
+    setRevCount(revCount-1);
     dispatch(editReview(body));
     dispatch(getSpotReviews(spotId));
   }
@@ -72,7 +81,7 @@ const ReviewSpotForm = ({spotId, userId}) => {
 
   const submitReview = (e) => {
     e.preventDefault();
-    console.log(score, content)
+    // console.log(score, content)
     const body = {
       guest: userId,
       spot: spotId,
@@ -86,7 +95,6 @@ const ReviewSpotForm = ({spotId, userId}) => {
     <>
       { revAbility && 
         <form action="/api/reviews/new" method="POST" onSubmit={submitReview}>
-          {/* <p>{spotAndUser}</p> */}
           <h2>Review Spot Form</h2>
           <input type="number" min='1' max="5" name="score" value={score} onChange={e => setScore(e.target.value)}/>
           <textarea type="text" name="content" maxLength="225" value={content} onChange={e => setContent(e.target.value)}/>

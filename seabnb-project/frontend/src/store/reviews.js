@@ -6,12 +6,12 @@ import {ONE_SPOT} from './spots'
 //===== I CANT REMEMBER WHAT THESE ARE CALLED ========
 const REVIEW = 'reviews/REVIEW';
 const DEL_REVIEW = 'reviews/DEL_REVIEW';
-const GET_REVIEWS = 'reviews/GET_REVIEWS';
+const GET_SPOT_REVIEWS = 'reviews/GET_REVIEWS';
 const EDIT_REVIEW = 'reviews/EDIT_REVIEW'
 
 // ===== ACTIONS =================================
 const getReviews = (spotReviews) => ({
-  type: GET_REVIEWS,
+  type: GET_SPOT_REVIEWS,
   spotReviews
 });
 
@@ -20,9 +20,9 @@ const reviewNew = reviewData => ({
   reviewData,
 });
 
-const reviewDelete = revId => ({
+const reviewDelete = response => ({
   type: DEL_REVIEW,
-  revId,
+  response,
 });
 
 const reviewEdited = revData => ({
@@ -88,19 +88,22 @@ const reviewsReducer = (state = initialState, action) => {
       return state
     
     case DEL_REVIEW: 
-      return state
+      return {
+        ...state,
+        allReviews: action.response
+      }
 
     case EDIT_REVIEW: 
       return state
 
-    case GET_REVIEWS: {
+    case GET_SPOT_REVIEWS: {
       // const spotReviews = {};
       // action.spotReviews.forEach(review => {
       //   spotReviews[review.id] = review;
       // });
       return {
         ...state,
-        spotReviews: action.spotReviews,
+        spotReviews: action.spotReviews
       };
     } 
     

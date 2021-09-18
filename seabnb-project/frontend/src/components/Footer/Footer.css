@@ -77,3 +77,9 @@ ul{
   margin: 0 .5rem;
   background-color: rgb(27, 27, 27)
 }
+
+.github-link{
+  color: var(--seabnb-blue2);
+  text-decoration: none;
+  font-weight: 600;
+}

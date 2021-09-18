@@ -8,6 +8,7 @@ const Footer = () => {
       <div className='footer-top-section'>
         <h2 className="foot-title">ABOUT</h2>
         <ul>
+          <li><a href="https://github.com/aDerocher" className="github-link">Creators Github ⚓</a></li>
           <li>How Seabnb works</li>
           <li>Newsroom</li>
           <li>Seabnb 2021</li>
@@ -23,10 +24,10 @@ const Footer = () => {
         <ul>
           <li>Accessibility</li>
           <li>Diversity</li>
-          <li>Airbnb Associates</li>
+          <li>Seabnb Associates</li>
           <li>Guest Referrals</li>
           <li>Gift Cards</li>
-          <li>Airbnb.org</li>
+          <li>Seabnb.org</li>
         </ul>
       </div>
       <div className='footer-top-section'>
@@ -60,7 +61,7 @@ const Footer = () => {
       <div className='footer-bottom-section fbs-2'>
         <div className='f-settings-container'>
           <p className='f-settings'>⛒ <span>English (US)</span></p>
-          <p className='f-settings'>$ <span>USD</span></p>
+          <p className='f-settings'>₿ <span>BTC</span></p>
         </div>
         <div className='f-emojis'>
           <div className='soc-med-icon'></div>

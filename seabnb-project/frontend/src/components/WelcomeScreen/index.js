@@ -5,10 +5,17 @@ import SignupFormPage from '../SignupFormPage';
 import WelcScrBody from '../WelcScrBody';
 import SpotBrowser from '../SpotBrowser';
 import Footer from '../Footer';
+import { useHistory } from 'react-router';
 import './WelcomeScreen.css';
 
 
 function WelcomeScreen({ isLoaded }) {
+  const history = useHistory();
+
+  const goToSpots=(e)=>{
+    e.preventDefault();
+    history.push('/spots');
+  }
 
   return (
     // +++ Splash Picture (Container) +++++++++++++++++++++++++++
@@ -50,7 +57,7 @@ function WelcomeScreen({ isLoaded }) {
         {/* +++ Not Sure Where to Go +++++++++++++++++++++  */}
         <div className='im-flex-container'>
           <h3>Not sure where to set sail? Perfect.</h3>
-          <button className='im-flex-btn'><span>I'm flexible</span></button>
+          <button className='im-flex-btn hover-hand' onClick={e=>goToSpots(e)}><span>I'm flexible</span></button>
         </div>
       </div>
       <WelcScrBody />

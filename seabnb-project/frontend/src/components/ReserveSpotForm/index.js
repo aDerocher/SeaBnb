@@ -25,7 +25,7 @@ const ReserveSpotForm = ({spotId}) => {
     dispatch(sessionActions.getAllBookings());
     dispatch(sessionActions.getSpotBookings(spotId));
     dispatch(spotSessionActions.getSpots());
-  }, [spotId]);
+  }, [dispatch, spotId]);
 
   useEffect(()=> {
     let newErrors = [];

@@ -13,18 +13,18 @@ function ProfilePage(){
   const dispatch = useDispatch();
   const [ delBookingId, setDelBookingId ] = useState();
   const [ tripCount, setTripCount ] = useState(0);
+  const allUserBookings = useSelector(state => state.session.userBookings );
 
   useEffect(()=>{
     dispatch(restoreUser());
     dispatch(getSpots());
     setTripCount(allUserBookings?.length);
-  }, [ dispatch, tripCount ]);
+  }, [ dispatch, tripCount, allUserBookings ]);
   
 
   // the logged in user object
     // const user = useSelector(state => state.session.user );
   // array of all the users bookings objects
-    const allUserBookings = useSelector(state => state.session.userBookings );
   // array of ID's of the spots that the user has bookings for
     // const allUserSpotIds = useSelector(state => state.session.userSpots );
   // object of all spots. keys are the spotId

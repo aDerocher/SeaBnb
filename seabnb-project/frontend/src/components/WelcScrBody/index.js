@@ -4,6 +4,7 @@ import { getSpots, getOneSpot } from "../../store/spots";
 import { getSpotBookings } from "../../store/bookings";
 import { getSpotReviews } from "../../store/reviews";
 import { useHistory } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import './WelcScrBody.css';
 import './_ExploreNearby.css';
 import './_LiveNearby.css';
@@ -12,6 +13,7 @@ import './_TryHosting.css';
 const WelcScrBody =() => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
 
   const goToSpot=(spotId,e)=> {
     e.preventDefault();
@@ -23,7 +25,8 @@ const WelcScrBody =() => {
 
   const goSignUp=(e)=> {
     e.preventDefault();
-    history.push(`/signup`);
+    sessionUser ? history.push(`/users/${sessionUser.id}`)
+                : history.push(`/signup`);
   }
 
   useEffect(()=>{
@@ -97,7 +100,7 @@ const WelcScrBody =() => {
           <div className='th-card-body'>
             <h4 className='th-title'>Try hosting</h4>
             <p className='th-subtitle'>Unlock new synergetic revenue streams and expand your metaverse</p>
-            <button className='th-btn' onClick={e=>goSignUp(e)}>Learn More</button>
+            <button className='th-btn hover-hand' onClick={e=>goSignUp(e)}>Learn More</button>
           </div>
         </div>
       </div>

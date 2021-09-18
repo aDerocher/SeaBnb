@@ -1,0 +1,164 @@
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getSpots, getOneSpot } from "../../store/spots";
+import { getSpotBookings } from "../../store/bookings";
+import { getSpotReviews } from "../../store/reviews";
+import { useHistory } from 'react-router';
+import './_ExploreNearby.css';
+import './_LiveNearby.css';
+import './_TryHosting.css';
+
+const WelcScrBody =() => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const goToSpot=(spotId,e)=> {
+    e.preventDefault();
+    getOneSpot(spotId);
+    getSpotBookings(spotId);
+    getSpotReviews(spotId);
+    history.push(`/spots/${spotId}`);
+  }
+
+
+  useEffect(()=>{
+    dispatch(getSpots());
+  }, [ dispatch ]);
+
+  const spots = useSelector(state => state.spots.list);
+  const eightSpots = spots.slice(0,8);
+
+
+
+  return (  
+    <>
+      {/* Explore Nearby */}
+      <div className="main-container expl-nearby">
+        <div className='en-title-container'>
+          <h2 className="en-title">Explore Nearby</h2>
+        </div>
+
+        <div className="en-cards-container"> 
+          {eightSpots?.map((spot)=> (
+            <div className='city-card'>
+              <img className='city-card-img' src={spot.photo1} alt="img" />
+              <div className='en-card-body'>
+                <p className='en-card-title'>{spot.name}</p>
+                <p className='en-card-title'></p>
+                <p>{spot.location}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="en-cards-container">
+          <div className='city-card'>
+            <img className='city-card-img' src="" alt="img" />
+            <div className='en-card-body'>
+              <p className='en-card-title'>Portland</p>
+              <p>x minute drive</p>
+            </div>
+          </div>
+
+          <div className='city-card'>
+            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
+            <div className='en-card-body'>
+              <p className='en-card-title'>Portland</p>
+              <p>x hour drive</p>
+            </div>
+          </div>
+          <div className='city-card'>
+            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
+            <div className='en-card-body'>
+              <p className='en-card-title'>Portland</p>
+              <p>x minute drive</p>
+            </div>
+          </div>
+          <div className='city-card'>
+            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
+            <div className='en-card-body'>
+              <p className='en-card-title'>Portland</p>
+              <p>x hour drive</p>
+            </div>
+          </div>
+          <div className='city-card'>
+            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
+            <div className='en-card-body'>
+              <p className='en-card-title'>Portland</p>
+              <p>x hour drive</p>
+            </div>
+          </div>
+          <div className='city-card'>
+            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
+            <div className='en-card-body'>
+              <p className='en-card-title'>Portland</p>
+              <p>x hour drive</p>
+            </div>
+          </div>
+          <div className='city-card'>
+            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
+            <div className='en-card-body'>
+              <p className='en-card-title'>Portland</p>
+              <p>x hour drive</p>
+            </div>
+          </div>
+          <div className='city-card'>
+            <img className='city-card-img' src="./images/anon-city.png" alt="img" />
+            <div className='en-card-body'>
+              <p className='en-card-title'>Portland</p>
+              <p>x hour drive</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      {/* +++ Sail Anywhere (Live Anywhere) +++++++++++++++++++++  */}
+      <div className="main-container live-anywhere">
+        <div className='la-title-container'>
+          <h2 className="la-title">Sail Anywhere</h2>
+        </div>
+        <div className="la-cards-container">
+          <div className='la-card'>
+            <div className='la-card-img tropical'></div>
+            <div className='la-card-body'>
+              <h4>Tropical</h4>
+            </div>
+          </div>
+          <div className='la-card'>
+            <div className='la-card-img sailing'></div>
+            <div className='la-card-body'>
+              <h4>Sailing</h4>
+            </div>
+          </div>
+          <div className='la-card'>
+            <div className='la-card-img mini'></div>
+            <div className='la-card-body'>
+              <h4>Mini Yachts</h4>
+            </div>
+          </div>
+          <div className='la-card'>
+            <div className='la-card-img dog'></div>
+            <div className='la-card-body'>
+              <h4>Pets Allowed</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {/* +++ Try Hosting +++++++++++++++++++++  */}
+      <div className="main-container try-hosting">
+        <div className='th-image-container'>
+          <div className='th-card-body'>
+            <h4 className='th-title'>Try hosting</h4>
+            <p className='th-subtitle'>Unlock new synergetic revenue streams and expand your metaverse</p>
+            <button className='th-btn'>Learn More</button>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default WelcScrBody;

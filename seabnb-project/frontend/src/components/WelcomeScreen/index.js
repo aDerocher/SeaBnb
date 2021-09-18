@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation';
 import SignupFormPage from '../SignupFormPage';
+import WelcScrBody from '../WelcScrBody';
 import SpotBrowser from '../SpotBrowser';
 import Footer from '../Footer';
 import './WelcomeScreen.css';
@@ -52,7 +53,7 @@ function WelcomeScreen({ isLoaded }) {
           <button className='im-flex-btn'><span>I'm flexible</span></button>
         </div>
       </div>
-      <SpotBrowser />
+      <WelcScrBody />
       <Footer />
     </>
   )

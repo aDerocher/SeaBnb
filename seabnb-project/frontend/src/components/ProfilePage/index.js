@@ -59,15 +59,25 @@ function ProfilePage(){
             <div className="tripCard-img-section">
               <img src={spotsObj[booking.spot]?.photo1} alt="boat" />
             </div>
-            <div>
-              <p>{booking?.checkOut}</p>
-              <p>Check-in: {formatDate(booking?.checkIn)}</p>
-              <p>Check-out: {formatDate(booking?.checkOut)}</p>
-              <p>{spotsObj[booking.spot]?.name}</p>
-            </div>
-            <div className="cancel-container">
-              <input type="radio" name="trippy" value={booking?.id} onChange={e => setDelBookingId(e.target.value)}/>
-              <button className="cancel-trip-btn" >Cancel Trip</button>
+
+            <div className="content-container">
+              <div className="content-section">
+                <p className="ship-name">{spotsObj[booking.spot]?.name}</p>
+                <div className="check-section-container">
+                  <div className="check-section">
+                    <p>Check-in:</p>
+                    <p>{formatDate(booking?.checkIn)}</p>
+                  </div>
+                  <div className="check-section">
+                    <p>Check-out:</p>
+                    <p>{formatDate(booking?.checkOut)}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="cancel-container">
+                <input type="radio" name="trippy" value={booking?.id} onChange={e => setDelBookingId(e.target.value)}/>
+                <button className="cancel-trip-btn hover-hand" >Cancel Trip</button>
+              </div>
             </div>
           </div>
         ))}

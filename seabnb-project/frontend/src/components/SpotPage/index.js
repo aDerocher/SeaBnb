@@ -25,9 +25,10 @@ function SpotPage(){
     dispatch(getOneSpot(spotId));
     dispatch(getSpotBookings(spotId));
     dispatch(getSpotReviews(spotId));
+    setRevCount(spotReviewsArr?.length)
     if(user) setRevAbility(userCanReview());
-    console.log(spotId, "......spotId.........")
-    console.log(revAbility, '<=======spotId=====');
+    // console.log(spotId, "......spotId.........")
+    // console.log(revAbility, '<=======spotId=====');
   }, [ dispatch, spotId, revAbility, revCount ]);
 
   
@@ -46,6 +47,7 @@ function SpotPage(){
 
   const userCanReview = () => {
     for (let i=0; i < spotReviewsArr?.length || 0; i++ ){
+      setRevCount(spotReviewsArr.length)
       let spotRev = spotReviewsArr[0];
       if (spotRev.guest === user.id){
         setRevAbility(false);
@@ -76,7 +78,7 @@ function SpotPage(){
       <div className="spot-top">
         <h2>{spot?.name}</h2>
         <div className='spot-top-links'>
-          <p>=rating= =numOfReviews=<span> · </span>{spot?.location}</p>
+          <p>⭐5<span> · </span>{revCount} Reviews<span> · </span>{spot?.location}</p>
           <p>⇯ <a href="#">share</a> <span> · </span>♡ <a href="#">save</a></p>
         </div>
       </div>

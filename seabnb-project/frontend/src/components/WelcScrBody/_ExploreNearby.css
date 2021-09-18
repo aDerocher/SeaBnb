@@ -1,0 +1,58 @@
+
+
+/* Explore Nearby */
+
+.expl-nearby{
+  width: 85%;
+  margin:auto;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column; 
+}
+.en-title-container{ width: 100% }
+.en-title{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22pt;
+  font-weight: 700;
+}
+.en-cards-container{
+  /* background-color: rgb(61, 78, 61); */
+  /* margin: 5%; */
+  margin: 15px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.spot-card{
+  /* background-color: hotpink; */
+  width: 21%;
+  padding: 0.5rem 1rem;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+.spot-card:hover{
+  box-shadow: 0 0 12px rgba(0,0,0,.2);
+  background-color: rgb(250, 250, 250);
+}
+.spot-card-img{
+  height: 4rem;
+  border-radius: 8px;
+}
+.en-card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1rem;
+}
+.en-card-body > *{
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 3px;
+}
+.en-card-title{
+  font-weight: 600;
+}

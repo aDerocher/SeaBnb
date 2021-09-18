@@ -1,0 +1,65 @@
+.res-section{
+  /* background-color: green; */
+  margin-top: 3rem;
+  height: 215px;
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,.22);
+}
+.res-section-top{
+  /* background-color: rgb(122, 233, 122); */
+  width: 90%;
+  padding-top: 26px;
+  padding-bottom:18px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.new-booking-form{
+  /* background-color: rgb(122, 207, 233); */
+  padding: 8px 0px;
+  width: 90%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-inputs{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 12px 0;
+  width: 100%;
+  height: 2.6rem;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 8px;
+}
+.form-inputs > input {
+  height: 94%;
+  width: 44%;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  padding: 0 5px;
+}
+.form-inputs > :first-child {
+  border-right: 1px solid lightgrey;
+}
+.reserve-btn{
+  width: 100%;
+  height: 2.6rem;
+  background-color: var(--seabnb-blue1);
+  color: white;
+  font-size: 12pt;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  margin: 6px 0;
+}

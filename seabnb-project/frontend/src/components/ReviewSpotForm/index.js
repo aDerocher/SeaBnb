@@ -17,9 +17,10 @@ const ReviewSpotForm = ({spotId, userId}) => {
   const [ revAbility, setRevAbility ] = useState(true);
   const [ hideEditForm, setHideEditForm ] = useState(true);
   const [ editRevId, setEditRevId ] = useState();
+  const [ delRevId, setDelRevId ] = useState();
 
   let userBookingsArr = useSelector(state => state.session.userBookings )
-  let spotBookings = useSelector(state => state.bookings.spotBookings );
+  // let spotBookings = useSelector(state => state.bookings.spotBookings );
   let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
   
 
@@ -48,17 +49,19 @@ const ReviewSpotForm = ({spotId, userId}) => {
     return
   }
 
- const delRev = (e,revId) => { 
-    e.preventDefault();
-    dispatch(deleteReview(revId));
-    dispatch(getSpotReviews(spotId));
-    let x = revCount
-    setRevCount(x-1);
-}
+  const delRev = (e,revId) => { 
+      e.preventDefault();
+      let rev = document.getElementById(revId)
+      rev.setAttribute("style", "display: none")
+      dispatch(deleteReview(revId));
+      // dispatch(getSpotReviews(spotId));
+      // let x = revCount
+      // setRevCount(x-1);
+  }
 
   useEffect(() => {
     userCanLeaveReview(userId);
-  }, [revCount, revAbility, spotReviewsArr])
+  }, [ revAbility, spotReviewsArr])
 
 
   const editRev = (e) => { 
@@ -82,6 +85,9 @@ const ReviewSpotForm = ({spotId, userId}) => {
   const submitReview = (e) => {
     e.preventDefault();
     // console.log(score, content)
+    // let revForm = document.getElementById(revForm)
+    // revForm.setAttribute("style", "display: none")
+    setRevAbility(false)
     const body = {
       guest: userId,
       spot: spotId,
@@ -94,7 +100,7 @@ const ReviewSpotForm = ({spotId, userId}) => {
   return (
     <>
       { revAbility && 
-        <form action="/api/reviews/new" method="POST" onSubmit={submitReview}>
+        <form action="/api/reviews/new" method="POST" onSubmit={submitReview} id="revForm">
           <h2>Review Spot Form</h2>
           <input type="number" min='1' max="5" name="score" value={score} onChange={e => setScore(e.target.value)}/>
           <textarea type="text" name="content" maxLength="225" value={content} onChange={e => setContent(e.target.value)}/>
@@ -108,12 +114,13 @@ const ReviewSpotForm = ({spotId, userId}) => {
         <textarea type="text" name="edit-content" maxLength="225" value={editContent} onChange={e => setEditContent(e.target.value)}/>
         <button>Submit Changes</button>
       </form>
-
+      
+    
       <div className="spot-reviews">
         <p>  REVIEWS TOOL REVIEWS RENDER </p>
         {/* <button onClick={e => userCanReview(e)}>bbb</button>  */}
         {spotReviewsArr?.map((review)=> (
-          <div className="review-card">
+          <div key={review.guest} className="review-card" id={review.id}>
             <p>Guest: {review.guest}</p>
             <p>Rated: {review.score} /5</p>
             <p>{review.content}</p>
@@ -125,6 +132,8 @@ const ReviewSpotForm = ({spotId, userId}) => {
           </div>
         ))}
       </div>
+
+      
   </>
   )
 }

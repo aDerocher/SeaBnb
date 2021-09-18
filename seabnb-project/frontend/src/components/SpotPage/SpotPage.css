@@ -1,6 +1,6 @@
 /*================= Universals =================*/
 .light-grey{
-  color: lightgrey;
+  color: grey;
 }
 /* ========================================== */
 /* ========= SPOT PAGE STYLES ===============*/
@@ -73,6 +73,7 @@
   /* background-color:rgb(9, 99, 189); */
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 .spot-main-left{
   /* background-color:rgb(180, 42, 42); */
@@ -82,6 +83,7 @@
 }
 .spot-main-right{
   /* background-color:rgb(156, 189, 9); */
+  width: 32%;
   display: flex;
   flex-direction: column;
 }

@@ -7,6 +7,8 @@ import { today, tomorrow } from './dateUtils';
 import { isBefore } from 'date-fns'
 import * as sessionActions from '../../store/bookings';
 import * as spotSessionActions from '../../store/spots';
+import './ReserveSpotForm.css'
+
 // import { format } from 'date-fns'
 const ReserveSpotForm = ({spotId}) => {
   const history = useHistory();
@@ -51,12 +53,20 @@ const ReserveSpotForm = ({spotId}) => {
   }
 
   return(
-    <div>
+    <div className="res-section">
+      <div className="res-section-top">
+        <p>$XXX<span>/night</span></p>
+        <p>X <span>reviews</span></p>
+      </div>
       <form action="/api/bookings/new" method="POST" className="new-booking-form" onSubmit={e=>submitReservation(e)}>
-        <input type="date" name="checkIn" min={day} value={startDate} onChange={e=> setStartDate(e.target.value)}></input>
-        <input type="date" name="checkOut" min={startDate} value={endDate} onChange={e=> setEndDate(e.target.value)}></input>          
-        <button disabled={errors.length > 0}>Reserve</button>
+        <div className="form-inputs">
+          <input type="date" name="checkIn" min={day} value={startDate} onChange={e=> setStartDate(e.target.value)}></input>
+          <input type="date" name="checkOut" min={startDate} value={endDate} onChange={e=> setEndDate(e.target.value)}></input>          
+        </div>
+        
+        <button className="reserve-btn" disabled={errors.length > 0}>Reserve</button>
       </form>
+
     </div>
   )
 }

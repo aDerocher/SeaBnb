@@ -1,41 +1,49 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { restoreUser } from '../../store/session';
 import { getSpots } from '../../store/spots';
 import { deleteBooking } from '../../store/bookings';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import './ProfilePage.css';
-import { format } from 'date-fns'
+import { format, isBefore } from 'date-fns'
 // import { useHistory } from 'react-router';
 
 function ProfilePage(){
- 
+  const history = useHistory();
   const dispatch = useDispatch();
   const [ delBookingId, setDelBookingId ] = useState();
   const [ tripCount, setTripCount ] = useState(0);
   const allUserBookings = useSelector(state => state.session.userBookings );
-
+  let pastUserBookings = [];
+  let futureUserBookings = [];
+  for (let i=0; i < allUserBookings?.length; i++){
+      let b = allUserBookings[i];
+      if (isBefore(new Date(b.checkOut), new Date())){
+        pastUserBookings.push(b);
+      } else {
+        futureUserBookings.push(b);
+      }
+    }
   useEffect(()=>{
     dispatch(restoreUser());
     dispatch(getSpots());
-    setTripCount(allUserBookings?.length);
-  }, [ dispatch, tripCount, allUserBookings ]);
-  
+    setTripCount(allUserBookings?.length); 
+    console.log(pastUserBookings, '=============')
+    console.log(futureUserBookings, '=============')
+  }, [ dispatch, tripCount ]);
 
-  // the logged in user object
-    // const user = useSelector(state => state.session.user );
-  // array of all the users bookings objects
-  // array of ID's of the spots that the user has bookings for
-    // const allUserSpotIds = useSelector(state => state.session.userSpots );
-  // object of all spots. keys are the spotId
-    const spotsObj = useSelector(state => state.spots.spotsObj );
+  
+  const spotsObj = useSelector(state => state.spots.spotsObj );
 
   const formatDate = (date) => {
     const day = new Date(date);
     const newDay = format(day,'yyyy-MM-dd');
     return newDay;
   }
-
+  const goToSpot=(e, spotId)=>{
+    e.preventDefault();
+    history.push(`/spots/${spotId}`);
+  }
   const cancelReservation = (e) => {
     e.preventDefault();
     dispatch(deleteBooking(delBookingId));
@@ -44,25 +52,32 @@ function ProfilePage(){
   // console.log(spot,'<============spot==============')
   // console.log(spots[0].photo1,'<==============================')
 
+
+
+
   return(
     <>
       <div className='trips-title'>
         <h2>Trips</h2>
+      </div>
+      <div className='subtitle-container'>  
+        <p className='subtitle'>Upcoming</p>
       </div>
       <form method='/api/bookings' 
         action="DELETE" 
         onSubmit={e => cancelReservation(e)}
         className='trips-section' 
       >
-        {allUserBookings?.map((booking)=> (
+        
+        {futureUserBookings?.map((booking) => (
           <div className="tripCard" key={booking?.id}>
-            <div className="tripCard-img-section">
+            <div className="tripCard-img-section hover-hand" onClick={e=> goToSpot(e, booking.spot)}>
               <img src={spotsObj[booking.spot]?.photo1} alt="boat" />
             </div>
 
             <div className="content-container">
               <div className="content-section">
-                <p className="ship-name">{spotsObj[booking.spot]?.name}</p>
+                <p className="ship-name"><a href={`/spots/${booking.spot}`}>{spotsObj[booking.spot]?.name}</a></p>
                 <div className="check-section-container">
                   <div className="check-section">
                     <p>Check-in:</p>
@@ -82,8 +97,39 @@ function ProfilePage(){
           </div>
         ))}
       </form>
-      
+
+      <div className='subtitle-container'>  
+          <p className='subtitle'>Past</p>
+        </div>
       <div className='trips-section'>
+        
+          {pastUserBookings?.map((booking) => (
+          <div className="tripCard" key={booking?.id}>
+            <div className="tripCard-img-section hover-hand" onClick={e=> goToSpot(e, booking.spot)}>
+              <img src={spotsObj[booking.spot]?.photo1} alt="boat" />
+            </div>
+
+            <div className="content-container">
+              <div className="content-section">
+                <p className="ship-name"><a href={`/spots/${booking.spot}`}>{spotsObj[booking.spot]?.name}</a></p>
+                <div className="check-section-container">
+                  <div className="check-section">
+                    <p>Check-in:</p>
+                    <p>{formatDate(booking?.checkIn)}</p>
+                  </div>
+                  <div className="check-section">
+                    <p>Check-out:</p>
+                    <p>{formatDate(booking?.checkOut)}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="cancel-container book-again-container">
+                {/* <input type="radio" name="trippy" value={booking?.id} onChange={e => setDelBookingId(e.target.value)}/> */}
+                <button className="book-again-btn hover-hand" onClick={e=> goToSpot(e, booking.spot)}>Book it again</button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className='trips-section'>

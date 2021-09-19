@@ -9,6 +9,7 @@ import SpotPage from './components/SpotPage';
 import NavigationTwo from './components/NavigationTwo';
 import ProfilePage from './components/ProfilePage';
 import NotFound from './components/NotFound';
+import Footer from './components/Footer';
 // import Navigation from './components/Navigation';
 
 function App() {
@@ -25,26 +26,32 @@ function App() {
       <Switch>
         <Route exact path="/">
           <WelcomeScreen isLoaded={isLoaded} />
+          <Footer />
         </Route>
         <Route path="/signup">
           <NavigationTwo />
           <SignupFormPage />
+          <Footer />
         </Route>
         <Route path="/spots/:spotId">
           <NavigationTwo isLoaded={isLoaded}/>
           <SpotPage />
+          <Footer />
         </Route>
         <Route path="/spots">
           <NavigationTwo />
           <SpotBrowser />
+          <Footer />
         </Route>
         <Route path="/users/:id">
           <NavigationTwo />
           <ProfilePage />
+          <Footer />
         </Route>
         <Route >
           <NavigationTwo />
           <NotFound />
+          <Footer />
         </Route>
       </Switch>
       {/* { isLoaded && (

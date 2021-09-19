@@ -29,7 +29,7 @@ function App() {
           <Footer />
         </Route>
         <Route path="/signup">
-          <NavigationTwo />
+          <NavigationTwo isLoaded={isLoaded}/>
           <SignupFormPage />
           <Footer />
         </Route>
@@ -39,17 +39,17 @@ function App() {
           <Footer />
         </Route>
         <Route path="/spots">
-          <NavigationTwo />
+          <NavigationTwo isLoaded={isLoaded}/>
           <SpotBrowser />
           <Footer />
         </Route>
         <Route path="/users/:id">
-          <NavigationTwo />
+          <NavigationTwo isLoaded={isLoaded}/>
           <ProfilePage />
           <Footer />
         </Route>
         <Route >
-          <NavigationTwo />
+          <NavigationTwo isLoaded={isLoaded}/>
           <NotFound />
           <Footer />
         </Route>

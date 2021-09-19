@@ -2,7 +2,7 @@
 .footer-container{
   background-color: rgb(239, 239, 239);
   border-top: 1px solid rgb(200, 200, 200);
-  
+  bottom: 0;
   margin-top: 2rem;
   display: flex;
   flex-direction: column;

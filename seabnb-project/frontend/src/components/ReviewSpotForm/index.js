@@ -102,10 +102,12 @@ const ReviewSpotForm = ({spotId, userId}) => {
       <p className='reviews-title'>{spotReviewsArr?.length} Reviews</p>
       { revAbility && 
         <form action="/api/reviews/new" method="POST" onSubmit={submitReview} id="revForm">
-          <h2>Review Spot Form</h2>
+          <h2>Leave a review:</h2>
           <input type="number" min='1' max="5" name="score" value={score} onChange={e => setScore(e.target.value)}/>
-          <textarea type="text" name="content" maxLength="225" value={content} onChange={e => setContent(e.target.value)}/>
-          <button>Submit Review</button>
+          <textarea 
+          type="text" name="content" maxLength="225" value={content} rows="9" cols="80"
+          onChange={e => setContent(e.target.value)}/>
+          <button className="rev-btn sub-rev-btn">Submit Review</button>
         </form>
       }
 

@@ -22,6 +22,10 @@ const WelcScrBody =() => {
     getSpotReviews(spotId);
     history.push(`/spots/${spotId}`);
   }
+  const goToSpots=(e)=> {
+    e.preventDefault();
+    history.push(`/spots`);
+  }
 
   const goSignUp=(e)=> {
     e.preventDefault();
@@ -66,25 +70,25 @@ const WelcScrBody =() => {
           <h2 className="la-title">Sail Anywhere</h2>
         </div>
         <div className="la-cards-container">
-          <div className='la-card'>
+          <div className='la-card hover-hand' onClick={e=>goToSpots(e)}>
             <div className='la-card-img tropical'></div>
             <div className='la-card-body'>
               <h4>Tropical</h4>
             </div>
           </div>
-          <div className='la-card'>
+          <div className='la-card hover-hand' onClick={e=>goToSpots(e)}>
             <div className='la-card-img sailing'></div>
             <div className='la-card-body'>
               <h4>Sailing</h4>
             </div>
           </div>
-          <div className='la-card'>
+          <div className='la-card hover-hand' onClick={e=>goToSpots(e)}>
             <div className='la-card-img mini'></div>
             <div className='la-card-body'>
               <h4>Mini Yachts</h4>
             </div>
           </div>
-          <div className='la-card'>
+          <div className='la-card hover-hand' onClick={e=>goToSpots(e)}>
             <div className='la-card-img dog'></div>
             <div className='la-card-body'>
               <h4>Pets Allowed</h4>

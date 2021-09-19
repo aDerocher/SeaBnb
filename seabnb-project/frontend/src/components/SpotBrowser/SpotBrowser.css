@@ -1,54 +1,64 @@
-/* ==== Spot Browsing Styles ==== */
-
-.spots-container {
-  /* background-color: aquamarine; */
-  width: 55%;
-  height: 200px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.spots{
+/* ==== Spot Browsing Styles ===================== */
+/* +++++ Layout ++++++++++++++++++++++++++++++ */
+.all-spots-container{
   /* background-color: blue; */
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid lightgrey;
-  width: 100%
+  width: 60%;
+  margin: auto;
 }
-
-.spot{
-  /* background-color: orange; */
-  height: 200px;
+.single-spot-card{
+  /* border: 2px solid orange; */
   width: 100%;
   display: flex;
+  padding: 16px;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   border-top: 1px solid rgba(134, 134, 134, 0.5)
 }
+/* ++++++ Image Section ++++++++++++++++++++++++++*/
 .spot-img-section{
   /* background-color: rgb(109, 80, 26); */
+  height: 300px;
   width: 39%;
-  margin-left: 12px;
-  border-radius:12px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius:12px;
 }
 .spot-img-section > img {
   object-fit: cover;
-  width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
+
+/* ++++++ Content Section ++++++++++++++++++++++++++*/
 .spot-mid-section{
-  /* background-color: rgb(188, 190, 60); */
+  /* background-color: rgb(121, 60, 190); */
+  height: 300px;
+  width: 40%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 44%;
+  justify-content: space-between;
+  align-items: space-between;
   margin-left: 12px;
 }
+.spot-mid-top{
+  /* background-color: rgba(60, 190, 67, 0.527); */
+  
+}
+.spot-mid-top > *{
+  margin-bottom: 10px;
+}
+.spot-mid-bot{
+  /* background-color: rgb(60, 190, 168); */
+  display: flex;
+  justify-self: flex-end;
+}
+
 .spot-right-section{
-  /* background-color: rgb(230, 238, 116); */
+  /* background-color: rgb(126, 238, 116); */
   width: 14%;
   margin: 0 12px;
   display:flex;
@@ -56,9 +66,7 @@
   justify-content: space-between;
   align-items: flex-end;
 }
-.spot-sec{
-  height: 80%;
-}
+
 
 .spot-section-title{
   margin-top: 8px;
@@ -82,4 +90,36 @@
 
 .spot-hearts{
   /* background-color: purple; */
+}
+
+/* ========== Faux Content Section ================== */
+
+.spots-faux-header{
+  margin-top: 30px;
+  width: 100%;
+  margin-bottom: 18px;
+}
+.spots-faux-header > *{
+  margin-top: 12px;
+}
+.spots-faux-header > h3 {
+  font-size: 20pt;
+  margin-bottom: 18px;
+  
+}
+.spots-faux-header > ul{
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: row;
+}
+.faux-filter{
+  color: grey;
+  border: 1px solid grey;
+  height: 20px;
+  padding: 8px 12px;
+  margin-right: 5px;
+  border-radius: 18px;
+}
+.bold-statement{
+  font-weight: 600;
 }

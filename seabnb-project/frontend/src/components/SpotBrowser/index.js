@@ -31,39 +31,52 @@ function SpotBrowser(){
   // console.log(spots[0].photo1,'<==============================')
 
   return(
-    <div >
+    <div className='all-spots-container'>
       {/* ++++ top section +++++++++++++++++ */}
-      <div className='spots-header'>
-        The Header content will go here
+      <div className='spots-faux-header'>
+        <p>+50 Stays</p>
+        <h3>Stays Around The World</h3>
+        <ul>
+          <li className="faux-filter">Free Cancellation</li>
+          <li className="faux-filter">Type of Ship</li>
+          <li className="faux-filter">Price</li>
+          <li className="faux-filter">Instant Book</li>
+          <li className="faux-filter">More Filters</li>
+        </ul>
+        <p>🏆<span className='bold-statement'>More than 300 people have stayed with us.</span> Average rating: 5 Stars</p>
       </div>
 
       {/* ++++ List of all available spots +++++ */}
       {spots?.map((spot) => (
-      <main key={spot.id} className='spots-container'>
-        <div className='spots'>
-          <div className='spot'>
-            <div className='spot-img-section spot-sec'>
-            {/* // style={`background-image:url('${spot.photo1}')`}> */}
-              <img src={spot?.photo1} alt='Yacht' />
-            </div>
-            <div className='spot-mid-section spot-sec'>
-              <h3 className='spot-section-title'>{spot?.name}</h3>
-              <p className='tiny-line'> ______ </p>
-              <p className='spot-section-flist'>***bedrooms***</p>
-              <p className='spot-section-flist'>***3 amenities***</p>
-              <button onClick={e => goToSpot(spot.id,e)}>Check it out</button>
-              <p className='spot-section-rating'>⭐ **Rating** </p>
-            </div>
-            <div className='spot-right-section spot-sec'>
-              <div className='spot-hearts'>
-                <p>💙</p>
-                <p>🤍</p>
-              </div>
-              <p><span>$</span>{spot.price}/night</p>
-            </div>
+
+      <div key={spot.id} className='single-spot-card hover-hand' onClick={e=>goToSpot(spot?.id,e)}>
+
+        <div className='spot-img-section spot-sec'>
+          <img src={spot?.photo1} alt='Yacht' />
+        </div>
+
+        <div className='spot-mid-section'>
+          <div className='spot-mid-top'>
+            <h3 className='spot-section-title'>{spot?.name}</h3>
+            <p className='tiny-line'> ______ </p>
+            <p className='spot-section-flist'>** bedroom count**</p>
+            <p className='spot-section-flist'>** amenities list **</p>
+          </div>
+          <div className='spot-mid-bot'>
+            {/* <button onClick={e => goToSpot(spot.id,e)}>Check it out</button> */}
+            <p className='spot-section-rating'>⭐5</p>
           </div>
         </div>
-      </main>
+
+        <div className='spot-right-section spot-sec'>
+          <div className='spot-hearts'>
+            <p>🤍</p>
+          </div>
+          
+          <p><span>$</span>{spot.price}/night</p>
+        </div>
+
+      </div>
       ))}
 
     </div>

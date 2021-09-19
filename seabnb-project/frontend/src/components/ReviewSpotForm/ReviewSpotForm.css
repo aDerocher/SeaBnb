@@ -1,4 +1,30 @@
-/* ============ top section ============================ */
+/* ============ Reviews Form Section ============================ */
+#revForm{
+  /* background-color: khaki; */
+  width: fit-content;
+  margin-left: 15px;
+  margin-bottom: 30px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  border-radius: 12px;
+}
+#revForm > *{
+  margin: 0 18px;
+  margin-bottom: 14px;
+}
+
+#revForm > h2 {
+  margin-top: 14px;
+  font-size: 14pt;
+  /* color: var(--seabnb-blue2) */
+  text-decoration: underline;
+}
+
+
+/* ============ Reviews section ============================ */
 .reviews-section-container{
   /* background-color: indianred; */
   width: 100%;
@@ -73,5 +99,9 @@
 }
 .rev-del-btn{
   width: 75px;
+}
+
+.sub-rev-btn{
+  width: 140px;
 }
 

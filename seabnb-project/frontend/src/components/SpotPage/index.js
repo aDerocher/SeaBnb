@@ -140,8 +140,6 @@ function SpotPage(){
               </div>
             </div>
           </div>
-
-          <ReviewSpotForm spotId={spot?.id}  userId={user?.id}/>
         </div>
 
         <div className="spot-main-right">
@@ -153,6 +151,9 @@ function SpotPage(){
           }
         </div>
       </div>  
+
+      <ReviewSpotForm spotId={spot?.id}  userId={user?.id}/>
+
     </div>
   )
 }

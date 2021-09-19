@@ -76,7 +76,7 @@ const Navigation =({ isLoaded })=> {
 
         <div className='nav-profile-container'>
           <div className='nav-l nav-l-h becomeHost' onClick={e=>goSignup(e)}><p className='nav-bold'>Become a host</p></div>
-          <div className='nav-l nav-l-h' onClick={e=>loginDemo(e)}><p className='nav-bold'>⛒</p></div>
+          <div className='nav-l nav-l-h' onClick={e=>loginDemo(e)}><p className='nav-bold'>⛒ <span> Demo User</span></p></div>
           <div className='nav-l nav-r'>
             <div><p className='signup-link nav-bold' onClick={e=>goSignup(e)} >☰</p></div>
             {isLoaded && sessionLinks}

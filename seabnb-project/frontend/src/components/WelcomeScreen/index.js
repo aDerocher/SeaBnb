@@ -3,8 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation';
 import SignupFormPage from '../SignupFormPage';
 import WelcScrBody from '../WelcScrBody';
-import SpotBrowser from '../SpotBrowser';
-import Footer from '../Footer';
+// import Footer from '../Footer';
 import { useHistory } from 'react-router';
 import './WelcomeScreen.css';
 
@@ -61,7 +60,7 @@ function WelcomeScreen({ isLoaded }) {
         </div>
       </div>
       <WelcScrBody />
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

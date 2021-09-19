@@ -1,6 +1,5 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from '../ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -12,16 +11,29 @@ import './Navigation.css';
 const Navigation =({ isLoaded })=> {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  
   const history = useHistory();
   const goHome = () => { history.push('/'); }
   
+  const becomeHost = (e) => { 
+    e.preventDefault();
+    if(sessionUser) {
+      history.push(`/users/${sessionUser.id}`)
+    } else {
+      history.push(`/signup`); 
+    }; 
+  }
+
   const goSignup = (e) => { 
     e.preventDefault();
     history.push('/signup'); 
   }
   const loginDemo = (e) => {
     e.preventDefault();
+    if (sessionUser) {
+      if(sessionUser.id===1) return
+      alert('Please logout before attempting to login as demo user')
+      return;
+    }
     const demoUser = {
       credential:"demo@seabnb.com",
       password:"demo!123" 
@@ -57,14 +69,6 @@ const Navigation =({ isLoaded })=> {
 
   return (
     <nav className='nav-container'>
-
-      {/* <ul> */}
-        {/* <li>
-          <NavLink exact to="/">SeaBnb Home</NavLink>
-        </li> */}
-          {/* {isLoaded && sessionLinks} */}
-      {/* </ul> */}
-
         <div className="nav-logo" onClick={goHome}>
         </div>
 
@@ -75,10 +79,10 @@ const Navigation =({ isLoaded })=> {
         </div>
 
         <div className='nav-profile-container'>
-          <div className='nav-l nav-l-h becomeHost' onClick={e=>goSignup(e)}><p className='nav-bold'>Become a host</p></div>
-          <div className='nav-l nav-l-h' onClick={e=>loginDemo(e)}><p className='nav-bold'>⛒ <span> Demo User</span></p></div>
+          <div className='nav-l nav-l-h becomeHost' onClick={e=>becomeHost(e)}><p className='nav-bold'>Become a host</p></div>
+          <div className='nav-l nav-l-h' onClick={e=>loginDemo(e)}><p className='hover-hand nav-bold'>⛒ <span> Demo User</span></p></div>
           <div className='nav-l nav-r'>
-            <div><p className='signup-link nav-bold' onClick={e=>goSignup(e)} >☰</p></div>
+            <div><p className='signup-link nav-bold'>☰</p></div>
             {isLoaded && sessionLinks}
           </div>
         </div>

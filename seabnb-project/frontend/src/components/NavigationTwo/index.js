@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import {useHistory} from 'react-router'
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from '../ProfileButton';
@@ -6,12 +6,20 @@ import LoginFormModal from '../LoginFormModal';
 import { login } from '../../store/session';
 import './NavigationTwo.css'
 
-const NavigationTwo = ({isLoaded}) => {
-  const sessionUser = useSelector(state => state.session.user);
+const NavigationTwo = ({ isLoaded }) => {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const history = useHistory();
   const goHome = () => { history.push('/'); }
 
+  const becomeHost = (e) => { 
+    e.preventDefault();
+    if(sessionUser) {
+      history.push(`/users/${sessionUser.id}`)
+    } else {
+      history.push(`/signup`); 
+    }; 
+  }
   const goSignup = (e) => { 
     e.preventDefault();
     history.push('/signup');
@@ -24,6 +32,11 @@ const NavigationTwo = ({isLoaded}) => {
     }
     dispatch(login(demoUser))
   }
+
+  useEffect(() => {
+
+  }, [sessionUser])
+
   let sessionLinks;
   // if a user is signed in
   if (sessionUser) {
@@ -57,10 +70,10 @@ const NavigationTwo = ({isLoaded}) => {
       </div>
 
       <div className='nav-profile-container'>
-        <div className='nav-l nav-l-h wText becomeHost' onClick={e=>goSignup(e)}><p>Become a host</p></div>
+        <div className='nav-l nav-l-h wText becomeHost' onClick={e=>becomeHost(e)}><p>Become a host</p></div>
         <div className='nav-l nav-l-h wText' onClick={e=>loginDemo(e)}><p className='nav-bold'>⛒</p></div>
         <div className='nav-l nav-r wText'>
-          <div><p className='signup-link nav-bold' onClick={e=>goSignup(e)} >☰</p></div>
+          <div><p className='signup-link nav-bold' >☰</p></div>
             {isLoaded && sessionLinks}
         </div>
       </div>

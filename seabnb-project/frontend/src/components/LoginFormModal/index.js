@@ -8,7 +8,8 @@ function LoginFormModal() {
 
   return (
     <>
-      <div className='login-link nav-user-img' onClick={() => setShowModal(true)}></div>
+      <div className='login-link nav-user-img' onClick={() => setShowModal(true)}>
+      </div>
       {showModal && (
         <div>
           <Modal onClose={() => setShowModal(false)}>
@@ -16,14 +17,6 @@ function LoginFormModal() {
           </Modal>
         </div>
       )}
-      {/* <button onClick={() => setShowModal(true)}>Log In</button>
-      {showModal && (
-        <div>
-          <Modal onClose={() => setShowModal(false)}>
-            <LoginForm />
-          </Modal>
-        </div>
-      )} */}
     </>
   );
 }

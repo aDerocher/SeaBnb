@@ -92,5 +92,5 @@
   margin-top: 24px;
   color: white;
   border-radius: 6px;
-  background-color: rgb(80, 92, 204);
+  background-color: var(--seabnb-blue3);
 }

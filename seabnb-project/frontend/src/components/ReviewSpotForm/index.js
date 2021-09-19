@@ -98,7 +98,8 @@ const ReviewSpotForm = ({spotId, userId}) => {
   }
 
   return (
-    <>
+    <div className='reviews-section-container'>
+      <p className='reviews-title'>{spotReviewsArr?.length} Reviews</p>
       { revAbility && 
         <form action="/api/reviews/new" method="POST" onSubmit={submitReview} id="revForm">
           <h2>Review Spot Form</h2>
@@ -114,27 +115,29 @@ const ReviewSpotForm = ({spotId, userId}) => {
         <textarea type="text" name="edit-content" maxLength="225" value={editContent} onChange={e => setEditContent(e.target.value)}/>
         <button>Submit Changes</button>
       </form>
-      
-    
-      <div className="spot-reviews">
-        <p>  REVIEWS TOOL REVIEWS RENDER </p>
+        
+      <div className="spot-reviews-container">
         {/* <button onClick={e => userCanReview(e)}>bbb</button>  */}
         {spotReviewsArr?.map((review)=> (
+
           <div key={review.guest} className="review-card" id={review.id}>
-            <p>Guest: {review.guest}</p>
-            <p>Rated: {review.score} /5</p>
+            <div className="review-card-top">
+              <div className="faux-prof-pic"></div>
+              <div className="review-card-top-right">
+                <div><p>Guest: {review.guest}</p></div>
+                <div><p>Rated: {review.score} /5</p></div>
+              </div>
+            </div>
             <p>{review.content}</p>
             <div>
-              <button hidden={!(userId===review.guest)} onClick={e=>delRev(e,review.id)}>delete</button>
-              <button hidden={!(userId===review.guest)} onClick={e=>showEditForm(e,setEditRevId(review.id))}>edit</button>
-            
+              <button className="rev-btn rev-del-btn" hidden={!(userId===review.guest)} onClick={e=>delRev(e,review.id)}>delete</button>
+              <button className="rev-btn rev-edit-btn" hidden={!(userId===review.guest)} onClick={e=>showEditForm(e,setEditRevId(review.id))}>edit</button>
             </div>
           </div>
+
         ))}
       </div>
-
-      
-  </>
+    </div>
   )
 }
 

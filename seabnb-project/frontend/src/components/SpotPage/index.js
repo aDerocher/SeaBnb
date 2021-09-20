@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { Route } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneSpot, getSpots } from "../../store/spots";
 import { getSpotBookings } from "../../store/bookings";
@@ -9,15 +8,13 @@ import ReserveSpotForm from '../ReserveSpotForm';
 import ReviewSpotForm from '../ReviewSpotForm';
 import './SpotPage.css';
 import { isBefore } from 'date-fns';
-// import { useHistory } from 'react-router';
+
 
 function SpotPage(){
   const { spotId } = useParams();
   const dispatch = useDispatch();
-
   const [ revAbility, setRevAbility ] = useState(false);
   const [ revCount, setRevCount ] = useState(0);
-  // dont do this -> const [ spotReviewsArr, setSpotReviewsArr ] = useState([]);
 
 
   useEffect(()=>{
@@ -27,8 +24,6 @@ function SpotPage(){
     dispatch(getSpotReviews(spotId));
     setRevCount(spotReviewsArr?.length)
     if(user) setRevAbility(userCanReview());
-    // console.log(spotId, "......spotId.........")
-    // console.log(revAbility, '<=======spotId=====');
   }, [ dispatch, spotId, revAbility, revCount ]);
 
   
@@ -36,14 +31,7 @@ function SpotPage(){
   let user = useSelector(state => state.session.user );
   let spotBookings = useSelector(state => state.bookings.spotBookings );
   let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
-  // console.log(isBefore(new Date(booking.checkOut), new Date()), '<===== date thing')
-  
-  // const delRev = (e,revId) => { 
-  //   e.preventDefault();
-  //   setRevCount(revCount-1)
-  //   dispatch(deleteReview(revId));
-  //   dispatch(getSpotReviews(spotId));
-  // }
+
 
   const userCanReview = () => {
     for (let i=0; i < spotReviewsArr?.length || 0; i++ ){
@@ -56,8 +44,6 @@ function SpotPage(){
     }
     
     for(let booking in spotBookings){
-      // console.log(new Date(spotBookings[booking].checkIn),new Date(spotBookings[booking].checkOut), new Date())
-      // console.log(isBefore(new Date(spotBookings[booking].checkOut), new Date()))
       if (booking.guest === user.id &&
         isBefore(new Date(spotBookings[booking].checkOut), new Date())){
           setRevAbility(true);

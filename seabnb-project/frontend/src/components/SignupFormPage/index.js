@@ -18,7 +18,6 @@ function SignupFormPage() {
   if (sessionUser) return (
     <Redirect to="/" />
   );
-
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,13 +32,6 @@ function SignupFormPage() {
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   }
-
-  // useEffect(()=> {
-  //   const newErrors = [];
-  //   if (password.length < 6 ) newErrors.push()
-
-  //   setErrors(newErrors)
-  // }, [ password ]);
 
   return (
     <div className="signin-container">

@@ -11,11 +11,9 @@ function LoginFormModal() {
       <div className='login-link nav-user-img' onClick={() => setShowModal(true)}>
       </div>
       {showModal && (
-        <div>
-          <Modal onClose={() => setShowModal(false)}>
-            <LoginForm />
-          </Modal>
-        </div>
+        <Modal className="modal" onClose={() => setShowModal(false)}>
+          <LoginForm />
+        </Modal>
       )}
     </>
   );

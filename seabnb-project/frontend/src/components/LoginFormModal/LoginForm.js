@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
 import * as sessionActions from '../../store/session';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
@@ -13,9 +13,11 @@ function LoginForm() {
   const [ password, setPassword ] = useState('');
   const [ errors, setErrors ] = useState([]);
 
-  // if (sessionUser) return (
-  //   <Redirect to="/" />
-  // );
+  useEffect(() => {
+    let newErrors = [];
+    if (!credential.includes("@")) newErrors.push("Please provide a valid email address")
+    setErrors(newErrors);
+  }, [password, credential])
 
 
   const handleSubmit = (e) => {
@@ -40,27 +42,34 @@ function LoginForm() {
           <li className='fErrorMsg' key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        Email
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Log In</button>
+
+      <div className="login-form-all">
+
+        <div className="login-email login-input-row">
+          <label>Email: </label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required />  
+        </div>
+        
+        <div className="login-password login-input-row">
+          <label>Password: </label>
+          <input
+            type="text"
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            required />
+        </div>
+      </div>
+
+      <button type="submit" className="login-btn">Log In</button>
+
+      <div className="sign-up-section">
+        <NavLink to="/signup" className="sign-up-section-link">Sign up for Seabnb</NavLink>
+      </div>
     </form>
-    <NavLink to="/signup">Sign Up</NavLink>
     </>
   );
 }

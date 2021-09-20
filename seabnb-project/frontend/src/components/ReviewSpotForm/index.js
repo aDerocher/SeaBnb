@@ -31,9 +31,12 @@ const ReviewSpotForm = ({spotId, userId}) => {
         return
       }
     }
-    // if user has stayed here in the past ==> user cant review
+    // if user has stayed here in the past ==> user can review
     for(let i=0; i < userBookingsArr?.length; i++){
-      if (userBookingsArr[i].guest === userId &&
+      console.log(isBefore(new Date(userBookingsArr[i].checkOut), new Date()))
+      console.log(userBookingsArr[i].spot)
+      console.log(spotId)
+      if (userBookingsArr[i].spot === spotId &&
           isBefore(new Date(userBookingsArr[i].checkOut), new Date())){
           setRevAbility(true);
           return

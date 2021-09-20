@@ -8,8 +8,7 @@ function ProfileButton({ user }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  // const user = useSelector(state => state.session.user );
-
+  
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -26,9 +25,7 @@ function ProfileButton({ user }) {
   };
 
   useEffect(() => {
-    console.log('1')
     if (!showMenu) return;
-    console.log('2')
     const closeMenu = () => {
       setShowMenu(false);
     };

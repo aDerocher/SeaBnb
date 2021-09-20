@@ -4,7 +4,6 @@ import { getSpots, getOneSpot } from "../../store/spots";
 import { getSpotBookings } from "../../store/bookings";
 import { getSpotReviews } from "../../store/reviews";
 import { useHistory } from 'react-router';
-import { Redirect } from 'react-router-dom';
 import './WelcScrBody.css';
 import './_ExploreNearby.css';
 import './_LiveNearby.css';

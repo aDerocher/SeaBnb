@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import { Route } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpots, getOneSpot } from "../../store/spots";
 import { getSpotBookings } from "../../store/bookings";
@@ -27,8 +26,6 @@ function SpotBrowser(){
   const spots = useSelector(state => {
     return state.spots.list;
   });
-  // console.log(spots,'<==============================')
-  // console.log(spots[0].photo1,'<==============================')
 
   return(
     <div className='all-spots-container'>

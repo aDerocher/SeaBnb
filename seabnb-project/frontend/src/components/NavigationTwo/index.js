@@ -38,25 +38,14 @@ const NavigationTwo = ({ isLoaded }) => {
   }, [sessionUser])
 
   let sessionLinks;
-  // if a user is signed in
-  if (sessionUser) {
+
+  if (sessionUser?.id) {
     sessionLinks = (
-      // render the profile button as a link
+
       <ProfileButton user={sessionUser} />
     );
   } else {
-    // otherwise render the login/signup links
     sessionLinks = ( <LoginFormModal /> );
-    // sessionLinks = (
-    //   <>
-    //     <li>
-    //       <LoginFormModal />
-    //     </li>
-    //     <li>
-    //       <NavLink to="/signup">Sign Up</NavLink>
-    //     </li>
-    //   </>
-    // );
   }
   
   return (

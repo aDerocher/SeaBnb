@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useState, useEffect } from "react";
-// import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { today, tomorrow } from './dateUtils';
 import { isBefore } from 'date-fns'
@@ -9,11 +8,10 @@ import * as sessionActions from '../../store/bookings';
 import * as spotSessionActions from '../../store/spots';
 import './ReserveSpotForm.css'
 
-// import { format } from 'date-fns'
+
 const ReserveSpotForm = ({spotId}) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const { spotId } = useParams();
   const spot = useSelector(state => state.spots.spot.oneSpot );
   const user = useSelector(state => state.session.user );
 
@@ -34,7 +32,6 @@ const ReserveSpotForm = ({spotId}) => {
     if (!startDate) newErrors.push('Reservations can not be made in the past!');
     if (!endDate) newErrors.push('Reservations can not be made in the past!');
     if (!isBefore(new Date(startDate), new Date(endDate))) newErrors.push('Start date can not be after end date')
-    // console.log(isBefore(new Date(startDate), new Date(endDate)));
     setErrors(newErrors);
   }, [ startDate, endDate ])
   const submitReservation = (e) => {
@@ -45,7 +42,6 @@ const ReserveSpotForm = ({spotId}) => {
       checkIn:new Date(startDate),
       checkOut:new Date(endDate)
     }
-    // console.log('form: ', body);
     dispatch(sessionActions.newBooking(body))
     setErrors([]);
   

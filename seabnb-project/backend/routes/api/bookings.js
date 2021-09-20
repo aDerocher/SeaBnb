@@ -7,7 +7,6 @@ const router = express.Router();
 
 // ====== get all the bookings all spots =======
 router.get('/', asyncHandler(async (req, res) => {
-  // const { guest, spot, checkIn, checkOut } = req.body;
   const allBookings = await Booking.findAll();
   return res.json(allBookings);
 }));

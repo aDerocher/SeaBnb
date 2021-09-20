@@ -6,7 +6,6 @@ import { deleteBooking } from '../../store/bookings';
 import { useSelector, useDispatch} from 'react-redux';
 import './ProfilePage.css';
 import { format, isBefore } from 'date-fns'
-// import { useHistory } from 'react-router';
 
 function ProfilePage(){
   const history = useHistory();
@@ -28,10 +27,7 @@ function ProfilePage(){
     dispatch(restoreUser());
     dispatch(getSpots());
     setTripCount(allUserBookings?.length); 
-    console.log(pastUserBookings, '=============')
-    console.log(futureUserBookings, '=============')
   }, [ dispatch, tripCount ]);
-
   
   const spotsObj = useSelector(state => state.spots.spotsObj );
 
@@ -49,10 +45,6 @@ function ProfilePage(){
     dispatch(deleteBooking(delBookingId));
     setTripCount(tripCount-1);
   }
-  // console.log(spot,'<============spot==============')
-  // console.log(spots[0].photo1,'<==============================')
-
-
 
 
   return(

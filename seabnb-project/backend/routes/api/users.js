@@ -55,10 +55,18 @@ router.post( '/', validateSignup, asyncHandler(async (req, res) => {
 
 router.get( '/:id', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params, 10);
-  // console.log(userId, "<======= userId ======");
   return res.json({ user });
-}),
-);
+}));
+
+
+// router.get( '/:id/please', asyncHandler(async (req, res) => {
+//   // const userId = parseInt(req.params, 10);
+//   // console.log(userId, "<======= userId ======");
+//   const user = await User.FindByPk(1);
+//   console.log('hello')
+//   console.log(user)
+//   return res.json({ user });
+// }));
 
 
 module.exports = router;

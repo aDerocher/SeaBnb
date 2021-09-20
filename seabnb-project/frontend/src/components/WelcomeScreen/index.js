@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation';
 import SignupFormPage from '../SignupFormPage';
 import WelcScrBody from '../WelcScrBody';
-// import Footer from '../Footer';
 import { useHistory } from 'react-router';
 import './WelcomeScreen.css';
 

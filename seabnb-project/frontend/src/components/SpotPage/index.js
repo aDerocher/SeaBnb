@@ -33,10 +33,12 @@ function SpotPage(){
   let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
 
 
+  // am able to leave reviews on ships i haev not booked
+
   const userCanReview = () => {
-    for (let i=0; i < spotReviewsArr?.length || 0; i++ ){
-      setRevCount(spotReviewsArr.length)
-      let spotRev = spotReviewsArr[0];
+    setRevCount(spotReviewsArr?.length)
+    for (let i=0; i < spotReviewsArr?.length; i++ ){
+      let spotRev = spotReviewsArr[i];
       if (spotRev.guest === user.id){
         setRevAbility(false);
         return
@@ -44,12 +46,13 @@ function SpotPage(){
     }
     
     for(let booking in spotBookings){
-      if (booking.guest === user.id &&
+      console.log(booking.guest)
+      console.log(spotBookings[booking].guest)
+      if (booking.guest === user?.id &&
         isBefore(new Date(spotBookings[booking].checkOut), new Date())){
           setRevAbility(true);
         }
       }
-    setRevCount(spotReviewsArr?.length);
     setRevAbility(false)
     return;
   }
@@ -133,7 +136,7 @@ function SpotPage(){
             <ReserveSpotForm spotId={spotId} />
           }
           {!user && 
-            <h2>THIS IS A LINK TO SIGN IN/CREATE</h2>
+            <h2></h2>
           }
         </div>
       </div>  

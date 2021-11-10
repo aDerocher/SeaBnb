@@ -20,7 +20,7 @@ SeaBnb style and use are very similar to Airbnb. The look and feel should be imm
 ![](demoPictures/spot.PNG)
 
 ### Backend
-The backend is built using Express and Sequelize
+The backend's API is built using Express and Sequelize
 
 ---
 

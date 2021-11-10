@@ -25,7 +25,7 @@ The backend's API is built using Express and Sequelize
 ---
 
 ### Frontend
-
+SeaBnb's front end uses a React app to impliment the various state changes necessary for functions like leaving reviews and making new reservations. 
 ![](demoPictures/my-reservations.PNG)
 
 

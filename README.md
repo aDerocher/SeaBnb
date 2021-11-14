@@ -14,7 +14,7 @@ Seabnb is a travel website that enables users to make reservations on the worlds
 ![](demoPictures/splash.png)
 
 
-### Using Hurton
+### Using SeaBnB
 SeaBnb style and use are very similar to Airbnb. The look and feel should be immediately familiar to anyone who has used the latter. You can browse the splash page to see some possible locations, or check the reservation possibilities using the 'Im Flexible' button that is front and center. 
 
 ![](demoPictures/spot.PNG)

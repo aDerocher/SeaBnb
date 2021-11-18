@@ -36,17 +36,6 @@ const NavigationTwo = ({ isLoaded }) => {
   useEffect(() => {
 
   }, [sessionUser])
-
-  let sessionLinks;
-
-  if (sessionUser?.id) {
-    sessionLinks = (
-
-      <ProfileButton user={sessionUser} />
-    );
-  } else {
-    sessionLinks = ( <LoginFormModal /> );
-  }
   
   return (
     <nav className='nav-container2'>
@@ -60,10 +49,21 @@ const NavigationTwo = ({ isLoaded }) => {
 
       <div className='nav-profile-container'>
         <div className='nav-l nav-l-h wText becomeHost' onClick={e=>becomeHost(e)}><p>Become a host</p></div>
-        <div className='nav-l nav-l-h wText' onClick={e=>loginDemo(e)}><p className='nav-bold'>⛒</p></div>
+        {!sessionUser && 
+            <div className='nav-l nav-l-h wText' onClick={e=>loginDemo(e)}>
+                <p className='hover-hand nav-bold'>
+                    ⛒ 
+                <span> Demo User</span>
+                </p>
+            </div>
+        }
         <div className='nav-l nav-r wText'>
-          <div><p className='signup-link nav-bold' >☰</p></div>
-            {isLoaded && sessionLinks}
+            {sessionUser?.id &&
+                <ProfileButton user={sessionUser} />
+            }
+            {!sessionUser?.id &&
+                <LoginFormModal />
+            }
         </div>
       </div>
     </nav>

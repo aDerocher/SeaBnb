@@ -83,3 +83,10 @@ ul{
   text-decoration: none;
   font-weight: 600;
 }
+
+.dead-link{
+    color: grey;
+    text-decoration: line-through;
+    font-style: italic;
+
+}

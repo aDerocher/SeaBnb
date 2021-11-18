@@ -3,3 +3,8 @@
 .becomeHost:hover{
   cursor: pointer;
 }
+
+.white-link{
+    color: white;
+    text-decoration: none;
+}

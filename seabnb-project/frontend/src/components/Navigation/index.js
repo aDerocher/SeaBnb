@@ -1,4 +1,5 @@
 import React,{ useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from '../ProfileButton';
@@ -10,7 +11,6 @@ const Navigation =({ isLoaded })=> {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const history = useHistory();
-  const goHome = () => { history.push('/'); }
   
   const becomeHost = (e) => { 
     e.preventDefault();
@@ -21,18 +21,8 @@ const Navigation =({ isLoaded })=> {
     }; 
   }
 
-  const goSignup = (e) => { 
-    e.preventDefault();
-    history.push('/signup'); 
-  }
-
   const loginDemo = (e) => {
     e.preventDefault();
-    if (sessionUser?.id) {
-      if(sessionUser.id===1) return
-      alert('Please logout before attempting to login as demo user')
-      return;
-    }
     const demoUser = {
       credential:"demo@seabnb.com",
       password:"demo!123" 
@@ -44,6 +34,8 @@ const Navigation =({ isLoaded })=> {
 
   }, [sessionUser])
 
+
+
   let sessionLinks;
   // if a user is signed in
   if (sessionUser) {
@@ -54,25 +46,25 @@ const Navigation =({ isLoaded })=> {
   } else {
     // otherwise render the login/signup links
     sessionLinks = ( <LoginFormModal /> );
-
   }
 
   return (
     <nav className='nav-container'>
-      <div className="nav-logo" onClick={goHome}>
+      <div className="nav-logo"><NavLink to='/'></NavLink>
       </div>
 
       <div className="nav-quick-links">
-        <p>Places to stay</p>
-        <p>Experiences</p>
-        <p>Online Experiences</p>
+        <p><NavLink to='/spots' style={{textDecoration: "none", color: "white"}}>Places to stay</NavLink></p>
+        <p><NavLink to='/spots' style={{textDecoration: "none", color: "white"}}>Experiences</NavLink></p>
+        <p><NavLink to='/spots' style={{textDecoration: "none", color: "white"}}>Online Experiences</NavLink></p>
       </div>
 
       <div className='nav-profile-container'>
         <div className='nav-l nav-l-h becomeHost' onClick={e=>becomeHost(e)}><p className='nav-bold'>Become a host</p></div>
-        <div className='nav-l nav-l-h' onClick={e=>loginDemo(e)}><p className='hover-hand nav-bold'>⛒ <span> Demo User</span></p></div>
+        {!sessionUser && 
+            <div className='nav-l nav-l-h' onClick={e=>loginDemo(e)}><p className='hover-hand nav-bold'>⛒ <span> Demo User</span></p></div>
+        }
         <div className='nav-l nav-r'>
-          <div><p className='signup-link nav-bold'>☰</p></div>
           {isLoaded && sessionLinks}
         </div>
       </div>

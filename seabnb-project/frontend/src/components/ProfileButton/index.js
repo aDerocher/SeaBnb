@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useHistory } from 'react-router';
 import './ProfileButton.css';
@@ -7,6 +7,7 @@ import './ProfileButton.css';
 function ProfileButton({ user }) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user)
   const [showMenu, setShowMenu] = useState(false);
   
   const openMenu = () => {
@@ -21,8 +22,10 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     setShowMenu(false);
-    history.push('/');
   };
+
+  useEffect(() => {
+  }, [sessionUser, user])
 
   useEffect(() => {
     if (!showMenu) return;

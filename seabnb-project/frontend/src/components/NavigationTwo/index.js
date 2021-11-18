@@ -49,9 +49,15 @@ const NavigationTwo = ({ isLoaded }) => {
 
       <div className='nav-profile-container'>
         <div className='nav-l nav-l-h wText becomeHost' onClick={e=>becomeHost(e)}><p>Become a host</p></div>
-        <div className='nav-l nav-l-h wText' onClick={e=>loginDemo(e)}><p className='nav-bold'>⛒</p></div>
+        {!sessionUser && 
+            <div className='nav-l nav-l-h wText' onClick={e=>loginDemo(e)}>
+                <p className='hover-hand nav-bold'>
+                    ⛒ 
+                <span> Demo User</span>
+                </p>
+            </div>
+        }
         <div className='nav-l nav-r wText'>
-          <div><p className='signup-link nav-bold' >☰</p></div>
             {sessionUser?.id &&
                 <ProfileButton user={sessionUser} />
             }

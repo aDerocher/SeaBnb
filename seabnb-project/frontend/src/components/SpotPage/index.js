@@ -13,30 +13,28 @@ import { isBefore } from 'date-fns';
 function SpotPage(){
   const { spotId } = useParams();
   const dispatch = useDispatch();
-  const [ revAbility, setRevAbility ] = useState(false);
-  const [ revCount, setRevCount ] = useState(0);
-
-
-  useEffect(()=>{
-    dispatch(getSpots());
-    dispatch(getOneSpot(spotId));
-    dispatch(getSpotBookings(spotId));
-    dispatch(getSpotReviews(spotId));
-    setRevCount(spotReviewsArr?.length)
-    if(user) setRevAbility(userCanReview());
-  }, [ dispatch, spotId, revAbility, revCount ]);
-
+  
+  
+  
   
   let spot = useSelector(state => state.spots.spotsObj[spotId] );
   let user = useSelector(state => state.session.user );
   let spotBookings = useSelector(state => state.bookings.spotBookings );
   let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
+  
+  const [ revAbility, setRevAbility ] = useState(false);
+  
+  useEffect(()=>{
+      dispatch(getSpots());
+      dispatch(getOneSpot(spotId));
+      dispatch(getSpotBookings(spotId));
+      dispatch(getSpotReviews(spotId));
+      if(user) setRevAbility(userCanReview());
+    }, [ dispatch, spotId, revAbility ]);
 
 
   // am able to leave reviews on ships i haev not booked
-
   const userCanReview = () => {
-    setRevCount(spotReviewsArr?.length)
     for (let i=0; i < spotReviewsArr?.length; i++ ){
       let spotRev = spotReviewsArr[i];
       if (spotRev.guest === user.id){
@@ -67,8 +65,8 @@ function SpotPage(){
       <div className="spot-top">
         <h2>{spot?.name}</h2>
         <div className='spot-top-links'>
-          <p>⭐5<span> · </span>{revCount} Reviews<span> · </span>{spot?.location}</p>
-          <p>⇯ <a href="#">share</a> <span> · </span>♡ <a href="#">save</a></p>
+          <p>⭐5<span> · </span>{spotReviewsArr?.length} Reviews<span> · </span>{spot?.location}</p>
+          {/* <p>⇯ <a href="#" className='dead-link'>share</a> <span> · </span>♡ <a href="#" className='dead-link'>save</a></p> */}
         </div>
       </div>
       <div className="spot-images-container">

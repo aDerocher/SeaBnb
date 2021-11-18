@@ -14,6 +14,7 @@ const ReserveSpotForm = ({spotId}) => {
   const dispatch = useDispatch();
   const spot = useSelector(state => state.spots.spot.oneSpot );
   const user = useSelector(state => state.session.user );
+  const spotReviewsArr = useSelector(state => state.spots.spot.spotReviews )
 
   let day = today();
   let morrow = tomorrow();
@@ -51,8 +52,8 @@ const ReserveSpotForm = ({spotId}) => {
   return(
     <div className="res-section">
       <div className="res-section-top">
-        <p>$XXX<span>/night</span></p>
-        <p>X <span>reviews</span></p>
+        <p>$ {spot?.price}<span> / night</span></p>
+        <p>{spotReviewsArr?.length} <span>reviews</span></p>
       </div>
       <form action="/api/bookings/new" method="POST" className="new-booking-form" onSubmit={e=>submitReservation(e)}>
         <div className="form-inputs">

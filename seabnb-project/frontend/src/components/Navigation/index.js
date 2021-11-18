@@ -65,7 +65,6 @@ const Navigation =({ isLoaded })=> {
             <div className='nav-l nav-l-h' onClick={e=>loginDemo(e)}><p className='hover-hand nav-bold'>⛒ <span> Demo User</span></p></div>
         }
         <div className='nav-l nav-r'>
-          <div><p className='signup-link nav-bold'>☰</p></div>
           {isLoaded && sessionLinks}
         </div>
       </div>

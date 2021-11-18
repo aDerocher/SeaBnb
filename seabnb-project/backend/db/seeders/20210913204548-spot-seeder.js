@@ -110,7 +110,7 @@ module.exports = {
         location: "Los Angeles, California, USA",
         price: 46000,
         host: 7,
-        description: "I overheard this name being in a hospital and just thought it was so lovely!",
+        description: "I overheard this name being said in a hospital and just thought it was so lovely!",
         reviews: null,
         rules: null,
         amenities: null,

@@ -34,6 +34,8 @@ const Navigation =({ isLoaded })=> {
 
   }, [sessionUser])
 
+
+  
   let sessionLinks;
   // if a user is signed in
   if (sessionUser) {
@@ -44,7 +46,6 @@ const Navigation =({ isLoaded })=> {
   } else {
     // otherwise render the login/signup links
     sessionLinks = ( <LoginFormModal /> );
-
   }
 
   return (

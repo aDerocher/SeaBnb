@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation';
 import SignupFormPage from '../SignupFormPage';
 import WelcScrBody from '../WelcScrBody';
 import { useHistory } from 'react-router';
+import { format, addDays } from 'date-fns'
 import './WelcomeScreen.css';
 
 
@@ -14,6 +15,11 @@ function WelcomeScreen({ isLoaded }) {
     e.preventDefault();
     history.push('/spots');
   }
+
+  let day = format(new Date(),'yyyy-MM-dd');
+  let morrow = format(addDays(new Date(), 1),'yyyy-MM-dd');
+  const [ startDate, setStartDate ] = useState(day);
+  const [ endDate, setEndDate ] = useState(morrow);
 
   return (
     // +++ Splash Picture (Container) +++++++++++++++++++++++++++
@@ -37,17 +43,19 @@ function WelcomeScreen({ isLoaded }) {
           </div>
           <div className='search-i-container'>
             <label id="check-in" className="searchbar-label">Check in</label>
-            <input name="check-in" type="text" className="s-checkin searchbar-input-box" placeholder="Add dates" />
+            {/* <input name="check-in" type="text" className="s-checkin searchbar-input-box" placeholder="Add dates" /> */}
+            <input type="date" placeholder="Add dates" name="checkIn" min={day} value={startDate} onChange={e=> setStartDate(e.target.value)}></input>
           </div>
           <div className='search-i-container'>
             <label id="check-out" className="searchbar-label">Check out</label>
-            <input name="check-out" type="text" className="s-checkout searchbar-input-box" placeholder="Add dates" />
+            {/* <input name="check-out" type="text" className="s-checkout searchbar-input-box" placeholder="Add dates" /> */}
+            <input type="date" placeholder="Add dates" name="checkOut" min={startDate} value={endDate} onChange={e=> setEndDate(e.target.value)}></input> 
           </div>
           <div className='search-i-container'>
             <label id="guests" className="searchbar-label">Guests</label>
             <input type="number" name="guests" min="1" max="16" className="s-guests searchbar-input-box" placeholder="Add guests" />
           </div>
-          <div className="search-i-btn-icon"></div>  
+          <div className="search-i-btn-icon" onClick={e=>goToSpots(e)}></div>  
           {/* <div className="search-i-btn-container">
             <button className="search-i-btn"> </button>
           </div>  */}

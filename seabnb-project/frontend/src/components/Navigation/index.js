@@ -35,7 +35,7 @@ const Navigation =({ isLoaded })=> {
   }, [sessionUser])
 
 
-  
+
   let sessionLinks;
   // if a user is signed in
   if (sessionUser) {
@@ -54,9 +54,9 @@ const Navigation =({ isLoaded })=> {
       </div>
 
       <div className="nav-quick-links">
-        <p>Places to stay</p>
-        <p>Experiences</p>
-        <p>Online Experiences</p>
+        <p><NavLink to='/spots' style={{textDecoration: "none", color: "white"}}>Places to stay</NavLink></p>
+        <p><NavLink to='/spots' style={{textDecoration: "none", color: "white"}}>Experiences</NavLink></p>
+        <p><NavLink to='/spots' style={{textDecoration: "none", color: "white"}}>Online Experiences</NavLink></p>
       </div>
 
       <div className='nav-profile-container'>

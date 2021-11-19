@@ -125,20 +125,25 @@ const ReviewSpotForm = ({spotId, userId}) => {
                             </>
                         }
                         {(!editFormHidden && userId===review.guest) &&
-                            <form onSubmit={e=>editRev(e, review.id)}>
-                                <h4></h4>
-                                <input type="number" min='1' max="5" name="edit-score" value={editScore} onChange={e => setEditScore(e.target.value)}/>
-                                <textarea type="text" name="edit-content" maxLength="225" value={editContent} onChange={e => setEditContent(e.target.value)}/>
-                                <button>Submit Changes</button>
-                            </form>
+                            <div className='edit-rev-form-container'>
+                                <h4>Edit Review</h4>
+                                <form onSubmit={e=>editRev(e, review.id)} className='edit-rev-form'>
+                                    <h4></h4>
+                                    <input type="number" min='1' max="5" name="edit-score" value={editScore} onChange={e => setEditScore(e.target.value)} className='edit-rev-score edit-rev-form-item'/>
+                                    <textarea type="text" name="edit-content" maxLength="225" rows='5' cols='50' value={editContent} onChange={e => setEditContent(e.target.value)} className='edit-rev-content edit-rev-form-item'/>
+                                </form>
+                                <div className='edit-rev-form-buttons-container'>
+                                    <button className='rev-btn edit-rev-subbtn' onClick={e=>editRev(e, review.id)}>Submit</button>
+                                    <button className="rev-btn rev-edit-btn" hidden={!(userId===review.guest)} onClick={e => handleShowEdit(e, review.content, review.score)}>cancel</button>
+                                </div>
+                            </div>
                         }
-                        <button className="rev-btn rev-del-btn" hidden={!(userId===review.guest)} onClick={e=>delRev(e,review.id)}>delete</button>
                         
                         {(editFormHidden && userId===review.guest) &&
-                            <button className="rev-btn rev-edit-btn" hidden={!(userId===review.guest)} onClick={e => handleShowEdit(e, review.content, review.score)}>edit</button>
-                        }
-                        {(!editFormHidden && userId===review.guest) &&
-                            <button className="rev-btn rev-edit-btn" hidden={!(userId===review.guest)} onClick={e => handleShowEdit(e, review.content, review.score)}>cancel</button>
+                            <>
+                                <button className="rev-btn rev-del-btn edit-rev-form-item" hidden={!(userId===review.guest)} onClick={e=>delRev(e,review.id)}>delete</button>
+                                <button className="rev-btn rev-edit-btn" hidden={!(userId===review.guest)} onClick={e => handleShowEdit(e, review.content, review.score)}>edit</button>
+                            </>
                         }
                     </div>
                 ))}

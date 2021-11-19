@@ -14,14 +14,13 @@ const ReviewSpotForm = ({spotId, userId}) => {
   const [ content, setContent ] = useState('');
   const [ editScore, setEditScore ] = useState(5);
   const [ editContent, setEditContent ] = useState('');
-  const [ revCount, setRevCount ] = useState(0);
   const [ revAbility, setRevAbility ] = useState(true);
   const [ editFormHidden, setEditFormHidden ] = useState(true);
   const [ editRevId, setEditRevId ] = useState();
   const [ delRevId, setDelRevId ] = useState();
 
   let userBookingsArr = useSelector(state => state.session.userBookings )
-  let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
+  let spotReviewsArr = useSelector(state => state.reviews );
   
 
 
@@ -72,20 +71,18 @@ const ReviewSpotForm = ({spotId, userId}) => {
       score: editScore,
       content: editContent
     }
-    console.log('sending to edit - ' , body)
-    setRevCount(revCount-1);
     dispatch(editReview(body));
-    dispatch(getSpotReviews(spotId));
+    setEditFormHidden(!editFormHidden)
   }
 
   const submitReview = (e) => {
     e.preventDefault();
     setRevAbility(false)
     const body = {
-      guest: userId,
-      spot: spotId,
-      score,
-      content
+        guest: userId,
+        spot: spotId,
+        score,
+        content
     }
     dispatch(newReview(body));
   }

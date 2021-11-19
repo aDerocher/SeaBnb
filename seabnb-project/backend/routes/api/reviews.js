@@ -22,33 +22,38 @@ router.post('/new', asyncHandler(async (req, res) => {
     score, 
     content
   });
-  res.json(newReview);
+  res.json({newReview});
 }));
 
 // ====== delete a review from the database =======
 router.delete('/', asyncHandler(async (req, res) => {
-  const { revId } = req.body;
-  const deadReview = await Review.findByPk(revId) 
-  await deadReview.destroy()
-  res.status(204).send();
+    const { revId } = req.body;
+    const deadReview = await Review.findByPk(revId) 
+    await deadReview.destroy()
+    //   res.status(204).send();
+    return res.json({deadReview});
 }));
 
 // ====== edit a review in the database =======
-router.put('/:id', asyncHandler(async (req, res) => {
-  const { revId, guest, spot, score, content } = req.body;
-  // const oldReview = await Review.findByPk(revId);
-  await Review.update(
-    {
-      score,
-      content, 
-    }, 
-    {
-      where: { 
-        id: revId
-      }
-    }
-  );
-  res.status(204).send();
+router.patch('/:id', asyncHandler(async (req, res) => {
+    let reviewId = parseInt(req.body.revId,10)
+//     const updated = await Review.update(
+//     {
+//       score: req.body.score,
+//       content: req.body.content, 
+//     }, 
+//     {
+//       where: { id: reviewId }
+//     }
+//   )
+//   .then((res) => {return res.json({updated})});
+
+    let editedRev = await Review.findByPk(reviewId);
+    editedRev.score = req.body.score;
+    editedRev.content = req.body.content;
+    await editedRev.save();
+    return res.json({editedRev});
+
 }));
 
 

@@ -82,11 +82,11 @@
 }
 /* ============ EDIT / DELETE BUTTONS ============================ */
 .rev-btn {
-  outline: none;
-  border: none;
-  height: 28px;
-  width: 60px;
-  background-color: var(--seabnb-blue1);
+    outline: none;
+    border: none;
+    height: 28px;
+    width: 60px;
+    background-color: var(--seabnb-blue1);
   color:white;
   font-weight: bold;
   text-align: center;
@@ -98,10 +98,43 @@
 
 }
 .rev-del-btn{
-  width: 75px;
+    width: 75px;
 }
 
 .sub-rev-btn{
   width: 140px;
 }
+
+/* ============ Edit Review Form ============================ */
+.edit-rev-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    margin-bottom: 4px;
+    box-shadow: 0 0 6px rgba(0,0,0,.25);
+    border-radius: 6px;
+}
+.edit-rev-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.edit-rev-form-buttons-container{
+    display: flex;
+}
+.edit-rev-form-item{
+    margin: 2px;
+}
+.edit-rev-score{
+
+}
+.edit-rev-content{
+
+}
+.edit-rev-subbtn{
+
+}
+
+
 

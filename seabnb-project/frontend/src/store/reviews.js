@@ -4,43 +4,33 @@ import { csrfFetch } from './csrf'
 import {ONE_SPOT} from './spots'
 
 //===== I CANT REMEMBER WHAT THESE ARE CALLED ========
-const REVIEW = 'reviews/REVIEW';
+const NEW_REVIEW = 'reviews/NEW_REVIEW';
 const DEL_REVIEW = 'reviews/DEL_REVIEW';
 const GET_SPOT_REVIEWS = 'reviews/GET_REVIEWS';
 const EDIT_REVIEW = 'reviews/EDIT_REVIEW'
 
 // ===== ACTIONS =================================
-const getReviews = (spotReviews) => ({
+const reviewNew = newReview => ({
+  type: NEW_REVIEW,
+  payload: newReview,
+});
+
+const getReviews = spotReviews => ({
   type: GET_SPOT_REVIEWS,
-  spotReviews
+  payload: spotReviews
 });
 
-const reviewNew = reviewData => ({
-  type: REVIEW,
-  reviewData,
-});
-
-const reviewDelete = response => ({
+const reviewDelete = deadReview => ({
   type: DEL_REVIEW,
-  response,
+  payload: deadReview,
 });
 
 const reviewEdited = revData => ({
   type: EDIT_REVIEW,
-  revData,
+  payload: revData,
 });
 
 // ===== FUNCTIONS =================================
-
-export const getSpotReviews = (spotId) => async dispatch => {
-  const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
-  
-  if (response.ok) {
-    const spotReviews = await response.json();
-    // console.log(spotReviews, "<<+++ reviews +++")
-    dispatch(getReviews(spotReviews));
-  }
-};
 
 export const newReview = (reviewData) => async dispatch => {
   const { guest, spot, score, content} = reviewData;
@@ -53,8 +43,20 @@ export const newReview = (reviewData) => async dispatch => {
       content
     }), 
   });
-  dispatch(reviewNew(response));
+  const data = await response.json()
+  console.log(data, '<======================= store.NEW-SpotReview.data')
+  dispatch(reviewNew(data.newReview));
   return response;
+};
+
+export const getSpotReviews = (spotId) => async dispatch => {
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
+  
+  if (response.ok) {
+    const spotReviews = await response.json();
+    // console.log(spotReviews, "<<+++ store.getSpotReviews.response +++")
+    dispatch(getReviews(spotReviews.spotReviews));
+  }
 };
 
 export const deleteReview = (revId) => async dispatch => {
@@ -62,54 +64,50 @@ export const deleteReview = (revId) => async dispatch => {
     method: 'DELETE',
     body: JSON.stringify({ revId }), 
   });
-  dispatch(reviewDelete(response));
+  const data = await response.json()
+  dispatch(reviewDelete(data.deadReview));
   return response;
 };
 
 export const editReview = (body) => async dispatch => {
-  const response = await csrfFetch(`/api/reviews/:id`, {
-    method: 'PUT',
-    body: JSON.stringify({ body }), 
+  const response = await csrfFetch(`/api/reviews/${body.revId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(body), 
   });
-  dispatch(reviewEdited(response));
+  const data = await response.json()
+  dispatch(reviewEdited(data.editedRev));
   return response;
 };
 
 // ===== INITIAL STATE =================================
-const initialState = {
-  allReviews:[],
-  spotReviews:[]
-};
+const initialState = [];
 
 // ===== REDUCER =================================
 const reviewsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case REVIEW: 
-      return state
-    
-    case DEL_REVIEW: 
-      return {
-        ...state,
-        allReviews: action.response
-      }
-
-    case EDIT_REVIEW: 
-      return state
-
-    case GET_SPOT_REVIEWS: {
-      // const spotReviews = {};
-      // action.spotReviews.forEach(review => {
-      //   spotReviews[review.id] = review;
-      // });
-      return {
-        ...state,
-        spotReviews: action.spotReviews
-      };
-    } 
-    
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case NEW_REVIEW: 
+            return [...state, action.payload]
+        
+        case GET_SPOT_REVIEWS:
+            return [...action.payload]
+            
+        case EDIT_REVIEW:
+            let editState = state.map( r => {
+                if (r.id === action.payload.id){
+                    return action.payload
+                }
+                return r
+            }) 
+            return [...editState]
+            
+        case DEL_REVIEW: 
+            let delState = state.filter((r) => {
+                return r.id !== action.payload.id
+            }) 
+            return [...delState]
+        default:
+            return state;
+    }
 }
 
 export default reviewsReducer;

@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Spot,Booking,Review } = require('../../db/models');
-
+const { multiplePublicFileUpload, multipleMulterUpload } = require('../../awsS3')
 const router = express.Router();
 
 
@@ -31,6 +31,34 @@ router.get('/:id/reviews', asyncHandler(async (req, res) => {
     where: { spot: spotId }
   });
   return res.json({spotReviews});
+}));
+
+// ====== create a new spot =======
+router.post('/new', multipleMulterUpload("image"), asyncHandler(async (req, res) => {
+    
+    let photos = [];
+    for(let i=1; i <= 5; i++){
+        let p = req.body.photo[i];
+        photos.push(p)
+    }
+    const newPhotoLinks = multiplePublicFileUpload(photos);
+    
+    const newSpot = await Spot.create({
+        name: req.body.name,
+        location: req.body.location,
+        price: req.body.price,
+        host: req.body.host,
+        description: req.body.description,
+        reviews: req.body.reviews,
+        rules: req.body.rules,
+        amenities: req.body.amenities,
+        photo1: newPhotoLinks[0],
+        photo2: newPhotoLinks[1],
+        photo3: newPhotoLinks[2],
+        photo4: newPhotoLinks[3],
+        photo5: newPhotoLinks[4],
+    });
+    return res.json({newSpot});
 }));
 
 module.exports = router;

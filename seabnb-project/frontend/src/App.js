@@ -10,6 +10,7 @@ import NavigationTwo from './components/NavigationTwo';
 import ProfilePage from './components/ProfilePage';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
+import ListNewSpot from './components/ListNewSpot';
 // import Navigation from './components/Navigation';
 
 function App() {
@@ -28,24 +29,29 @@ function App() {
           <WelcomeScreen isLoaded={isLoaded} />
           <Footer />
         </Route>
-        <Route path="/signup">
+        <Route exact path="/signup">
           <NavigationTwo isLoaded={isLoaded}/>
           <SignupFormPage />
           <Footer />
         </Route>
-        <Route path="/spots/:spotId">
+        <Route exact path="/spots/:spotId">
           <NavigationTwo isLoaded={isLoaded}/>
           <SpotPage />
           <Footer />
         </Route>
-        <Route path="/spots">
+        <Route exact path="/spots">
           <NavigationTwo isLoaded={isLoaded}/>
           <SpotBrowser />
           <Footer />
         </Route>
-        <Route path="/users/:id">
+        <Route exact path="/users/:id">
           <NavigationTwo isLoaded={isLoaded}/>
           <ProfilePage />
+          <Footer />
+        </Route>
+        <Route exact path="/users/:id/becomeahost">
+          <NavigationTwo isLoaded={isLoaded}/>
+          <ListNewSpot />
           <Footer />
         </Route>
         <Route >

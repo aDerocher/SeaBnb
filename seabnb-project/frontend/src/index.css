@@ -18,3 +18,13 @@ html{
   --seabnb-blue2: rgb(1, 63, 121);
   --seabnb-blue3: #668dcc;
 }
+
+
+.flex-col-cont{
+    display: flex;
+    flex-direction: column;
+}
+.flex-row-cont{
+    display: flex;
+    flex-direction: row;
+}

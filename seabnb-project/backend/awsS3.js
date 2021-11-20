@@ -33,7 +33,11 @@ const singlePublicFileUpload = async (file) => {
 const multiplePublicFileUpload = async (files) => {
   return await Promise.all(
     files.map((file) => {
-      return singlePublicFileUpload(file);
+        if(file){
+            return singlePublicFileUpload(file);
+        } else {
+            return null
+        }
     })
   );
 };

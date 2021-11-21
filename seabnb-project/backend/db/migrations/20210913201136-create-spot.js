@@ -47,7 +47,6 @@ module.exports = {
         type: Sequelize.DATE
       },
       photo1: {
-        allowNull: false,
         type: Sequelize.STRING(2000)
       },
       photo2: {

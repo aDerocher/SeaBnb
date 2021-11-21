@@ -42,27 +42,31 @@ export const getOneSpot = (spotId) => async dispatch => {
 };
 
 export const newSpot = (spotData) => async dispatch => {
+    const {host, name, location, price, description} = spotData
     const response = await csrfFetch(`/api/spots/new`, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify({
-            host: spotData.host,
-            name: spotData.name,
-            location: spotData.location,
-            price: spotData.price,
-            description: spotData.description,
-            photo1: spotData.photo1,
-            photo2: spotData.photo2,
-            photo3: spotData.photo3,
-            photo4: spotData.photo4,
-            photo5: spotData.photo5
-            // reviews: spotData.reviews,
-            // rules: spotData.rules,
-            // amenities: spotData.amenities,
+            host, name, location, price, description
         }),
-      });
+    });
+    let data = await response.json()
     if (response.ok) {
       const data = await response.json();
       dispatch(addNewSpot(data.spot));
+    }
+};
+
+export const newSpotPhoto = (file) => async dispatch => {
+    formData.append("photos","https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.k46g6RuO9HR25WQ6dr5kegHaE8%26pid%3DApi&f=1")
+    const response = await csrfFetch(`/api/spots/newsingle`, {
+        method: "POST",
+        headers: { "Content-Type": "multipart/form-data" },
+        body: formData,
+    });
+    if (response.ok) {
+        console.log(response, '================response============')
+    //   const data = await response.json();
+    //   dispatch(addNewSpot(data.spot));
     }
 };
 

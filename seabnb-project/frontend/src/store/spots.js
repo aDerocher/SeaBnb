@@ -41,32 +41,44 @@ export const getOneSpot = (spotId) => async dispatch => {
   }
 };
 
-export const newSpot = (spotData) => async dispatch => {
-    const {host, name, location, price, description} = spotData
+// // THIS ONE WORKS VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+// export const newSpot = (spotData) => async dispatch => {
+//     const {host, name, location, price, description} = spotData
+//     const response = await csrfFetch(`/api/spots/new`, {
+//         method: "POST",
+//         body: JSON.stringify({
+//             host, name, location, price, description
+//         }),
+//     });
+//     if (response.ok) {
+//       const data = await response.json();
+//       dispatch(addNewSpot(data.spot));
+//     }
+// };
+
+export const newSpot = (spotData) => async (dispatch) => {
+    const {host, name, location, price, description, photos} = spotData
+    let formData = new FormData();
+    formData.append("host", host);
+    formData.append("name", name);
+    formData.append("location", location);
+    formData.append("price", price);
+    formData.append("description", description);
+    if (photos && photos.length !== 0) {
+        for (var i = 0; i < photos.length; i++) {
+          formData.append("photos", photos[i]);
+        }
+    }
     const response = await csrfFetch(`/api/spots/new`, {
         method: "POST",
-        body: JSON.stringify({
-            host, name, location, price, description
-        }),
+        headers: {
+            "Content-Type": "multipart/form-data"
+        },
+        body: formData
     });
     let data = await response.json()
     if (response.ok) {
-      const data = await response.json();
       dispatch(addNewSpot(data.spot));
-    }
-};
-
-export const newSpotPhoto = (file) => async dispatch => {
-    formData.append("photos","https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.k46g6RuO9HR25WQ6dr5kegHaE8%26pid%3DApi&f=1")
-    const response = await csrfFetch(`/api/spots/newsingle`, {
-        method: "POST",
-        headers: { "Content-Type": "multipart/form-data" },
-        body: formData,
-    });
-    if (response.ok) {
-        console.log(response, '================response============')
-    //   const data = await response.json();
-    //   dispatch(addNewSpot(data.spot));
     }
 };
 

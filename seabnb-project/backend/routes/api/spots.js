@@ -35,30 +35,61 @@ router.get('/:id/reviews', asyncHandler(async (req, res) => {
 }));
 
 // ====== create a new spot =======
-router.post('/new', asyncHandler(async (req, res) => {
-// router.post('/new', multipleMulterUpload("image"), asyncHandler(async (req, res) => {
+// ====== THIS ONE WORKS WITH THE FIRST THUNK =======
+// router.post('/new', asyncHandler(async (req, res) => {
+// // router.post('/new', multipleMulterUpload("image"), asyncHandler(async (req, res) => {
+//     // let photos = [];
+//     // for(let i=1; i <= 5; i++){
+//         //     let p = req.body.photo[i];
+//         //     photos.push(p)
+//     // }
+//     // const newPhotoLinks = multiplePublicFileUpload(photos);
+//     const { host,name,location,price,description } = req.body;
+//     console.log(host,name,location,price,description, '======================================================================================== rb')
+//     const newSpot = await Spot.create({
+//         name: name,
+//         location: location,
+//         price: price,
+//         host: host,
+//         description: description
+//         // reviews: req.body.reviews,
+//         // rules: req.body.rules,
+//         // amenities: req.body.amenities,
+//         // photo1: newPhotoLinks[0],
+//         // photo2: newPhotoLinks[1],
+//         // photo3: newPhotoLinks[2],
+//         // photo4: newPhotoLinks[3],
+//         // photo5: newPhotoLinks[4],
+//     });
+//     return res.json({newSpot});
+// }));
+
+// router.post('/new', asyncHandler(async (req, res) => {
+router.post('/new', multipleMulterUpload("photos"), asyncHandler(async (req, res) => {
     // let photos = [];
     // for(let i=1; i <= 5; i++){
         //     let p = req.body.photo[i];
         //     photos.push(p)
     // }
-    // const newPhotoLinks = multiplePublicFileUpload(photos);
+    console.log(req.body, '======================================================================================== rb')
+    console.log(req.files, '======================================================================================== rb')
+    const newPhotoLink = await multiplePublicFileUpload(req.files);
+    console.log(newPhotoLink, '======================================================================================== rb')
     const { host,name,location,price,description } = req.body;
-    console.log(host,name,location,price,description, '======================================================================================== rb')
     const newSpot = await Spot.create({
         name: name,
         location: location,
         price: price,
         host: host,
-        description: description
+        description: description,
+        photo1: newPhotoLink[0],
+        photo2: newPhotoLink[1],
+        photo3: newPhotoLink[2],
+        // photo4: newPhotoLinks[3],
+        // photo5: newPhotoLinks[4],
         // reviews: req.body.reviews,
         // rules: req.body.rules,
         // amenities: req.body.amenities,
-        // photo1: newPhotoLinks[0],
-        // photo2: newPhotoLinks[1],
-        // photo3: newPhotoLinks[2],
-        // photo4: newPhotoLinks[3],
-        // photo5: newPhotoLinks[4],
     });
     return res.json({newSpot});
 }));

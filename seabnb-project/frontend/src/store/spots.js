@@ -41,27 +41,43 @@ export const getOneSpot = (spotId) => async dispatch => {
   }
 };
 
-export const newSpot = (spotData) => async dispatch => {
+// // THIS ONE WORKS VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+// export const newSpot = (spotData) => async dispatch => {
+//     const {host, name, location, price, description} = spotData
+//     const response = await csrfFetch(`/api/spots/new`, {
+//         method: "POST",
+//         body: JSON.stringify({
+//             host, name, location, price, description
+//         }),
+//     });
+//     if (response.ok) {
+//       const data = await response.json();
+//       dispatch(addNewSpot(data.spot));
+//     }
+// };
+
+export const newSpot = (spotData) => async (dispatch) => {
+    const {host, name, location, price, description, photos} = spotData
+    let formData = new FormData();
+    formData.append("host", host);
+    formData.append("name", name);
+    formData.append("location", location);
+    formData.append("price", price);
+    formData.append("description", description);
+    if (photos && photos.length !== 0) {
+        for (var i = 0; i < photos.length; i++) {
+          formData.append("photos", photos[i]);
+        }
+    }
     const response = await csrfFetch(`/api/spots/new`, {
-        method: 'POST',
-        body: JSON.stringify({
-            host: spotData.host,
-            name: spotData.name,
-            location: spotData.location,
-            price: spotData.price,
-            description: spotData.description,
-            photo1: spotData.photo1,
-            photo2: spotData.photo2,
-            photo3: spotData.photo3,
-            photo4: spotData.photo4,
-            photo5: spotData.photo5
-            // reviews: spotData.reviews,
-            // rules: spotData.rules,
-            // amenities: spotData.amenities,
-        }),
-      });
+        method: "POST",
+        headers: {
+            "Content-Type": "multipart/form-data"
+        },
+        body: formData
+    });
+    let data = await response.json()
     if (response.ok) {
-      const data = await response.json();
       dispatch(addNewSpot(data.spot));
     }
 };

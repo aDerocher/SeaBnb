@@ -4,34 +4,38 @@ import { csrfFetch } from './csrf'
 import {ONE_SPOT} from './spots'
 
 //===== I CANT REMEMBER WHAT THESE ARE CALLED ========
-const GET_BOOKS = 'bookings/GET_BOOKS';
+const GET_SPOT_BOOKINGS = 'bookings/GET_SPOT_BOOKINGS';
 const GET_ALL_BOOKS = 'bookings/GET_ALL_BOOKS';
-const BOOK = 'bookings/BOOK';
+const NEW_BOOK = 'bookings/NEW_BOOK';
+const GET_USER_BOOKS = 'bookings/GET_USER_BOOKS'
 // const DELETE_BOOK = 'bookings/DELETE_BOOK'
 
 // ===== ACTIONS =================================
-const getBooks = (spotBookings) => ({
-  type: GET_BOOKS,
-  spotBookings
+const getOneSpotBooks = (spotBookings) => ({
+  type: GET_SPOT_BOOKINGS,
+  payload: spotBookings
 });
 const getAllBooks = (allBookings) => ({
   type: GET_ALL_BOOKS,
-  allBookings
+  payload: allBookings
 });
 const bookNew = newBooking => ({
-  type: BOOK,
-  newBooking,
+    type: NEW_BOOK,
+    payload: newBooking,
+});
+const getUserBooks = (usersBookings) => ({
+  type: GET_USER_BOOKS,
+  payload: usersBookings
 });
 
 // ===== FUNCTIONS =================================
 export const getSpotBookings = (spotId) => async dispatch => {
   // const spot = await fetch(`/bookings/${}`);
-  const response = await csrfFetch(`/api/spots/${spotId}`);
+  const response = await csrfFetch(`/api/spots/${spotId}/bookings`);
   
   if (response.ok) {
-    const spotBookings = await response.json();
-    // console.log(spotBookings, "<<+++ bookings +++")
-    dispatch(getBooks(spotBookings));
+    const spotBookings = await response.json();  
+    dispatch(getOneSpotBooks(spotBookings));
   }
 };
 
@@ -40,27 +44,39 @@ export const getAllBookings = () => async dispatch => {
   
   if (response.ok) {
     const allBookings = await response.json();
-    // console.log(allBookings, "<<+++ all bookings +++")
     dispatch(getAllBooks(allBookings));
   }
 };
 
 export const newBooking = (bookingData) => async dispatch => {
-  const { guest, spot, checkIn, checkOut} = bookingData
-  const response = await csrfFetch(`/api/bookings/new`, {
-    method: 'POST',
-    body: JSON.stringify({
-      guest,
-      spot,
-      checkIn,
-      checkOut
-    }), 
-  });
-  return response;
+    const { guest, spot, checkIn, checkOut} = bookingData
+    const response = await csrfFetch(`/api/bookings/new`, {
+        method: 'POST',
+        body: JSON.stringify({
+            guest,
+            spot,
+            checkIn,
+            checkOut
+        }), 
+    });
+    if (response.ok) {
+        const newBooking = await response.json();
+        dispatch(bookNew(newBooking));
+    }
+};
+
+
+export const getUserBookings = (userId) => async dispatch => {
+  const response = await csrfFetch(`/api/users/${userId}/bookings`);
+  
+  if (response.ok) {
+    const allBookings = await response.json();
+    dispatch(getAllBooks(allBookings));
+  }
 };
 
 export const deleteBooking = (bookingId) => async dispatch => {
-  const response = await csrfFetch(`/api/bookings`, {
+    const response = await csrfFetch(`/api/bookings`, {
     method: 'DELETE',
     body: JSON.stringify({
       bookingId
@@ -71,39 +87,25 @@ export const deleteBooking = (bookingId) => async dispatch => {
 
 
 // ===== INITIAL STATE =================================
-const initialState = {
-  allBookings: [],
-  spotBookings: []
-};
+const initialState = [];
 
 // ===== REDUCER =================================
 const bookingsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ONE_SPOT: {
-      const spotBookings = {};
-      action.spot.spotBookings.forEach(booking => {
-         spotBookings[booking.id] = booking;
-       });
-      return {
-        ...state,
-        spotBookings: spotBookings,
-      };
-    }
+    switch (action.type) {
+        case GET_SPOT_BOOKINGS: {
+            return [...action.payload]
+        }
 
-    case GET_ALL_BOOKS: {
-      const allBookings = {};
-      action.allBookings.forEach(booking => {
-        allBookings[booking.id] = booking;
-      });
-      return {
-        ...state,
-        allBookings: allBookings,
-      };
+        case GET_ALL_BOOKS: {
+            return [...action.payload]
+        }
+        
+        case NEW_BOOK: {
+            return [...state, action.payload]
+        }
+        default:
+            return state;
     }
-    
-    default:
-      return state;
-  }
 }
 
 export default bookingsReducer;

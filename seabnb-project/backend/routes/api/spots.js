@@ -23,8 +23,17 @@ router.get('/:id', asyncHandler(async (req, res) => {
   const spotReviews = await Review.findAll({
     where: { spot: spotId }
   });
-  return res.json({oneSpot, spotBookings, spotReviews});
+  return res.json({oneSpot});
 }));
+
+router.get('/:id/bookings', asyncHandler(async (req, res) => {
+    const spotId = parseInt(req.params.id, 10);
+    const spotBookings = await Booking.findAll({
+      where: { spot: spotId }
+    });
+    return res.json(spotBookings);
+}));
+
 
 router.get('/:id/reviews', asyncHandler(async (req, res) => {
   const spotId = parseInt(req.params.id, 10);
@@ -34,105 +43,29 @@ router.get('/:id/reviews', asyncHandler(async (req, res) => {
   return res.json({spotReviews});
 }));
 
-// ====== create a new spot =======
-// ====== THIS ONE WORKS WITH THE FIRST THUNK =======
-// router.post('/new', asyncHandler(async (req, res) => {
-// // router.post('/new', multipleMulterUpload("image"), asyncHandler(async (req, res) => {
-//     // let photos = [];
-//     // for(let i=1; i <= 5; i++){
-//         //     let p = req.body.photo[i];
-//         //     photos.push(p)
-//     // }
-//     // const newPhotoLinks = multiplePublicFileUpload(photos);
-//     const { host,name,location,price,description } = req.body;
-//     console.log(host,name,location,price,description, '======================================================================================== rb')
-//     const newSpot = await Spot.create({
-//         name: name,
-//         location: location,
-//         price: price,
-//         host: host,
-//         description: description
-//         // reviews: req.body.reviews,
-//         // rules: req.body.rules,
-//         // amenities: req.body.amenities,
-//         // photo1: newPhotoLinks[0],
-//         // photo2: newPhotoLinks[1],
-//         // photo3: newPhotoLinks[2],
-//         // photo4: newPhotoLinks[3],
-//         // photo5: newPhotoLinks[4],
-//     });
-//     return res.json({newSpot});
-// }));
 
-// router.post('/new', asyncHandler(async (req, res) => {
+
+// ====== create a new spot =======
 router.post('/new', multipleMulterUpload("photos"), asyncHandler(async (req, res) => {
-    // let photos = [];
-    // for(let i=1; i <= 5; i++){
-        //     let p = req.body.photo[i];
-        //     photos.push(p)
-    // }
-    console.log(req.body, '======================================================================================== rb')
-    console.log(req.files, '======================================================================================== rb')
-    const newPhotoLink = await multiplePublicFileUpload(req.files);
-    console.log(newPhotoLink, '======================================================================================== rb')
+    const newPhotoLinks = await multiplePublicFileUpload(req.files);
     const { host,name,location,price,description } = req.body;
-    const newSpot = await Spot.create({
+    const newSpot = {
         name: name,
         location: location,
         price: price,
         host: host,
-        description: description,
-        photo1: newPhotoLink[0],
-        photo2: newPhotoLink[1],
-        photo3: newPhotoLink[2],
-        // photo4: newPhotoLinks[3],
-        // photo5: newPhotoLinks[4],
+        description: description
         // reviews: req.body.reviews,
         // rules: req.body.rules,
         // amenities: req.body.amenities,
+    };
+    newPhotoLinks.forEach((pLink, i) => {
+        newSpot[`photo${i+1}`] = pLink;
     });
-    return res.json({newSpot});
+    const createdSpot = await Spot.create(newSpot)
+    return res.json({createdSpot});
 }));
 
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-// ====== create a new spot FOR TESTING PURPOSES===========================================================================================
-router.post('/newsingle', singleMulterUpload("image"), asyncHandler(async (req, res) => {
-    // let photos = [];
-    // for(let i=1; i <= 5; i++){
-    //     let p = req.body.photo[i];
-    //     photos.push(p)
-    // }
-    console.log("hello")
-    const {photo} = req.body
-    const newPhotoLink = await singlePublicFileUpload(photo);
-    console.log(newPhotoLink, '====== 2')
-    return res.json({newPhotoLink});
-    // const newSpot = await Spot.create({
-    //     name: req.body.name,
-    //     location: req.body.location,
-    //     price: req.body.price,
-    //     host: req.body.host,
-    //     description: req.body.description,
-    //     reviews: req.body.reviews,
-    //     rules: req.body.rules,
-    //     amenities: req.body.amenities,
-    //     photo1: newPhotoLinks[0],
-    //     photo2: newPhotoLinks[1],
-    //     photo3: newPhotoLinks[2],
-    //     photo4: newPhotoLinks[3],
-    //     photo5: newPhotoLinks[4],
-    // });
-    // return res.json({newSpot});
-}));
 
 
 module.exports = router;

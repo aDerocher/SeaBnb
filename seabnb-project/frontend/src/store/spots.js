@@ -1,19 +1,19 @@
 import { csrfFetch } from './csrf'
 
 // ===== IMPORTS =================================
-const LOAD = 'spots/LOAD';
+const GET_ALL_SPOTS = 'spots/GET_ALL_SPOTS';
 export const ONE_SPOT = 'spots/ONE_SPOT';
 const NEW_SPOT = 'spots/NEW_SPOT';
 
 // ===== ACTIONS =================================
-const load = list => ({
-  type: LOAD,
-  list,
+const loadAllSpots = list => ({
+  type: GET_ALL_SPOTS,
+  payload: list,
 });
 
-const oneSpot = spot => ({
+const loadOneSpot = spot => ({
   type: ONE_SPOT,
-  spot
+  payload: spot
 });
 
 const addNewSpot = spot => ({
@@ -27,8 +27,7 @@ export const getSpots = () => async dispatch => {
   
   if (response.ok) {
     const spots = await response.json();
-    // console.log(spots, "<<+++ spots +++")
-    dispatch(load(spots));
+    dispatch(loadAllSpots(spots));
   }
 };
 
@@ -36,25 +35,10 @@ export const getOneSpot = (spotId) => async dispatch => {
   const response = await csrfFetch(`/api/spots/${spotId}`);
   if (response.ok) {
     const spot = await response.json();
-    // console.log(spot, "<<+++ spot +++")
-    dispatch(oneSpot(spot));
+    dispatch(loadOneSpot(spot.oneSpot));
   }
 };
 
-// // THIS ONE WORKS VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-// export const newSpot = (spotData) => async dispatch => {
-//     const {host, name, location, price, description} = spotData
-//     const response = await csrfFetch(`/api/spots/new`, {
-//         method: "POST",
-//         body: JSON.stringify({
-//             host, name, location, price, description
-//         }),
-//     });
-//     if (response.ok) {
-//       const data = await response.json();
-//       dispatch(addNewSpot(data.spot));
-//     }
-// };
 
 export const newSpot = (spotData) => async (dispatch) => {
     const {host, name, location, price, description, photos} = spotData
@@ -84,33 +68,17 @@ export const newSpot = (spotData) => async (dispatch) => {
 
 
 // ===== SET STATE =================================
-const initialState = {
-  list: [],
-  spot: {},
-  spotsObj: {}
-};
+const initialState = [];
 
 // ===== REDUCER =================================
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD: {
-      const allSpots = {};
-      action.list.forEach(spot => {
-        allSpots[spot.id] = spot;
-      });
-      return {
-        ...state,
-        list: action.list,
-        spotsObj: allSpots
-      };
+    case GET_ALL_SPOTS: {
+      return [...action.payload]
     }
 
     case ONE_SPOT: {
-      // console.log(action.spot, "<=====action.spot======");
-      return {
-        ...state,
-        spot: action.spot
-      };
+      return [action.payload];
     }
 
     case NEW_SPOT: {

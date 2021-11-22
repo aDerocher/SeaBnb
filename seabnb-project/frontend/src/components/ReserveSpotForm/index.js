@@ -12,9 +12,9 @@ import './ReserveSpotForm.css'
 const ReserveSpotForm = ({spotId}) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const spot = useSelector(state => state.spots.spot.oneSpot );
-  const user = useSelector(state => state.session.user );
-  const spotReviewsArr = useSelector(state => state.spots.spot.spotReviews )
+  const spot = useSelector(state => state.spots[0] );
+  const sessionUser = useSelector(state => state.session.user );
+  const spotReviewsArr = useSelector(state => state.reviews )
 
   let day = today();
   let morrow = tomorrow();
@@ -23,10 +23,7 @@ const ReserveSpotForm = ({spotId}) => {
   const [ errors, setErrors ] = useState([]);
 
   useEffect(()=>{
-    dispatch(sessionActions.getAllBookings());
-    dispatch(sessionActions.getSpotBookings(spotId));
-    dispatch(spotSessionActions.getSpots());
-  }, [dispatch, spotId]);
+  }, [dispatch]);
 
   useEffect(()=> {
     let newErrors = [];
@@ -35,10 +32,11 @@ const ReserveSpotForm = ({spotId}) => {
     if (!isBefore(new Date(startDate), new Date(endDate))) newErrors.push('Start date can not be after end date')
     setErrors(newErrors);
   }, [ startDate, endDate ])
+
   const submitReservation = (e) => {
     e.preventDefault();
     const body ={
-      guest:user.id,
+      guest: sessionUser.id,
       spot:spot.id,
       checkIn:new Date(startDate),
       checkOut:new Date(endDate)
@@ -46,7 +44,7 @@ const ReserveSpotForm = ({spotId}) => {
     dispatch(sessionActions.newBooking(body))
     setErrors([]);
   
-    history.push('/');
+    history.push(`/users/${sessionUser.id}`);
   }
 
   return(

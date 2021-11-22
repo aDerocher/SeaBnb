@@ -63,7 +63,7 @@ function ListNewSpot(){
   return(
     <>
       <div className='trips-title'>
-        <h2>Trips</h2>
+        <h2>Host Your Ship</h2>
       </div>
       <div className='subtitle-container'>  
         <p className='subtitle'>Upcoming</p>

@@ -1,31 +1,26 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSpots, getOneSpot } from "../../store/spots";
-import { getSpotBookings } from "../../store/bookings";
-import { getSpotReviews } from "../../store/reviews";
+import { getSpots} from "../../store/spots";
 import './SpotBrowser.css';
 import { useHistory } from 'react-router';
 
 function SpotBrowser(){
+    
+    const history = useHistory();
+    const dispatch = useDispatch();
 
-  const history = useHistory();
-  const goToSpot=(spotId,e)=> {
-    e.preventDefault();
-    getOneSpot(spotId);
-    getSpotBookings(spotId);
-    getSpotReviews(spotId);
-    history.push(`/spots/${spotId}`);
-  }
 
-  const dispatch = useDispatch();
+    const spots = useSelector(state => state.spots)
 
-  useEffect(()=>{
-    dispatch(getSpots());
-  }, [ dispatch ]);
+    const goToSpot=(spotId,e)=> {
+        e.preventDefault();
+        // dispatch(getOneSpot(spotId))
+        history.push(`/spots/${spotId}`);
+    }
 
-  const spots = useSelector(state => {
-    return state.spots.list;
-  });
+    useEffect(()=>{
+        dispatch(getSpots())
+    }, [ dispatch ]);
 
   return(
     <div className='all-spots-container'>
@@ -33,19 +28,18 @@ function SpotBrowser(){
       <div className='spots-faux-header'>
         <p>+50 Stays</p>
         <h3>Stays Around The World</h3>
-        <ul>
+        {/* <ul>
           <li className="faux-filter">Free Cancellation</li>
           <li className="faux-filter">Type of Ship</li>
           <li className="faux-filter">Price</li>
           <li className="faux-filter">Instant Book</li>
           <li className="faux-filter">More Filters</li>
-        </ul>
+        </ul> */}
         <p>🏆<span className='bold-statement'>More than 300 people have stayed with us.</span> Average rating: 5 Stars</p>
       </div>
 
       {/* ++++ List of all available spots +++++ */}
       {spots?.map((spot) => (
-
       <div key={spot.id} className='single-spot-card hover-hand' onClick={e=>goToSpot(spot?.id,e)}>
 
         <div className='spot-img-section spot-sec'>
@@ -56,18 +50,19 @@ function SpotBrowser(){
           <div className='spot-mid-top'>
             <h3 className='spot-section-title'>{spot?.name}</h3>
             <p className='tiny-line'> ______ </p>
-            <p className='spot-section-flist'>** bedroom count**</p>
-            <p className='spot-section-flist'>** amenities list **</p>
+            {/* <p className='spot-section-flist'>** bedroom count**</p>
+            <p className='spot-section-flist'>** amenities list **</p> */}
+            <p>{spot?.description}</p>
           </div>
           <div className='spot-mid-bot'>
             {/* <button onClick={e => goToSpot(spot.id,e)}>Check it out</button> */}
-            <p className='spot-section-rating'>⭐5</p>
+            {/* <p className='spot-section-rating'>⭐5</p> */}
           </div>
         </div>
 
         <div className='spot-right-section spot-sec'>
           <div className='spot-hearts'>
-            <p>🤍</p>
+            {/* <p>🤍</p> */}
           </div>
           
           <p><span>$</span>{spot.price}/night</p>

@@ -13,7 +13,13 @@ const WelcScrBody =() => {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  const spots = useSelector(state => state.spots);
 
+  useEffect(()=>{
+    dispatch(getSpots());
+  }, [ dispatch ]);
+
+  
   const goToSpot=(spotId,e)=> {
     e.preventDefault();
     getOneSpot(spotId);
@@ -26,18 +32,14 @@ const WelcScrBody =() => {
     history.push(`/spots`);
   }
 
-  const goSignUp=(e)=> {
+  const learnAboutHosting=(e)=> {
     e.preventDefault();
-    sessionUser ? history.push(`/users/${sessionUser.id}`)
+    sessionUser ? history.push(`/users/${sessionUser.id}/becomeahost`)
                 : history.push(`/signup`);
   }
 
-  useEffect(()=>{
-    dispatch(getSpots());
-  }, [ dispatch ]);
 
-  const spots = useSelector(state => state.spots.list);
-  const eightSpots = spots.slice(0,8);
+  const eightSpots = spots?.slice(0,8);
 
 
 
@@ -51,7 +53,7 @@ const WelcScrBody =() => {
 
         <div className="en-cards-container hover-hand"> 
           {eightSpots?.map((spot)=> (
-            <div className='spot-card' key={spot.id} onClick={e=>goToSpot(spot.id,e)}>
+            <div className='spot-card' key={spot?.id} onClick={e=>goToSpot(spot.id,e)}>
               <img className='spot-card-img' src={spot.photo1} alt="img" />
               <div className='en-card-body'>
                 <p className='en-card-title'>{spot.name}</p>
@@ -103,7 +105,7 @@ const WelcScrBody =() => {
           <div className='th-card-body'>
             <h4 className='th-title'>Try hosting</h4>
             <p className='th-subtitle'>Unlock new synergetic revenue streams and expand your metaverse</p>
-            <button className='th-btn hover-hand' onClick={e=>goSignUp(e)}>Learn More</button>
+            <button className='th-btn hover-hand' onClick={e=>learnAboutHosting(e)}>Learn More</button>
           </div>
         </div>
       </div>

@@ -11,42 +11,46 @@ import { isBefore } from 'date-fns';
 
 
 function SpotPage(){
-  const { spotId } = useParams();
-  const dispatch = useDispatch();
-  
-  
-  
-  
-  let spot = useSelector(state => state.spots.spotsObj[spotId] );
-  let user = useSelector(state => state.session.user );
-  let spotBookings = useSelector(state => state.bookings.spotBookings );
-  let spotReviewsArr = useSelector(state => state.spots.spot.spotReviews );
-  
-  const [ revAbility, setRevAbility ] = useState(false);
-  
-  useEffect(()=>{
-      dispatch(getSpots());
-      dispatch(getOneSpot(spotId));
-      dispatch(getSpotBookings(spotId));
-      dispatch(getSpotReviews(spotId));
-      if(user) setRevAbility(userCanReview());
+    const { spotId } = useParams();
+    const dispatch = useDispatch();
+    
+    const spot = useSelector(state => state.spots[0] );
+    const sessionUser = useSelector(state => state.session.user );
+    const spotBookings = useSelector(state => state.bookings );
+    const reviews = useSelector(state => state.reviews);
+    
+    const [ revAbility, setRevAbility ] = useState(false);
+    const [ spotAverageScore, setSpotAverageScore ] = useState(5);
+    
+    useEffect(()=>{
+        dispatch(getOneSpot(spotId));
+        dispatch(getSpotBookings(spotId));
+        dispatch(getSpotReviews(spotId));
+        if(sessionUser) setRevAbility(userCanReview());
     }, [ dispatch, spotId, revAbility ]);
+
+    useEffect(()=>{
+        let newScore = 0;
+        reviews.forEach((r) => {
+            newScore += r.score
+        })
+        setSpotAverageScore(Math.round(newScore/reviews.length))
+        console.log(Math.round(newScore/reviews.length))
+    },[reviews])
 
 
   // am able to leave reviews on ships i haev not booked
   const userCanReview = () => {
-    for (let i=0; i < spotReviewsArr?.length; i++ ){
-      let spotRev = spotReviewsArr[i];
-      if (spotRev.guest === user.id){
+    for (let i=0; i < reviews?.length; i++ ){
+      let spotRev = reviews[i];
+      if (spotRev.guest === sessionUser.id){
         setRevAbility(false);
         return
       }
     }
     
     for(let booking in spotBookings){
-      console.log(booking.guest)
-      console.log(spotBookings[booking].guest)
-      if (booking.guest === user?.id &&
+      if (booking.guest === sessionUser?.id &&
         isBefore(new Date(spotBookings[booking].checkOut), new Date())){
           setRevAbility(true);
         }
@@ -65,7 +69,7 @@ function SpotPage(){
       <div className="spot-top">
         <h2>{spot?.name}</h2>
         <div className='spot-top-links'>
-          <p>⭐5<span> · </span>{spotReviewsArr?.length} Reviews<span> · </span>{spot?.location}</p>
+          <p>⭐{spotAverageScore}<span> · </span>{reviews.length} Reviews<span> · </span>{spot?.location}</p>
           {/* <p>⇯ <a href="#" className='dead-link'>share</a> <span> · </span>♡ <a href="#" className='dead-link'>save</a></p> */}
         </div>
       </div>
@@ -130,16 +134,16 @@ function SpotPage(){
         </div>
 
         <div className="spot-main-right">
-          {user && 
+          {sessionUser && 
             <ReserveSpotForm spotId={spotId} />
           }
-          {!user && 
+          {!sessionUser && 
             <h2></h2>
           }
         </div>
       </div>  
 
-      <ReviewSpotForm spotId={spot?.id}  userId={user?.id}/>
+      <ReviewSpotForm spotId={spot?.id}  userId={sessionUser?.id}/>
 
     </div>
   )

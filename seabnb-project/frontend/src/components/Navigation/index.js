@@ -15,7 +15,7 @@ const Navigation =({ isLoaded })=> {
   const becomeHost = (e) => { 
     e.preventDefault();
     if(sessionUser) {
-      history.push(`/users/${sessionUser.id}`)
+      history.push(`/users/${sessionUser.id}/becomeahost`)
     } else {
       history.push(`/signup`); 
     }; 

@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Booking } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
@@ -44,16 +44,29 @@ const validateSignup = [
 router.post( '/', validateSignup, asyncHandler(async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
     const user = await User.signup({ email, password, firstName, lastName});
-
+    
     await setTokenCookie(res, user);
-
+    
     return res.json({user});
   }),
-);
-
-router.get( '/:id', asyncHandler(async (req, res) => {
+  );
+  
+  
+// ==== get a user ===================
+router.get('/:id', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params, 10);
+  const user = await User.findByPk(userId)
   return res.json({ user });
+}));
+
+
+// ====== get all the users bookings =======
+router.get('/:userId/bookings', asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10);
+    const allSpotBookings = await Booking.findAll({
+        where: { guest: userId }
+    });
+    return res.json(allSpotBookings);
 }));
 
 

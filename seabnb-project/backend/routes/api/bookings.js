@@ -31,16 +31,7 @@ router.delete('/', asyncHandler(async (req, res) => {
   res.status(204).send();
 }));
 
-// // ====== get all the bookings for current spot =======
-// router.get('/:id', asyncHandler(async (req, res) => {
-//   const spotId = parseInt(req.params, 10);
-//   const allSpotBookings = await Booking.findByPk({
-//     where: {
-//       spot: spotId
-//     }
-//   });
-//   return res.json(allSpotBookings);
-// }));
+
   
 
 module.exports = router;

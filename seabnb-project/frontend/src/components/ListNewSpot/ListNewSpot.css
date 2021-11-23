@@ -1,0 +1,64 @@
+.new-spot-form {
+    padding: 1rem;
+    width: 60%;
+    margin: auto;
+
+}
+
+.spot-form-sec{
+    display: flex;
+    flex-direction: column;
+    margin: 6px;
+}
+.spot-form-sec > * {
+    padding: 4px;
+}
+
+.spot-form-btn{
+    outline: none;
+    border: none;
+    margin-top: 5rem;
+    height: 1.5rem;
+    width: 15rem;
+    background-color: var(--seabnb-blue3);
+    color: white;
+    font-weight: bold;
+    margin:auto;
+    border-radius: 6px;
+}
+
+/* ==== file name section ============== */
+.file-names-sec{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.file-names{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.file-line:last-child{border: none;}
+.file-line{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+.file-name{
+    color: var(--seabnb-blue1);
+}
+.remove-file-btn{
+    height: 22px;
+    width: 22px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    background-color: var(--seabnb-red);
+    margin: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -9,12 +9,11 @@ import * as spotSessionActions from '../../store/spots';
 import './ReserveSpotForm.css'
 
 
-const ReserveSpotForm = ({spotId}) => {
+const ReserveSpotForm = ({reviewsCount}) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const spot = useSelector(state => state.spots[0] );
   const sessionUser = useSelector(state => state.session.user );
-  const spotReviewsArr = useSelector(state => state.reviews )
 
   let day = today();
   let morrow = tomorrow();
@@ -51,7 +50,7 @@ const ReserveSpotForm = ({spotId}) => {
     <div className="res-section">
       <div className="res-section-top">
         <p>$ {spot?.price}<span> / night</span></p>
-        <p>{spotReviewsArr?.length} <span>reviews</span></p>
+        <p>{reviewsCount} <span>reviews</span></p>
       </div>
       <form action="/api/bookings/new" method="POST" className="new-booking-form" onSubmit={e=>submitReservation(e)}>
         <div className="form-inputs">

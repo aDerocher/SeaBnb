@@ -17,6 +17,8 @@ html{
   --seabnb-blue1: rgb(104, 131, 141);
   --seabnb-blue2: rgb(1, 63, 121);
   --seabnb-blue3: #668dcc;
+
+  --seabnb-red: rgb(218, 101, 101);
 }
 
 
@@ -28,3 +30,11 @@ html{
     display: flex;
     flex-direction: row;
 }
+.small-grey-label{font-size: 10pt; color: grey}
+.error-text{ color: red; font-size: 10pt}
+
+/* ======================FOR TESTING=========================== */
+/* ============================================================= */
+            /* div{border: 1px solid red;} */
+/* ============================================================= */
+/* ============================================================= */

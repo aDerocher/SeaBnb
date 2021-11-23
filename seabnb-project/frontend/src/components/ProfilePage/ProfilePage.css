@@ -1,5 +1,4 @@
 /* =========== Titles and Subtitles ================= */
-
 .subtitle-container{
   /* background-color: teal; */
   width: 100%;
@@ -30,11 +29,20 @@
 .trips-title{
   width: 63%;
   margin: auto;
+  padding: 1.25rem 0;
 }
-.trips-title > h2 {
-  color:rgb(41, 41, 41);
-  font-size: 26pt;
-  margin: 30px 6px;
+.trips-title > * {
+    align-items: center;
+}
+.title-text.active-title{
+    /* font-size: 22pt; */
+    color:var(--seabnb-blue3);
+}
+.title-text{
+    color:rgb(134, 134, 134);
+    /* font-size: 22pt; */
+    margin-left:6px;
+    margin-right: 1.5rem;
 }
 .tripCard{
   /* background-color: rgb(109, 80, 26); */

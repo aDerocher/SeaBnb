@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { restoreUser } from '../../store/session';
 import { getSpots } from '../../store/spots';
 import { deleteBooking, getUserBookings } from '../../store/bookings';
@@ -12,57 +12,45 @@ function ProfilePage(){
     const dispatch = useDispatch();
 
     const sessionUser = useSelector(state => state.session.user );
+    const usersBookings = useSelector(state => state.bookings );
     const spots = useSelector(state => state.spots );
-    const allUserBookings = useSelector(state => state.bookings );
 
     const [ delBookingId, setDelBookingId ] = useState();
-    const [ tripCount, setTripCount ] = useState(0);
 
     useEffect(()=>{
         dispatch(getUserBookings(sessionUser?.id));
         dispatch(getSpots())
-        setTripCount(allUserBookings?.length); 
     }, [ dispatch, sessionUser]);
 
-    const today = new Date()
-    let pastUserBookings = [];
-    let futureUserBookings = [];
-    useEffect(()=>{
-        console.log(allUserBookings)
-        allUserBookings?.forEach(b => {
-            console.log(b)
-            if (isBefore(new Date(b.checkOut), new Date())){
-                pastUserBookings.push(b);
-            } else {
-                futureUserBookings.push(b);
-            }
-        })
-    }, [ dispatch, allUserBookings ]);
-    console.log(pastUserBookings)
-    console.log(futureUserBookings)
     
-
-  const formatDate = (date) => {
-    const day = new Date(date);
-    const newDay = format(day,'yyyy-MM-dd');
+    const formatDate = (date) => {
+      const day = new Date(date);
+      const newDay = format(day,'yyyy-MM-dd');
     return newDay;
   }
   const goToSpot=(e, spotId)=>{
-    e.preventDefault();
-    history.push(`/spots/${spotId}`);
-  }
-  const cancelReservation = (e) => {
-    e.preventDefault();
-    dispatch(deleteBooking(delBookingId));
-    setTripCount(tripCount-1);
-  }
-
+      e.preventDefault();
+      history.push(`/spots/${spotId}`);
+    }
+    const cancelReservation = (e) => {
+        e.preventDefault();
+        dispatch(deleteBooking(delBookingId));
+    }
     
+    const today = new Date()
+    let spotObj = {}
+    spots?.forEach((spot) => {
+        spotObj[`${spot.id}`] = spot
+    })
 
-  return(
+
+    return(
     <>
       <div className='trips-title'>
-        <h2>Trips</h2>
+          <div className='flex-row-cont'>
+            <h2 className='title-text active-title'>Trips</h2>
+            <Link style={{textDecoration:'none'}} to={`/users/${sessionUser.id}/becomeahost`}><h2 className='title-text'>Hosting</h2></Link>
+          </div>
       </div>
       <div className='subtitle-container'>  
         <p className='subtitle'>Upcoming</p>
@@ -73,17 +61,17 @@ function ProfilePage(){
         className='trips-section' 
       >
         
-        {allUserBookings?.map((booking) => (
+        {usersBookings?.map((booking) => (
             <>
             {isBefore(today, new Date(booking.checkOut)) &&
                 <div className="tripCard" key={booking?.id}>
                     <div className="tripCard-img-section hover-hand" onClick={e=> goToSpot(e, booking.spot)}>
-                        <img src={spots[`${booking.spot}`]?.photo1} alt="boat" />
+                        <img src={spotObj[`${booking.spot}`]?.photo1} alt="boat" />
                     </div>
 
                     <div className="content-container">
                     <div className="content-section">
-                        <p className="ship-name"><a href={`/spots/${booking.spot}`}>{booking.name}</a></p>
+                        <p className="ship-name"><a href={`/spots/${booking.spot}`}>{spotObj[`${booking.spot}`]?.name}</a></p>
                         <div className="check-section-container">
                         <div className="check-section">
                             <p>Check-in:</p>
@@ -111,17 +99,17 @@ function ProfilePage(){
         </div>
       <div className='trips-section'>
         
-          {allUserBookings?.map((booking) => (
+          {usersBookings?.map((booking) => (
             <>
             {!isBefore(today, new Date(booking.checkOut)) &&
                 <div className="tripCard" key={booking?.id}>
                     <div className="tripCard-img-section hover-hand" onClick={e=> goToSpot(e, booking.spot)}>
-                        <img src={spots[`${booking.spot}`]?.photo1} alt="boat" />
+                        <img src={spotObj[`${booking.spot}`]?.photo1} alt="boat" />
                     </div>
 
                     <div className="content-container">
                     <div className="content-section">
-                        <p className="ship-name"><a href={`/spots/${booking.spot}`}>{booking.name}</a></p>
+                        <p className="ship-name"><a href={`/spots/${booking.spot}`}>{spotObj[`${booking.spot}`]?.name}</a></p>
                         <div className="check-section-container">
                         <div className="check-section">
                             <p>Check-in:</p>

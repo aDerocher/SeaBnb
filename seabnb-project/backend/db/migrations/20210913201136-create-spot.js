@@ -11,11 +11,11 @@ module.exports = {
       name: {
         type: Sequelize.STRING(50),
         allowNull: false,
-      },
+    },
       location: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
       price: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -26,7 +26,7 @@ module.exports = {
         references: { model: 'Users'}
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(500),
         allowNull: false,
       },
       reviews: {

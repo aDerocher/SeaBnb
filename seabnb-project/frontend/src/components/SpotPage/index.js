@@ -26,17 +26,24 @@ function SpotPage(){
         dispatch(getOneSpot(spotId));
         dispatch(getSpotBookings(spotId));
         dispatch(getSpotReviews(spotId));
+            
         if(sessionUser) setRevAbility(userCanReview());
     }, [ dispatch, spotId, revAbility ]);
 
     useEffect(()=>{
-        let newScore = 0;
-        reviews.forEach((r) => {
-            newScore += r.score
+        let newAvgScore = 0;
+        console.log(reviews?.length)
+        reviews?.forEach((r) => {
+            newAvgScore += r.score
         })
-        setSpotAverageScore(Math.round(newScore/reviews.length))
-        console.log(Math.round(newScore/reviews.length))
-    },[reviews])
+        console.log(parseInt(newAvgScore), '= total scores')
+        console.log(reviews.length, '= num of reviews')
+        newAvgScore /= reviews.length
+        console.log(newAvgScore, '= new average')
+        console.log(Math.round(newAvgScore), '= new average rounded')
+        setSpotAverageScore(Math.round(newAvgScore))
+    }, [dispatch, reviews])
+
 
 
   // am able to leave reviews on ships i haev not booked
@@ -135,7 +142,7 @@ function SpotPage(){
 
         <div className="spot-main-right">
           {sessionUser && 
-            <ReserveSpotForm spotId={spotId} />
+            <ReserveSpotForm reviewsCount={reviews.length} spotId={spotId} />
           }
           {!sessionUser && 
             <h2></h2>
@@ -143,7 +150,7 @@ function SpotPage(){
         </div>
       </div>  
 
-      <ReviewSpotForm spotId={spot?.id}  userId={sessionUser?.id}/>
+      <ReviewSpotForm spotId={spot?.id} userId={sessionUser?.id}/>
 
     </div>
   )

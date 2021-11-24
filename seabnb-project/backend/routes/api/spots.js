@@ -55,15 +55,35 @@ router.post('/new', multipleMulterUpload("photos"), asyncHandler(async (req, res
         price: price,
         host: host,
         description: description
-        // reviews: req.body.reviews,
-        // rules: req.body.rules,
-        // amenities: req.body.amenities,
     };
     newPhotoLinks.forEach((pLink, i) => {
         newSpot[`photo${i+1}`] = pLink;
     });
     const createdSpot = await Spot.create(newSpot)
     return res.json({createdSpot});
+}));
+
+// ====== edit a spot =======
+router.patch('/:id/edit', asyncHandler(async (req, res) => {
+    const spotId = parseInt(req.params.id, 10);
+    const {name, location, price, description} = req.body
+
+    let editedSpot = await Spot.findByPk(spotId)
+        editedSpot.name = name,
+        editedSpot.location = location,
+        editedSpot.price = price,
+        editedSpot.description = description
+
+    await editedSpot.save();
+    return res.json({editedSpot});
+}));
+
+// ====== delete a spot =======
+router.delete('/:id', asyncHandler(async (req, res) => {
+    const spotId = parseInt(req.params.id, 10);
+    const deadSpot = await Spot.findByPk(spotId)
+    await deadSpot.destroy()
+    return res.json({deadSpot});
 }));
 
 

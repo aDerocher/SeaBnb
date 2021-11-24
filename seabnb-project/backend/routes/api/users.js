@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Booking } = require('../../db/models');
+const { User, Booking, Spot } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
@@ -67,6 +67,15 @@ router.get('/:userId/bookings', asyncHandler(async (req, res) => {
         where: { guest: userId }
     });
     return res.json(allSpotBookings);
+}));
+
+// ====== get all the users hosted spots =======
+router.get('/:userId/spots', asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10);
+    const allHostedSpots = await Spot.findAll({
+        where: { host: userId }
+    });
+    return res.json(allHostedSpots);
 }));
 
 

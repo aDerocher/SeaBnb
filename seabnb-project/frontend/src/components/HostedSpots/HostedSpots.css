@@ -1,8 +1,14 @@
+.new-spot-form-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 65%;
+}
 .new-spot-form {
     padding: 1rem;
     width: 60%;
     margin: auto;
-
 }
 
 .spot-form-sec{
@@ -12,19 +18,6 @@
 }
 .spot-form-sec > * {
     padding: 4px;
-}
-
-.spot-form-btn{
-    outline: none;
-    border: none;
-    margin-top: 5rem;
-    height: 1.5rem;
-    width: 15rem;
-    background-color: var(--seabnb-blue3);
-    color: white;
-    font-weight: bold;
-    margin:auto;
-    border-radius: 6px;
 }
 
 /* ==== file name section ============== */
@@ -50,6 +43,22 @@
 .file-name{
     color: var(--seabnb-blue1);
 }
+
+/* =========== Host Spots Tiles =================== */
+.hosted-spots-cont{
+    min-width: 60%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+.host-spot-cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+/* =========== buttons =================== */
 .remove-file-btn{
     height: 22px;
     width: 22px;
@@ -62,3 +71,24 @@
     align-items: center;
     justify-content: center;
 }
+.spot-form-btn{
+    margin-top: 5rem;
+    height: 1.5rem;
+    width: 15rem;
+    background-color: var(--seabnb-blue3);
+    color: white;
+    font-weight: bold;
+    margin:auto;
+    border-radius: 6px;
+}
+.sf-cancel{
+    width: 10rem;
+    height: 1.5rem;
+    border-radius: 6px;
+}
+
+/* ============== Other ============================= */
+.h-sub{ color: var(--seabnb-blue3); }
+.h-sub:hover{ text-decoration: underline; }
+
+

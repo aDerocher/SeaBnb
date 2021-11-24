@@ -10,7 +10,7 @@ import NavigationTwo from './components/NavigationTwo';
 import ProfilePage from './components/ProfilePage';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
-import ListNewSpot from './components/ListNewSpot';
+import HostedSpots from './components/HostedSpots';
 // import Navigation from './components/Navigation';
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
         </Route>
         <Route exact path="/users/:id/becomeahost">
           <NavigationTwo isLoaded={isLoaded}/>
-          <ListNewSpot />
+          <HostedSpots />
           <Footer />
         </Route>
         <Route >

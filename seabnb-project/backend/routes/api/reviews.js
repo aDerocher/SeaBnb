@@ -30,23 +30,12 @@ router.delete('/', asyncHandler(async (req, res) => {
     const { revId } = req.body;
     const deadReview = await Review.findByPk(revId) 
     await deadReview.destroy()
-    //   res.status(204).send();
     return res.json({deadReview});
 }));
 
 // ====== edit a review in the database =======
 router.patch('/:id', asyncHandler(async (req, res) => {
     let reviewId = parseInt(req.body.revId,10)
-//     const updated = await Review.update(
-//     {
-//       score: req.body.score,
-//       content: req.body.content, 
-//     }, 
-//     {
-//       where: { id: reviewId }
-//     }
-//   )
-//   .then((res) => {return res.json({updated})});
 
     let editedRev = await Review.findByPk(reviewId);
     editedRev.score = req.body.score;

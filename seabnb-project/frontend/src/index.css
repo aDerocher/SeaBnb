@@ -9,11 +9,16 @@ html{
   font-family:Arial, Helvetica, sans-serif;
 }
 
-.hover-hand:hover{
-  cursor: pointer;
-}
+/* ======================FOR TESTING=========================== */
+/* ============================================================= */
+            /* div{border: 1px solid red;} */
+/* ============================================================= */
+/* ============================================================= */
 
+/* ================ Colors =================== */
 :root {
+  --seabnb-grey: rgb(37, 39, 39);
+  
   --seabnb-blue1: rgb(104, 131, 141);
   --seabnb-blue2: rgb(1, 63, 121);
   --seabnb-blue3: #668dcc;
@@ -21,20 +26,24 @@ html{
   --seabnb-red: rgb(218, 101, 101);
 }
 
+/* ================ Useful =================== */
+.flex-col-cont{ display: flex;flex-direction: column; }
+.flex-row-cont{ display: flex;flex-direction: row; }
+.hover-hand:hover{cursor: pointer;}
 
-.flex-col-cont{
-    display: flex;
-    flex-direction: column;
-}
-.flex-row-cont{
-    display: flex;
-    flex-direction: row;
-}
+/* ========= texts ==================*/
 .small-grey-label{font-size: 10pt; color: grey}
 .error-text{ color: red; font-size: 10pt}
 
-/* ======================FOR TESTING=========================== */
-/* ============================================================= */
-            /* div{border: 1px solid red;} */
-/* ============================================================= */
-/* ============================================================= */
+/* ========= Buttons ==================*/
+button{ outline: none; border: none; background-color: transparent;}
+.cancel-btn{
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+}
+.dis:disabled{
+    background-color: lightgrey;
+    color: var(--seabnb-grey);
+    font-style: italic;
+}

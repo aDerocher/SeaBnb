@@ -10,19 +10,7 @@ const csrfProtection = csrf({cookie: true});
 router.use('/api', apiRouter);
 
 // ===========================================
-
-
-// router.get('/', function(req, res) {
-//   // console.log('maybe')
-//   res.json({ requestBody: req.body });
-// });
-
-// router.post('/test', function(req, res) {
-//   res.json({ requestBody: req.body });
-// });
-
-
-// Serve React build files in production
+// React build in production environment
 if (process.env.NODE_ENV === 'production') {
   const path = require('path');
   // Serve the frontend's index.html file at the root route

@@ -2,7 +2,6 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Spot, Booking, Review } = require('../../db/models');
 const { multiplePublicFileUpload, multipleMulterUpload } = require('../../awsS3')
-const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3')
 const router = express.Router();
 
 
@@ -82,34 +81,41 @@ router.patch('/:id/edit', asyncHandler(async (req, res) => {
 // ==============================================
 router.delete('/:id', asyncHandler(async (req, res) => {
     const spotId = parseInt(req.params.id, 10);
+
+    // ====== delete associated bookings =======
+    // const deadBookings = await Booking.findAll({where: { spot: spotId }})
+    // console.log(deadBookings)
+    // deadBookings.forEach((b) => {await b.destroy()});
+    
+    // ====== delete associated reviews =======
+    // const deadReviews = await Review.findAll({where: { spot: spotId }})
+    // console.log(deadReviews)
+    // deadReviews.forEach((b) => {await b.destroy()})
+    
+    // ====== delete the spot =======
     const deadSpot = await Spot.findByPk(spotId)
     await deadSpot.destroy()
+    console.log(deadSpot)
     return res.json({deadSpot});
 }));
-
-
-// ====== delete a spots Bookings =======
 router.delete('/:id/bookings', asyncHandler(async (req, res) => {
     const spotId = parseInt(req.params.id, 10);
-    const deadBookings = await Booking.findAll({
-        where: { spot: spotId }
-    })
-    deadBookings.forEach((b) => {
-        await b.destroy()
-    })
-    return res.json({deadBookings});
-}));
 
-// ====== delete a spots Reviews =======
-router.delete('/:id/reviews', asyncHandler(async (req, res) => {
-    const spotId = parseInt(req.params.id, 10);
-    const deadReviews = await Review.findAll({
-        where: { spot: spotId }
-    })
-    deadReviews.forEach((b) => {
-        await b.destroy()
-    })
-    return res.json({deadReviews});
+    // ====== delete associated bookings =======
+    // const deadBookings = await Booking.findAll({where: { spot: spotId }})
+    // console.log(deadBookings)
+    // deadBookings.forEach((b) => {await b.destroy()});
+    
+    // ====== delete associated reviews =======
+    // const deadReviews = await Review.findAll({where: { spot: spotId }})
+    // console.log(deadReviews)
+    // deadReviews.forEach((b) => {await b.destroy()})
+    
+    // ====== delete the spot =======
+    const deadSpot = await Spot.findByPk(spotId)
+    await deadSpot.destroy()
+    console.log(deadSpot)
+    return res.json({deadSpot});
 }));
 
 

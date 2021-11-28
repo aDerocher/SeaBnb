@@ -17,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
 
   }, {});
   Spot.associate = function(models) {
-    // associations can be defined here
+    // Spot.belongsTo(models.User, {
+    //     foreignKey: 'host',
+    // });
+    // Spot.hasMany(models.Booking);
+    // Spot.hasMany(models.Review);
   };
   return Spot;
 };

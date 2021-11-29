@@ -94,6 +94,8 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     
     // ====== delete the spot =======
     const deadSpot = await Spot.findByPk(spotId)
+    Review.destroy({ where: { spot: spotId }})
+    Booking.destroy({ where: { spot: spotId }})
     await deadSpot.destroy()
     console.log(deadSpot)
     return res.json({deadSpot});

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch} from 'react-redux';
 import { getUsersSpots, newSpot } from '../../store/spots'
 import MyHostedSpots from './MyHostedSpots';
@@ -7,6 +7,7 @@ import './HostedSpots.css';
 import { set } from 'js-cookie';
 
 function HostedSpots({addingNew}){
+    const history = useHistory();
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
     const spots = useSelector(state => state.spots)
@@ -78,6 +79,9 @@ function HostedSpots({addingNew}){
             // amenities: spotData.amenities,
         }
         dispatch(newSpot(spotData))
+        setViewForm(!viewForm)
+        // history.push(`/users/${sessionUser.id}/becomeahost`)
+
     }
 
     
@@ -149,17 +153,9 @@ function HostedSpots({addingNew}){
                             }
                         </div>
                     </div>
-                    {/* <label>Photo 2</label> */}
-                    {/* <input onChange={updateFile} name='photos' type='file' multiple></input> */}
-                    {/* <label>Photo 3</label>
-                    <input value={newPhoto3} onChange={e=>setNewPhoto3(e.target.value)} type='text'></input>
-                    <label>Photo 4</label>
-                    <input value={newPhoto4} onChange={e=>setNewPhoto4(e.target.value)} type='text'></input>
-                    <label>Photo 5</label>
-                <input value={newPhoto5} onChange={e=>setNewPhoto5(e.target.value)} type='text'></input> */}
                     <div className='spot-form-sec'>
                         <br />
-                        <button disabled={!errorsHidden && newSpotErrors.length > 0}type='submit' className='spot-form-btn' onClick={e=>handleListSpot(e)}>List My Spot</button>
+                        <button disabled={!errorsHidden && newSpotErrors.length > 0}type='submit' className='dis spot-form-btn' onClick={e=>handleListSpot(e)}>List My Spot</button>
                     </div>
                 </form>
                 <button className='cancel-btn sf-cancel'>Cancel</button>

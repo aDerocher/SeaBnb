@@ -20,15 +20,15 @@ router.post('/new', asyncHandler(async (req, res) => {
     checkIn, 
     checkOut
   });
-  res.status(204).send();
+  res.json({newBooking});
 }));
 
-// ====== post a new booking to the database =======
+// ====== delete a new booking from the database =======
 router.delete('/', asyncHandler(async (req, res) => {
   const { bookingId } = req.body;
   const deadBooking = await Booking.findByPk(bookingId);
   await deadBooking.destroy();
-  res.status(204).send();
+  res.json({deadBooking});
 }));
 
 

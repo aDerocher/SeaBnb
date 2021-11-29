@@ -7,7 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     checkOut: DataTypes.DATE
   }, {});
   Booking.associate = function(models) {
-    // associations can be defined here
+    // Booking.belongsTo(models.Spot, {
+    //     foreignKey: 'spot',
+    // });
+    // Booking.belongsTo(models.User, {
+    //     foreignKey: 'guest',
+    // });
   };
   return Booking;
 };

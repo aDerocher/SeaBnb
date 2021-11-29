@@ -60,6 +60,7 @@ export const newBooking = (bookingData) => async dispatch => {
         }), 
     });
     if (response.ok) {
+        console.log(response)
         const newBooking = await response.json();
         dispatch(bookNew(newBooking));
     }

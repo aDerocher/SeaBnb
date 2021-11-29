@@ -69,7 +69,7 @@
     color:var(--seabnb-grey);
 }
 .edit-spot-cont{
-    border: 2px solid green;
+    /* border: 2px solid green; */
     padding: 4rem;
     border-radius: 12px;
 }

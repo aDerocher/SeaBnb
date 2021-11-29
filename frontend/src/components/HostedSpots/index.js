@@ -90,9 +90,9 @@ function HostedSpots({addingNew}){
             </div>
         </div>
         <div className='subtitle-container'> 
-            {viewForm &&
-                <p className='subtitle h-sub hover-hand' onClick={e=>setViewForm(!viewForm)}>Add a new spot to host</p>}
             {!viewForm &&
+                <p className='subtitle h-sub hover-hand' onClick={e=>setViewForm(!viewForm)}>Add a new spot to host</p>}
+            {viewForm &&
                 <p className='subtitle h-sub hover-hand' onClick={e=>setViewForm(!viewForm)}>View My Spots</p>}
         </div>
         {/* ============ View all the Users Hosted Spots ========================================================= */}

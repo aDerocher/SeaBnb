@@ -7,7 +7,6 @@ function EditSpotModal(props) {
     const dispatch = useDispatch()
     
     // get the spot to edit from the users hosted spots list
-    const sessionUser = useSelector(state => state.session.user)
     const spots = useSelector(state => state.spots)
     const editingSpot = spots.filter((s)=>{
         return s.id === props.spotId
@@ -18,7 +17,7 @@ function EditSpotModal(props) {
     const [ editedLocation, setEditedLocation ] = useState(editingSpot.location);
     const [ editedPrice, setEditedPrice ] = useState(editingSpot.price);
     const [ editedDescription, setEditedDescription ] = useState(editingSpot.description);
-    // --------- For Images ------------------------------
+    // --------- For future editing of images ------------------------------
     // const [ editedPhotos, setEditedPhotos ] = useState([]);
     // const [ fileObj, setFileObj ] = useState(null);
     // const [ viewForm, setViewForm ] = useState(addingedited);
@@ -29,6 +28,7 @@ function EditSpotModal(props) {
     const [ hideConfDelete, setHideConfDelete ] = useState(true);
 
 
+    // Error handling for edit spot form
     useEffect(() => {
         let newErrors = [];
         if(editedName.length < 2) newErrors.push('Ship Name must be longer')
@@ -41,6 +41,7 @@ function EditSpotModal(props) {
         setEditedSpotErrors(newErrors);
     }, [editedName, editedLocation, editedPrice, editedDescription])
 
+    // Handle form submission
     const handleEditSpot = (e) => {
         e.preventDefault()
         setErrorsHidden(false)
@@ -59,6 +60,7 @@ function EditSpotModal(props) {
         props.onClose()
     }
     
+    // handle spot deletion
     const handleDeleteSpot = (e) => {
         e.preventDefault()
         dispatch(deleteSpot(editingSpot.id))
@@ -76,8 +78,8 @@ function EditSpotModal(props) {
                     ))}
                 </ul>
                 <div className='spot-form-sec'>
-                        <label>Ship Name:</label>
-                        <input value={editedName} maxLength='50' onChange={e=>setEditedName(e.target.value)} type='text'></input>
+                    <label>Ship Name:</label>
+                    <input value={editedName} maxLength='50' onChange={e=>setEditedName(e.target.value)} type='text'></input>
                 </div>
                 <div className='spot-form-sec'>
                     <label>Price per Night</label>
@@ -91,10 +93,9 @@ function EditSpotModal(props) {
                     <label>Location</label>
                     <input value={editedLocation} maxLength='50' onChange={e=>setEditedLocation(e.target.value)} type='text'></input>
                 </div>
-
-                    <br />
-
+                <br />
             </form>
+
             <div className='edit-spot-btns-cont'>
                 <div className='flex-row-cont'>
                     <button disabled={!errorsHidden && editedSpotErrors.length > 0}
@@ -105,13 +106,15 @@ function EditSpotModal(props) {
                         Submit Changes
                     </button>
                 </div>
+                {/* ============== Delete Spot Buttons ================== */}
                 <div className='flex-row-cont'>
                     <button disabled={!hideConfDelete} className='dis delete-sf edit-spot-form-btn' onClick={e=>setHideConfDelete(false)}>Delete Spot</button>
                     <button disabled={!hideConfDelete} className='dis cancel-sf edit-spot-form-btn' onClick={props.onClose}>Cancel</button>
                 </div>
+{/* ==================== Buttons for Confirming Deletion of Spot (hidden initially) ================================================ */}
                 {!hideConfDelete && 
                 <div className='spot-confirm-del-cont'>
-                    <button className='edit-spot-form-btn delete-sf' onClick={e=>handleDeleteSpot(e)}>Delete Spot</button>
+                    <button className='edit-spot-form-btn delete-sf' onClick={e=>handleDeleteSpot(e)}>Confirm Deletion</button>
                     <button className='edit-spot-form-btn' onClick={e=>setHideConfDelete(true)}>Cancel</button>
                 </div>
                 }

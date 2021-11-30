@@ -4,13 +4,10 @@ import { useSelector, useDispatch} from 'react-redux';
 import { getUsersSpots, newSpot } from '../../store/spots'
 import MyHostedSpots from './MyHostedSpots';
 import './HostedSpots.css';
-import { set } from 'js-cookie';
 
 function HostedSpots({addingNew}){
-    const history = useHistory();
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
-    const spots = useSelector(state => state.spots)
 
     const [ newName, setNewName ] = useState('');
     const [ newLocation, setNewLocation ] = useState('');
@@ -24,10 +21,12 @@ function HostedSpots({addingNew}){
     const [ photoCountE, setPhotoCountE ] = useState(false);
     const [ errorsHidden, setErrorsHidden ] = useState(true);
 
+    // get all of the spots hosted by the user
     useEffect(() => {
         dispatch(getUsersSpots(sessionUser.id))
     },[ dispatch, sessionUser ])
-
+    
+    // error checks for new spot creation
     useEffect(() => {
         let newErrors = [];
         if(newName.length < 2) newErrors.push('Ship Name must be longer')
@@ -40,6 +39,8 @@ function HostedSpots({addingNew}){
         setNewSpotErrors(newErrors);
     }, [newName, newLocation, newPrice, newDescription])
 
+
+    // handle the adding/removing of photos to the new spot form
     const updateFile = (e) => {
         setPhotoCountE(false)
         const file = e.target.files;
@@ -54,6 +55,7 @@ function HostedSpots({addingNew}){
         console.log(newPhotos)
     };
 
+    // when adding photos, prevent duplicates 
     const updateFileRemove = (name) => {
         let photos = newPhotos.filter((p)=> {
             return p.name !== name
@@ -61,6 +63,7 @@ function HostedSpots({addingNew}){
         setNewPhotos(photos)
     }
 
+    // handle form submission for new spot
     const handleListSpot = (e) => {
         e.preventDefault()
         setErrorsHidden(false)
@@ -74,14 +77,9 @@ function HostedSpots({addingNew}){
             price: newPrice,
             description: newDescription,
             photos: newPhotos
-            // reviews: spotData.reviews,
-            // rules: spotData.rules,
-            // amenities: spotData.amenities,
         }
         dispatch(newSpot(spotData))
         setViewForm(!viewForm)
-        // history.push(`/users/${sessionUser.id}/becomeahost`)
-
     }
 
     
@@ -99,67 +97,67 @@ function HostedSpots({addingNew}){
             {viewForm &&
                 <p className='subtitle h-sub hover-hand' onClick={e=>setViewForm(!viewForm)}>View My Spots</p>}
         </div>
-        {/* ============ View all the Users Hosted Spots ========================================================= */}
+{/* ============ ALL USERS HOSTED SPOTS ================================================================== */}
         {!viewForm &&
             <div className='trips-title hosted-spots-cont'>
                 <MyHostedSpots />
             </div>
         }
-        {/* ============ Form for Hosting a new Spot =============================================================== */}
+{/* ============ FORM FOR HOSTING NEW SPOT =============================================================== */}
         {viewForm &&
-            <div className='new-spot-form-cont'>
-                <form className='new-spot-form flex-col-cont' action='/spots/new' method='post' >
-                    <ul hidden={errorsHidden}>
-                        {newSpotErrors.map((e, i)=> (
-                            <li key={i} className='error-text'>• {e}</li>
-                        ))}
-                    </ul>
-                    <div className='spot-form-sec'>
-                        <label>Ship Name:</label>
-                        <input value={newName} maxLength='50' placeholder='S.S. Nebuchadnezzer' onChange={e=>setNewName(e.target.value)} type='text'></input>
-                    </div>
-                    <div className='spot-form-sec'>
-                        <label>Price per Night</label>
-                        <input value={newPrice} min='5000' onChange={e=>setNewPrice(e.target.value)} type='number'></input>
-                    </div>
-                    <div className='spot-form-sec'>
-                        <label>Desription</label>
-                        <textarea value={newDescription} maxLength='500' cols='50' rows='7' onChange={e=>setNewDescription(e.target.value)} ></textarea>
-                    </div>
-                    <div className='spot-form-sec'>
-                        <label>Location</label>
-                        <input value={newLocation} maxLength='50' placeholder='Fiji? Capetown? Greenland?' onChange={e=>setNewLocation(e.target.value)} type='text'></input>
-                    </div>
-                    <br />
-                    <div className='spot-form-sec'>
-                        <label>Add Photos</label>
-                        {photoCountE && 
-                            <p className='error-text'>Spots can only have 5 Photos maximum</p>
-                        }
-                        <div className='file-names-sec'>
-                            <div className='flex-col-cont'>
-                                <p className='small-grey-label'>Add up to 5 photos</p>
-                                <input onChange={updateFile} type='file' disabled={newPhotos.length >= 5} multiple></input>
-                            </div>
-                            {newPhotos.length > 0 && 
-                                <div className='file-names'>
-                                { newPhotos?.map((p,i) => (
-                                    <div className='file-line' key={i}>
-                                        <div onClick={e=>updateFileRemove(p.name)} className='remove-file-btn hover-hand'>X</div>
-                                        <p className='file-name' key={i}>{p.name}</p>
-                                    </div>
-                                ))}
-                                </div>
-                            }
+        <div className='new-spot-form-cont'>
+            <form className='new-spot-form flex-col-cont' action='/spots/new' method='post' >
+                <ul hidden={errorsHidden}>
+                    {newSpotErrors.map((e, i)=> (
+                        <li key={i} className='error-text'>• {e}</li>
+                    ))}
+                </ul>
+                <div className='spot-form-sec'>
+                    <label>Ship Name:</label>
+                    <input value={newName} maxLength='50' placeholder='S.S. Nebuchadnezzer' onChange={e=>setNewName(e.target.value)} type='text'></input>
+                </div>
+                <div className='spot-form-sec'>
+                    <label>Price per Night</label>
+                    <input value={newPrice} min='5000' onChange={e=>setNewPrice(e.target.value)} type='number'></input>
+                </div>
+                <div className='spot-form-sec'>
+                    <label>Desription</label>
+                    <textarea value={newDescription} maxLength='500' cols='50' rows='7' onChange={e=>setNewDescription(e.target.value)} ></textarea>
+                </div>
+                <div className='spot-form-sec'>
+                    <label>Location</label>
+                    <input value={newLocation} maxLength='50' placeholder='Fiji? Capetown? Greenland?' onChange={e=>setNewLocation(e.target.value)} type='text'></input>
+                </div>
+                <br />
+                <div className='spot-form-sec'>
+                    <label>Add Photos</label>
+                    {photoCountE && 
+                        <p className='error-text'>Spots can only have 5 Photos maximum</p>
+                    }
+                    <div className='file-names-sec'>
+                        <div className='flex-col-cont'>
+                            <p className='small-grey-label'>Add up to 5 photos</p>
+                            <input onChange={updateFile} type='file' disabled={newPhotos.length >= 5} multiple></input>
                         </div>
+                        {newPhotos.length > 0 && 
+                            <div className='file-names'>
+                            { newPhotos?.map((p,i) => (
+                                <div className='file-line' key={i}>
+                                    <div onClick={e=>updateFileRemove(p.name)} className='remove-file-btn hover-hand'>X</div>
+                                    <p className='file-name' key={i}>{p.name}</p>
+                                </div>
+                            ))}
+                            </div>
+                        }
                     </div>
-                    <div className='spot-form-sec'>
-                        <br />
-                        <button disabled={!errorsHidden && newSpotErrors.length > 0}type='submit' className='dis spot-form-btn' onClick={e=>handleListSpot(e)}>List My Spot</button>
-                    </div>
-                </form>
-                <button className='cancel-btn sf-cancel'>Cancel</button>
-            </div>
+                </div>
+                <div className='spot-form-sec'>
+                    <br />
+                    <button disabled={!errorsHidden && newSpotErrors.length > 0}type='submit' className='dis spot-form-btn' onClick={e=>handleListSpot(e)}>List My Spot</button>
+                </div>
+            </form>
+            <button className='cancel-btn sf-cancel'>Cancel</button>
+        </div>
         }
     </>
   )

@@ -4,17 +4,15 @@ import { useSelector, useDispatch} from 'react-redux';
 import './HostedSpots.css';
 import './MyHostedSpots.css';
 import EditSpotModal from './EditSpotModal'
-import {Modal} from './../../context/Modal.js'
-import { set } from 'js-cookie';
+import { Modal } from './../../context/Modal.js'
 
 function MyHostedSpots(){
-    const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user)
     const spots = useSelector(state => state.spots)
 
     const [ showModal, setShowModal ] = useState(false)
     const [ spotId, setSpotId ] = useState(null)
 
+    // open the modal for editing the spot slected
     const editOneSpot = (spotId) => {
         setSpotId(spotId)
         setShowModal(true)
@@ -42,6 +40,7 @@ function MyHostedSpots(){
                 <button className='edit-spot-btn cancel-btn hover-hand' onClick={() => editOneSpot(spot.id)}>Edit</button>
             </div>
         ))}
+{/* =========== Edit Spot Modal ============================================================= */}
         {showModal &&
             <Modal className="modal" onClose={() => setShowModal(false)}>
                 <EditSpotModal show={showModal}
